@@ -9,7 +9,8 @@ const mountNode = document.getElementById('app');
 const MAGIC_NUMBER = 923;
 
 const px = value => `${value}px`;
-const em = value => `${value}em`;
+
+const calcRelativeValue = (value, videoWidth) => px((value / MAGIC_NUMBER) * videoWidth);
 
 const resizeCalc = () => {
   const configurations = {
@@ -66,10 +67,10 @@ const resizeCalc = () => {
       left,
     };
 
-    configurations.overlay_content.fontSize = px((configurations.overlay_content.fontSize / MAGIC_NUMBER) * videoWidth);
+    configurations.overlay_content.fontSize = calcRelativeValue(configurations.overlay_content.fontSize, videoWidth);
 
     configurations.text1 = {
-      top: px((configurations.text1.top / MAGIC_NUMBER) * videoWidth),
+      top: calcRelativeValue(configurations.text1.top, videoWidth),
     };
   }
 
