@@ -19,10 +19,16 @@ const resizeCalc = () => {
     overlay_content: {
       fontSize: 13,
     },
-    text1: {
-      top: 96,
-      left: 0,
-    },
+    text: [{
+      top: 97,
+      left: 3,
+    }, {
+      top: 152,
+      left: 3,
+    }, {
+      top: 255,
+      left: -215,
+    }],
   };
 
   const videoContainer = document.querySelector('.video-container');
@@ -58,20 +64,24 @@ const resizeCalc = () => {
     videoWidth = videoWidth || (videoHeight * videoRatio).toFixed(0);
     videoHeight = videoHeight || (videoWidth / videoRatio).toFixed(0);
 
-    const top = px((viewportHeight - videoHeight) / 2);
-    const left = px((viewportWidth - videoWidth) / 2);
     configurations.overlay = {
       width: px(videoWidth),
       height: px(videoHeight),
-      top,
-      left,
+      top: px((viewportHeight - videoHeight) / 2),
+      left: px((viewportWidth - videoWidth) / 2),
     };
 
     configurations.overlay_content.fontSize = calcRelativeValue(configurations.overlay_content.fontSize, videoWidth);
 
-    configurations.text1 = {
-      top: calcRelativeValue(configurations.text1.top, videoWidth),
-    };
+    configurations.text.forEach((text) => {
+      const top = calcRelativeValue(text.top, videoWidth);
+      const left = calcRelativeValue(text.left, videoWidth);
+
+      text = Object.assign(text, { top, left });
+    });
+
+    console.log('configurations:');
+    console.log(configurations);
   }
 
   ReactDOM.render(<App configurations={configurations} />, mountNode);

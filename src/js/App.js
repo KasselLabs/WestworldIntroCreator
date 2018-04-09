@@ -10,7 +10,9 @@ export default class App extends React.Component {
   };
 
   static defaultProps = {
-    configurations: {},
+    configurations: {
+      text: [],
+    },
   };
 
   constructor(props) {
