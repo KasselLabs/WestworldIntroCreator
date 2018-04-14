@@ -12,6 +12,10 @@ const VIDEO_RATIO = 16 / 9;
 
 const px = value => `${value}px`;
 
+const isFullscreen = () => (
+  window.innerWidth === window.screen.width && window.innerHeight === window.screen.height
+);
+
 const calcRelativeValue = (value, videoWidth) => px((value / MAGIC_NUMBER) * videoWidth);
 
 const calcVideoSize = (viewportHeight, viewportWidth) => {
@@ -40,6 +44,20 @@ const calcVideoSize = (viewportHeight, viewportWidth) => {
   return videoSize;
 };
 
+const calcViewportSize = (videoContainer) => {
+  if (isFullscreen()) {
+    return {
+      height: window.screen.height,
+      width: window.screen.width,
+    };
+  }
+
+  return {
+    height: videoContainer.offsetHeight,
+    width: videoContainer.offsetWidth,
+  };
+};
+
 const resizeCalc = () => {
   const configurations = {
     set: true,
@@ -62,11 +80,9 @@ const resizeCalc = () => {
   const videoContainer = document.querySelector('.video-container');
 
   if (videoContainer) {
-    const viewportHeight = videoContainer.offsetHeight;
-    const viewportWidth = videoContainer.offsetWidth;
+    const viewportSize = calcViewportSize(videoContainer);
 
-    const video = calcVideoSize(viewportHeight, viewportWidth);
-
+    const video = calcVideoSize(viewportSize.height, viewportSize.width);
 
     video.width = video.width || (video.height * VIDEO_RATIO).toFixed(0);
     video.height = video.height || (video.width / VIDEO_RATIO).toFixed(0);
@@ -74,8 +90,8 @@ const resizeCalc = () => {
     configurations.overlay = {
       width: px(video.width),
       height: px(video.height),
-      top: px((viewportHeight - video.height) / 2),
-      left: px((viewportWidth - video.width) / 2),
+      top: px((viewportSize.height - video.height) / 2),
+      left: px((viewportSize.width - video.width) / 2),
     };
 
     const defaultFontSize = configurations.overlay_content.fontSize;
