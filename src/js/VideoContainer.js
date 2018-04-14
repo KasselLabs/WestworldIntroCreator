@@ -10,16 +10,17 @@ class VideoContainer extends Component {
   static propTypes = {
     fullscreen: PropTypes.bool,
     onChangeFullscreen: PropTypes.func,
+    configurations: PropTypes.object,
   }
 
   static defaultProps = {
     fullscreen: false,
   }
 
-  _onPlayerReady(e) {
-    // const player = e.target;
-    // player.showVideoInfo();
-  }
+  // _onPlayerReady(e) {
+  //   const player = e.target;
+  //   player.showVideoInfo();
+  // }
 
   render() {
     const opts = {

@@ -8,9 +8,37 @@ const mountNode = document.getElementById('app');
 
 const MAGIC_NUMBER = 923;
 
+const VIDEO_RATIO = 16 / 9;
+
 const px = value => `${value}px`;
 
 const calcRelativeValue = (value, videoWidth) => px((value / MAGIC_NUMBER) * videoWidth);
+
+const calcVideoSize = (viewportHeight, viewportWidth) => {
+  const viewportRatio = viewportWidth / viewportHeight;
+
+  const videoSize = {
+    height: 0,
+    width: 0,
+  };
+
+  if (viewportHeight > viewportWidth) {
+    if (viewportRatio > VIDEO_RATIO) {
+      videoSize.height = viewportHeight;
+      return videoSize;
+    }
+    videoSize.width = viewportWidth;
+    return videoSize;
+  }
+
+  if (viewportRatio > VIDEO_RATIO) {
+    videoSize.height = viewportHeight;
+    return videoSize;
+  }
+
+  videoSize.width = viewportWidth;
+  return videoSize;
+};
 
 const resizeCalc = () => {
   const configurations = {
@@ -32,50 +60,31 @@ const resizeCalc = () => {
   };
 
   const videoContainer = document.querySelector('.video-container');
-  // const videoOverlay = document.querySelector('.video-overlay');
 
   if (videoContainer) {
-    console.log(videoContainer);
     const viewportHeight = videoContainer.offsetHeight;
     const viewportWidth = videoContainer.offsetWidth;
 
-    const ratio = viewportWidth / viewportHeight;
+    const video = calcVideoSize(viewportHeight, viewportWidth);
 
-    const videoRatio = 16 / 9;
 
-    let videoHeight = 0;
-    let videoWidth = 0;
-
-    console.log(ratio.toFixed(2), videoRatio.toFixed(2));
-    if (viewportHeight > viewportWidth) {
-      if (ratio > videoRatio) {
-        videoHeight = viewportHeight;
-      } else {
-        videoWidth = viewportWidth;
-      }
-    } else {
-      if (ratio > videoRatio) {
-        videoHeight = viewportHeight;
-      } else {
-        videoWidth = viewportWidth;
-      }
-    }
-
-    videoWidth = videoWidth || (videoHeight * videoRatio).toFixed(0);
-    videoHeight = videoHeight || (videoWidth / videoRatio).toFixed(0);
+    video.width = video.width || (video.height * VIDEO_RATIO).toFixed(0);
+    video.height = video.height || (video.width / VIDEO_RATIO).toFixed(0);
 
     configurations.overlay = {
-      width: px(videoWidth),
-      height: px(videoHeight),
-      top: px((viewportHeight - videoHeight) / 2),
-      left: px((viewportWidth - videoWidth) / 2),
+      width: px(video.width),
+      height: px(video.height),
+      top: px((viewportHeight - video.height) / 2),
+      left: px((viewportWidth - video.width) / 2),
     };
 
-    configurations.overlay_content.fontSize = calcRelativeValue(configurations.overlay_content.fontSize, videoWidth);
+    const defaultFontSize = configurations.overlay_content.fontSize;
+    const relativeFontSize = calcRelativeValue(defaultFontSize, video.width);
+    configurations.overlay_content.fontSize = relativeFontSize;
 
     configurations.text.forEach((text) => {
-      const top = calcRelativeValue(text.top, videoWidth);
-      const left = calcRelativeValue(text.left, videoWidth);
+      const top = calcRelativeValue(text.top, video.width);
+      const left = calcRelativeValue(text.left, video.width);
 
       text = Object.assign(text, { top, left });
     });

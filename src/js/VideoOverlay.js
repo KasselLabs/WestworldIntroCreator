@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const VideoOverlay = ({ configurations }) => (
   <div
@@ -10,23 +11,23 @@ const VideoOverlay = ({ configurations }) => (
       style={configurations.overlay_content}
     >
       <div
-        className="red-box"
         style={configurations.text[0]}
       >EVAN RACHEL WOOD
       </div>
       <div
-        className="red-box"
         style={configurations.text[1]}
       >THANDIE NEWTOW
       </div>
       <div
-        className="red-box"
         style={configurations.text[2]}
       >JEFFREY WRIGHT
       </div>
-      <div className="blue-box">BLUE BOX</div>
     </div>
   </div>
 );
+
+VideoOverlay.propTypes = {
+  configurations: PropTypes.object,
+};
 
 export default VideoOverlay;
