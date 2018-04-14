@@ -11,15 +11,15 @@ const VideoOverlay = ({ configurations }) => (
       style={configurations.overlay_content}
     >
       <div
-        style={configurations.text[0]}
+        style={configurations.texts[0]}
       >EVAN RACHEL WOOD
       </div>
       <div
-        style={configurations.text[1]}
+        style={configurations.texts[1]}
       >THANDIE NEWTOW
       </div>
       <div
-        style={configurations.text[2]}
+        style={configurations.texts[2]}
       >JEFFREY WRIGHT
       </div>
     </div>

@@ -47,7 +47,7 @@ const resizeCalc = () => {
     overlay_content: {
       fontSize: 13,
     },
-    text: [{
+    texts: [{
       top: 97,
       left: 3,
     }, {
@@ -82,11 +82,15 @@ const resizeCalc = () => {
     const relativeFontSize = calcRelativeValue(defaultFontSize, video.width);
     configurations.overlay_content.fontSize = relativeFontSize;
 
-    configurations.text.forEach((text) => {
+    configurations.texts = configurations.texts.map((text) => {
       const top = calcRelativeValue(text.top, video.width);
       const left = calcRelativeValue(text.left, video.width);
 
-      text = Object.assign(text, { top, left });
+      return {
+        ...text,
+        top,
+        left,
+      };
     });
 
     console.log('configurations:');

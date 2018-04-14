@@ -11,7 +11,7 @@ export default class App extends React.Component {
 
   static defaultProps = {
     configurations: {
-      text: [],
+      texts: [],
     },
   };
 
