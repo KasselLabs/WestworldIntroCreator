@@ -65,17 +65,19 @@ const resizeCalc = () => {
     overlay_content: {
       fontSize: 13,
     },
-    texts: [{
-      top: 97,
-      left: 0,
-    }, {
-      top: 152,
-      left: 0,
-    }, {
-      top: 255,
-      left: 100,
-      width: 292,
-    }],
+    texts: [
+      {
+        top: 97,
+        left: 0,
+      }, {
+        top: 152,
+        left: 0,
+      }, {
+        top: 255,
+        left: 100,
+        width: 292,
+      },
+    ],
   };
 
   const videoContainer = document.querySelector('.video-container');
