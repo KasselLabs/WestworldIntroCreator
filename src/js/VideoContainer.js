@@ -17,10 +17,19 @@ class VideoContainer extends Component {
     fullscreen: false,
   }
 
-  // _onPlayerReady(e) {
-  //   const player = e.target;
-  //   player.showVideoInfo();
-  // }
+  constructor() {
+    super();
+
+    this.state = {
+      play: false,
+    };
+  }
+
+  _onPlay = () => {
+    this.setState({
+      play: true,
+    });
+  }
 
   render() {
     const opts = {
@@ -38,6 +47,7 @@ class VideoContainer extends Component {
     };
 
     const { configurations } = this.props;
+    const { play } = this.state;
 
     return (
       <div className="video-container">
@@ -49,10 +59,10 @@ class VideoContainer extends Component {
             className="youtube-player"
             // videoId="XQhl3Hgu_TU"
             videoId="elkHuRROPfk"
-            onPlay={this._onPlayerReady}
+            onPlay={this._onPlay}
             opts={opts}
           />
-          <VideoOverlay configurations={configurations} />
+          <VideoOverlay configurations={configurations} play={play} />
         </Fullscreen>
       </div>
     );

@@ -1,0 +1,36 @@
+@keyframes textAnimation {
+    0% {
+      opacity: 0;
+    }
+
+    25% {
+      opacity: 1;
+    }
+
+    80% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+    }
+}
+
+.animate {
+
+  .video-overlay__content {
+    div {
+      display: block;
+      opacity: 0;
+      animation-fill-mode: forwards;
+    }
+  }
+
+  #text0 {
+    animation: textAnimation 2.5s linear 4.3s;
+  }
+
+  #text1 {
+    animation: textAnimation 2.5s linear 7.39s;
+  }
+}

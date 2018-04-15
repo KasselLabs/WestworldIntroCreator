@@ -67,13 +67,14 @@ const resizeCalc = () => {
     },
     texts: [{
       top: 97,
-      left: 3,
+      left: 0,
     }, {
       top: 152,
-      left: 3,
+      left: 0,
     }, {
       top: 255,
-      left: -215,
+      left: 100,
+      width: 292,
     }],
   };
 
@@ -83,9 +84,9 @@ const resizeCalc = () => {
     const viewportSize = calcViewportSize(videoContainer);
 
     const video = calcVideoSize(viewportSize.height, viewportSize.width);
-
     video.width = video.width || (video.height * VIDEO_RATIO).toFixed(0);
     video.height = video.height || (video.width / VIDEO_RATIO).toFixed(0);
+    console.log(video);
 
     configurations.overlay = {
       width: px(video.width),
@@ -101,11 +102,13 @@ const resizeCalc = () => {
     configurations.texts = configurations.texts.map((text) => {
       const top = calcRelativeValue(text.top, video.width);
       const left = calcRelativeValue(text.left, video.width);
+      const width = text.width ? calcRelativeValue(text.width, video.width) : '';
 
       return {
         ...text,
         top,
         left,
+        width,
       };
     });
 
