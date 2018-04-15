@@ -103,6 +103,7 @@ const resizeCalc = () => {
 
     configurations.texts = configurations.texts.map((text) => {
       const top = calcRelativeValue(text.top, video.width);
+      // const top = calcRelativeValue(text.top + 13, video.width);
       const left = calcRelativeValue(text.left, video.width);
       const width = text.width ? calcRelativeValue(text.width, video.width) : '';
 
