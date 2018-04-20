@@ -1,22 +1,20 @@
-@keyframes textAnimation {
-  0% {
-    opacity: 0;
-  }
+@keyframes animationSlowFade {
+  0% { opacity: 0; }
+  25% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
 
-  25% {
-    opacity: 1;
-  }
-
-  80% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
+@keyframes animationFastFade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .animate {
+  white-space: pre-line;
+  color: #cecece;
 
   .video-overlay__content {
     div {
@@ -26,38 +24,44 @@
     }
   }
 
-  #text0 { animation: textAnimation 2.500s linear 4.3s; }
-  #text1 { animation: textAnimation 2.500s linear 7.39s; }
-  #text2 { animation: textAnimation 2.500s linear 12.26s; }
-  #text3 { animation: textAnimation 2.387s linear 15.372s; }
-  #text4 { animation: textAnimation 1.982s linear 18.018s; }
-  #text5 { animation: textAnimation 3.000s linear 21s; }
-  #text6 { animation: textAnimation 1.579s linear 25.125s; }
-  #text7 { animation: textAnimation 1.619s linear 26.726s; }
-  #text8 { animation: textAnimation 1.521s linear 28.387s; }
-  #text9 { animation: textAnimation 1.437s linear 30.063s; }
-  #text10 { animation: textAnimation 1.416s linear 31.5s; }
-  #text11 { animation: textAnimation 2.500s linear 33.5s; }
-  #text12 { animation: textAnimation 2.500s linear 36.5s; }
-  #text13 { animation: textAnimation 2.500s linear 39.372s; }
-  #text14 { animation: textAnimation 2.500s linear 43.743s; }
-  #text15 { animation: textAnimation 1.814s linear 46s; }
-  #text16 { animation: textAnimation 1.602s linear 47.814s; }
-  #text17 { animation: textAnimation 1.267s linear 49.416s; }
-  #text18 { animation: textAnimation 1.836s linear 50.683s; }
-  #text19 { animation: textAnimation 2.669s linear 52.519s; }
-  #text20 { animation: textAnimation 2.202s linear 55.188s; }
-  #text21 { animation: textAnimation 1.735s linear 57.39s; }
-  #text22 { animation: textAnimation 2.570s linear 59.125s; }
-  #text23 { animation: textAnimation 2.500s linear 65.899s; }
-  #text24 { animation: textAnimation 2.500s linear 68.802s; }
-  #text25 { animation: textAnimation 2.500s linear 72.808s; }
-  #text26 { animation: textAnimation 1.602s linear 78.578s; }
-  #text27 { animation: textAnimation 2.056s linear 81.927s; }
-  #text28 { animation: textAnimation 3.225s linear 88.288s; }
-  #text29 { animation: textAnimation 1.779s linear 91.513s; }
-  #text30 { animation: textAnimation 1.937s linear 93.292s; }
-  #text31 { animation: textAnimation 2.256s linear 95.229s; }
-  #text32 { animation: textAnimation 2.500s linear 98.487s; }
-  #text33 { animation: textAnimation 2.178s linear 101.329s; }
+  #text9,
+  #text10,
+  #text11 {
+    color: #2d2d2d;
+  }
+
+  #text0 { animation: animationSlowFade 2.500s linear 4.3s; }
+  #text1 { animation: animationSlowFade 2.500s linear 7.39s; }
+  #text2 { animation: animationSlowFade 2.500s linear 12.26s; }
+  #text3 { animation: animationSlowFade 2.387s linear 15.372s; }
+  #text4 { animation: animationSlowFade 1.982s linear 18.018s; }
+  #text5 { animation: animationSlowFade 3.000s linear 21s; }
+  #text6 { animation: animationFastFade 1.579s linear 25.125s; }
+  #text7 { animation: animationFastFade 1.619s linear 26.726s; }
+  #text8 { animation: animationFastFade 1.521s linear 28.387s; }
+  #text9 { animation: animationFastFade 1.437s linear 30.063s; }
+  #text10 { animation: animationFastFade 1.416s linear 31.5s; }
+  #text11 { animation: animationSlowFade 2.500s linear 33.5s; }
+  #text12 { animation: animationSlowFade 2.500s linear 36.5s; }
+  #text13 { animation: animationSlowFade 2.500s linear 39.372s; }
+  #text14 { animation: animationSlowFade 2.500s linear 43.743s; }
+  #text15 { animation: animationFastFade 1.571s linear 46.243s; }
+  #text16 { animation: animationFastFade 1.602s linear 47.814s; }
+  #text17 { animation: animationFastFade 1.267s linear 49.416s; }
+  #text18 { animation: animationFastFade 1.836s linear 50.683s; }
+  #text19 { animation: animationSlowFade 2.669s linear 52.519s; }
+  #text20 { animation: animationSlowFade 2.202s linear 55.188s; }
+  #text21 { animation: animationFastFade 1.735s linear 57.39s; }
+  #text22 { animation: animationSlowFade 2.570s linear 59.125s; }
+  #text23 { animation: animationSlowFade 2.500s linear 65.899s; }
+  #text24 { animation: animationSlowFade 2.500s linear 68.802s; }
+  #text25 { animation: animationSlowFade 2.500s linear 72.808s; }
+  #text26 { animation: animationFastFade 1.602s linear 78.578s; }
+  #text27 { animation: animationSlowFade 2.056s linear 81.927s; }
+  #text28 { animation: animationSlowFade 3.225s linear 88.288s; }
+  #text29 { animation: animationFastFade 1.779s linear 91.513s; }
+  #text30 { animation: animationSlowFade 1.937s linear 93.292s; }
+  #text31 { animation: animationSlowFade 2.256s linear 95.229s; }
+  #text32 { animation: animationSlowFade 2.500s linear 98.487s; }
+  #text33 { animation: animationSlowFade 2.178s linear 101.329s; }
 }

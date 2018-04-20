@@ -66,7 +66,7 @@ const resizeCalc = () => {
       fontSize: 13,
     },
     texts: [
-      { top: 97, left: 0 },
+      { top: 97, left: 0},
       { top: 152, left: 0 },
       { top: 255, left: 100, width: 292 },
       { top: 160, left: 400, width: 296 },
@@ -75,9 +75,9 @@ const resizeCalc = () => {
       { top: 399, left: 26, width: 540 },
       { top: 254, left: 11, width: 540 },
       { top: 438, left: 14 },
-      { top: 294, left: 120, width: 292, color: 'black' },
-      { top: 294, left: 528, width: 292, color: 'black' },
-      { top: 111, left: 0, color: 'black' },
+      { top: 294, left: 120, width: 292 },
+      { top: 294, left: 528, width: 292 },
+      { top: 111, left: 0 },
       { top: 92, left: 0 },
       { top: 153, left: 0 },
       { top: 230, left: 0 },
@@ -137,9 +137,6 @@ const resizeCalc = () => {
         width,
       };
     });
-
-    console.log('configurations:');
-    console.log(configurations);
   }
 
   ReactDOM.render(<App configurations={configurations} />, mountNode);
