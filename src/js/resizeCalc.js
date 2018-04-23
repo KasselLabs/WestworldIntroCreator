@@ -66,17 +66,40 @@ const resizeCalc = () => {
       fontSize: 13,
     },
     texts: [
-      {
-        top: 97,
-        left: 0,
-      }, {
-        top: 152,
-        left: 0,
-      }, {
-        top: 255,
-        left: 100,
-        width: 292,
-      },
+      { top: 97, left: 0},
+      { top: 152, left: 0 },
+      { top: 255, left: 100, width: 292 },
+      { top: 160, left: 400, width: 296 },
+      { top: 361, left: 194, width: 540 },
+      { top: 86, left: 194, width: 540 },
+      { top: 399, left: 26, width: 540 },
+      { top: 254, left: 11, width: 540 },
+      { top: 438, left: 14 },
+      { top: 294, left: 120, width: 292 },
+      { top: 294, left: 528, width: 292 },
+      { top: 111, left: 0 },
+      { top: 92, left: 0 },
+      { top: 153, left: 0 },
+      { top: 230, left: 0 },
+      { top: 240, left: 114, width: 400 },
+      { top: 400, left: 204, width: 350 },
+      { top: 139, left: 155, width: 350 },
+      { top: 83, left: 188, width: 550 },
+      { top: 438, left: 0 },
+      { top: 338, left: 503, width: 350 },
+      { top: 177, left: 559, width: 346 },
+      { top: 241, left: 438, width: 460 },
+      { top: 62, left: 318, width: 280 },
+      { top: 283, left: 0 },
+      { top: 100, left: 0 },
+      { top: 373, left: 0 },
+      { top: 115, left: 0 },
+      { top: 334, left: 352, width: 220 },
+      { top: 245, left: 0 },
+      { top: 245, left: 0 },
+      { top: 245, left: 0 },
+      { top: 222, left: 0 },
+      { top: 245, left: 0 },
     ],
   };
 
@@ -114,9 +137,6 @@ const resizeCalc = () => {
         width,
       };
     });
-
-    console.log('configurations:');
-    console.log(configurations);
   }
 
   ReactDOM.render(<App configurations={configurations} />, mountNode);
