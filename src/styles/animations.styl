@@ -12,6 +12,16 @@
   100% { opacity: 0; }
 }
 
+@keyframes logoAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-.5em) scaleX(0.95) scaleY(0.95);
+  }
+}
+
 .animate {
   white-space: pre-line;
   color: #cecece;
@@ -58,7 +68,7 @@
   #text25 { animation: animationSlowFade 2.500s linear 72.808s; }
   #text26 { animation: animationFastFade 1.602s linear 78.578s; }
   #text27 { animation: animationSlowFade 2.056s linear 81.927s; }
-  #text28 { animation: animationSlowFade 3.225s linear 88.288s; }
+  #text28 { transition: 3.225s linear; animation: logoAnimation 3.225s linear 88.288s; letter-spacing: .32em; font-family: Presicav; }
   #text29 { animation: animationFastFade 1.779s linear 91.513s; }
   #text30 { animation: animationSlowFade 1.937s linear 93.292s; }
   #text31 { animation: animationSlowFade 2.256s linear 95.229s; }

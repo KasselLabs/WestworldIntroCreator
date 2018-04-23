@@ -66,7 +66,7 @@ const resizeCalc = () => {
       fontSize: 13,
     },
     texts: [
-      { top: 97, left: 0},
+      { top: 97, left: 0 },
       { top: 152, left: 0 },
       { top: 255, left: 100, width: 292 },
       { top: 160, left: 400, width: 296 },
@@ -94,7 +94,7 @@ const resizeCalc = () => {
       { top: 100, left: 0 },
       { top: 373, left: 0 },
       { top: 115, left: 0 },
-      { top: 334, left: 352, width: 220 },
+      { top: 336, left: 354, width: 220 },
       { top: 245, left: 0 },
       { top: 245, left: 0 },
       { top: 245, left: 0 },
