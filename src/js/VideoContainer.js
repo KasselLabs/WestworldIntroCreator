@@ -24,6 +24,8 @@ class VideoContainer extends Component {
     this.state = {
       play: false,
     };
+
+    this.youtubePlayer = React.createRef();
   }
 
   componentDidMount() {
@@ -36,6 +38,8 @@ class VideoContainer extends Component {
     this.setState({
       play: true,
     });
+
+    // this.youtubePlayer.current.internalPlayer.setPlaybackRate(0.25);
   }
 
   render() {
@@ -68,6 +72,7 @@ class VideoContainer extends Component {
             // videoId="elkHuRROPfk"
             onPlay={this._onPlay}
             opts={opts}
+            ref={this.youtubePlayer}
           />
           <VideoOverlay configurations={configurations} play={play} />
         </Fullscreen>
