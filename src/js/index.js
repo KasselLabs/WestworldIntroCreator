@@ -1,14 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 
-import resizeCalc from './resizeCalc';
 import '../styles/index.styl';
-import App from './App';
+import { documentReady } from './utils';
+import renderApp from './renderApp';
 
-
-const mountNode = document.getElementById('app');
-ReactDOM.render(<App />, mountNode);
+documentReady(() => {
+  renderApp();
+});
 
 window.onresize = () => {
-  resizeCalc();
+  renderApp();
 };

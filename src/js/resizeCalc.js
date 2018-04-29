@@ -1,11 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import throttle from 'lodash.throttle';
-
-import App from './App';
-
-const mountNode = document.getElementById('app');
-
 const MAGIC_NUMBER = 923;
 
 const VIDEO_RATIO = 16 / 9;
@@ -60,8 +52,6 @@ const calcViewportSize = (videoContainer) => {
 
 const resizeCalc = () => {
   const configurations = {
-    set: true,
-    overlay: {},
     overlay_content: {
       fontSize: 13,
     },
@@ -111,7 +101,6 @@ const resizeCalc = () => {
     const video = calcVideoSize(viewportSize.height, viewportSize.width);
     video.width = video.width || (video.height * VIDEO_RATIO).toFixed(0);
     video.height = video.height || (video.width / VIDEO_RATIO).toFixed(0);
-    console.log(video);
 
     configurations.overlay = {
       width: px(video.width),
@@ -139,12 +128,7 @@ const resizeCalc = () => {
     });
   }
 
-  ReactDOM.render(<App configurations={configurations} />, mountNode);
+  return configurations;
 };
 
-const resizeCalcThrottle = throttle(() => {
-  resizeCalc();
-}, 200);
-
-
-export default resizeCalcThrottle;
+export default resizeCalc;

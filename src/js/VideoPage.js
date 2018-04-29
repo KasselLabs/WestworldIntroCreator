@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import VideoContainer from './VideoContainer';
-import resizeCalc from './resizeCalc';
 
-export default class App extends React.Component {
+export default class VideoPage extends React.Component {
   static propTypes = {
     configurations: PropTypes.object,
   };
@@ -17,16 +16,9 @@ export default class App extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       isFullscreenEnabled: false,
     };
-  }
-
-  componentDidMount() {
-    if (!this.props.configurations.set) {
-      resizeCalc();
-    }
   }
 
   _setFullscreen = () => {
@@ -41,7 +33,7 @@ export default class App extends React.Component {
     const { configurations } = this.props;
 
     return (
-      <div id="application">
+      <div id="videoPage">
         <VideoContainer
           fullscreen={this.state.isFullscreenEnabled}
           onChangeFullscreen={this.handleChangeFullscreen}

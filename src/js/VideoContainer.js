@@ -4,6 +4,7 @@ import YouTube from 'react-youtube';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 
 import VideoOverlay from './VideoOverlay';
+import renderApp from './renderApp';
 
 
 class VideoContainer extends Component {
@@ -23,6 +24,12 @@ class VideoContainer extends Component {
     this.state = {
       play: false,
     };
+  }
+
+  componentDidMount() {
+    if (!this.props.configurations.overlay) {
+      renderApp();
+    }
   }
 
   _onPlay = () => {
