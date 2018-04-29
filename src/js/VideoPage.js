@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import VideoContainer from './VideoContainer';
+import ConfigurationsContext from './ConfigurationsContext';
 
-export default class VideoPage extends React.Component {
+class VideoPage extends React.Component {
   static propTypes = {
     configurations: PropTypes.object,
   };
@@ -48,3 +49,13 @@ export default class VideoPage extends React.Component {
     );
   }
 }
+
+const ConfigurationsConsumer = ConfigurationsContext.Consumer;
+
+const VideoPageWithConfigurations = () => (
+  <ConfigurationsConsumer>
+    {configurations => <VideoPage configurations={configurations} />}
+  </ConfigurationsConsumer>
+);
+
+export default VideoPageWithConfigurations;
