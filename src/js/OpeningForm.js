@@ -8,8 +8,8 @@ class OpeningForm extends Component {
     this.inputsRefs = {};
   }
 
-  _textAreaInput = (id, value) => (
-    <textarea key={id} name={id} id={id} rows="2" maxLength={300}>
+  _textAreaInput = (id, value, rows) => (
+    <textarea key={id} name={id} id={id} rows={rows} spellCheck={false} maxLength={300}>
       {value}
     </textarea>
   );
@@ -20,8 +20,10 @@ class OpeningForm extends Component {
     for (let i = 0; i < inputsCount; i += 1) {
       const ref = React.createRef();
       this.inputsRefs[i] = ref;
-      const id = `text${i}`;
-      const input = this._textAreaInput(id, season1[i]);
+      const id = `input-text${i}`;
+      const isLogoText = 28 === i;
+      const rows = isLogoText ? 1 : 2;
+      const input = this._textAreaInput(id, season1[i], rows);
       inputs.push(input);
     }
     return inputs;

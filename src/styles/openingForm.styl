@@ -1,14 +1,12 @@
 $inputBorderColor = $delosDarkBlue;
 $inputBorderColorHover = lighten($delosDarkBlue, 25%);
 $inputBorderColorFocus = lighten($delosDarkBlue, 40%);
-$marginTopFormInput = 10px;
 $formBackgroundColor = lighten(black, 2%);
 
 inputStyle() {
 
   $inputBorder = 3px solid $inputBorderColor;
 
-  padding: .3em;
   outline: 0;
   border: $inputBorder;
   border-radius: 3px;
@@ -25,34 +23,57 @@ inputStyle() {
   &:active, &:focus {
     border-color: $inputBorderColorFocus;
   }
+
+  @media $tablet {
+    padding: .3em;
+  }
 }
 
 #opening-form {
   display: flex;
-  width: 80vw;
 
   form {
     z-index: 1;
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    justify-content: space-around;
     flex-wrap: wrap;
-    max-height: 70vh;
 
-    input, textarea {
+    textarea {
       overflow-x: hidden;
-      margin-top: $marginTopFormInput;
-      margin-bottom: 0;
-      width: 300px;
+      margin-top: 2px;
+      width: 95vw;
       color: white;
       word-break: break-word;
       font-size: 14px;
+      resize: none;
 
       inputStyle();
     }
 
-    textarea {
-      resize: none;
+    #input-text28 {
+      logoTextStyle();
+      font-size: 1.5em;
+    }
+  }
+
+  @media $tablet {
+    width: 90vw;
+
+    form {
+      max-height: 70vh;
+
+      textarea {
+        flex-basis: 30%;
+        margin: 10px 10px 0;
+        min-width: 300px;
+        max-width: 500px;
+      }
+
+      #input-text28 {
+        logoTextStyle();
+        font-size: 2em;
+      }
     }
   }
 }
