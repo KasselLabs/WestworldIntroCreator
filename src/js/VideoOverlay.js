@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import opening from '../json/season1.json';
+import { season1 } from '../json/defaultTexts.json';
 
 class VideoOverlay extends Component {
   static propTypes = {
@@ -15,7 +15,7 @@ class VideoOverlay extends Component {
     for (let i = 0; i < 34; i += 1) {
       const key = `text${i}`;
       texts.push((
-        <div key={key} id={key} style={configurations.texts[i]}>{ opening.text[i] }</div>
+        <div key={key} id={key} style={configurations.texts[i]}>{ season1[i] }</div>
       ));
     }
     return texts;
