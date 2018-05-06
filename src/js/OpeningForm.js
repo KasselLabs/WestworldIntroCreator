@@ -40,8 +40,12 @@ class OpeningForm extends Component {
   render() {
     return (
       <div id="opening-form">
+        <div className="info-box">Fill the inputs below, the order is left to right, top to bottom</div>
         <form onSubmit={this._handleSubmit}>
-          {this._renderInputs()}
+          <div className="form-inputs">
+            {this._renderInputs()}
+          </div>
+          <button className="button">PLAY</button>
         </form>
       </div>
     );

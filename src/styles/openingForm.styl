@@ -1,5 +1,5 @@
 $inputBorderColor = $delosDarkBlue;
-$inputBorderColorHover = lighten($delosDarkBlue, 25%);
+$inputBorderColorHover = $delosLightBlue;
 $inputBorderColorFocus = lighten($delosDarkBlue, 40%);
 $formBackgroundColor = lighten(black, 2%);
 
@@ -31,9 +31,16 @@ inputStyle() {
 
 #opening-form {
   display: flex;
+  flex-direction: column;
+  align-items: center;
 
   form {
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-inputs {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -60,7 +67,7 @@ inputStyle() {
   @media $tablet {
     width: 90vw;
 
-    form {
+    .form-inputs {
       max-height: 70vh;
 
       textarea {
@@ -75,5 +82,31 @@ inputStyle() {
         font-size: 2em;
       }
     }
+  }
+}
+
+.info-box {
+  defaultTextStyle();
+  padding: 7px 7px 4px;
+  border-radius: 5px;
+  background-color: alpha($delosDarkBlue, 80%);
+  text-align: center;
+}
+
+.button {
+  logoTextStyle();
+
+  margin-top: 30px;
+  padding: 5px 15px;
+  border: 1px solid $delosLightBlue;
+  background-color: alpha($delosDarkBlue, 80%);
+  color: white;
+  font-size: 3em;
+  cursor: pointer;
+  transition: border-color, background-color .3s;
+
+  &:hover {
+    border-color: $inputBorderColorFocus;
+    background-color: alpha($delosLightBlue, 80%);
   }
 }
