@@ -20,57 +20,22 @@ body {
   height: 100%;
 }
 
-#videoPage {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+logoTextStyle() {
+  text-align: center;
+  letter-spacing: .1em;
+  font-size: 2.5rem;
+  font-family: Presicav;
 }
 
-:-webkit-full-screen {
-  background-color: black;
-}
-
-.video-container {
-  position: relative;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 100%;
-  pointer-events: none;
-}
-
-.buttons-container{
-  display: flex;
-  justify-content: center;
-}
-
-.video-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  // background-color: rgba(255,255,255,.2);
-  // pointer-events: none;
-}
-
-.video-overlay__content {
-  height: 100%;
+defaultTextStyle() {
   letter-spacing: .3em;
-  font-family: Avenir;
-
-  div {
-    position: absolute;
-    display: none;
-    // display: block;
-    width: 100%;
-    text-align: center;
-  }
+  text-transform: uppercase;
+  font-family: Avenir, Arial;
 }
 
-@import './animations';
+$delosDarkBlue = #153140;
+
+@import './scrollbar';
+@import './videoPage';
+@import './pageContainer';
+@import './openingForm';

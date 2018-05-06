@@ -1,12 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import VideoPage from './VideoPage';
-
-const CreatePage = () => (
-  <div>
-    <Link to="/video">Play video</Link>
-  </div>
-);
+import CreatePage from './CreatePage';
 
 const MainApp = () => (
   <Router>

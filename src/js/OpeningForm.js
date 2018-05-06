@@ -1,0 +1,49 @@
+import React, { Component } from 'react';
+import { season1 } from '../json/defaultTexts.json';
+
+class OpeningForm extends Component {
+  constructor(props) {
+    super(props);
+
+    this.inputsRefs = {};
+  }
+
+  _textAreaInput = (id, value) => (
+    <textarea key={id} name={id} id={id} rows="2" maxLength={300}>
+      {value}
+    </textarea>
+  );
+
+  _renderInputs() {
+    const inputsCount = 34;
+    const inputs = [];
+    for (let i = 0; i < inputsCount; i += 1) {
+      const ref = React.createRef();
+      this.inputsRefs[i] = ref;
+      const id = `text${i}`;
+      const input = this._textAreaInput(id, season1[i]);
+      inputs.push(input);
+    }
+    return inputs;
+  }
+
+  _getFormValues() {
+    return [];
+  }
+
+  _handleSubmit() {
+    console.log((this._getFormValues()));
+  }
+
+  render() {
+    return (
+      <div id="opening-form">
+        <form onSubmit={this._handleSubmit}>
+          {this._renderInputs()}
+        </form>
+      </div>
+    );
+  }
+}
+
+export default OpeningForm;
