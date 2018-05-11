@@ -5,6 +5,7 @@ import Fullscreen from 'react-fullscreen-crossbrowser';
 
 import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
+import OpeningProvider from './OpeningProvider';
 
 
 class VideoContainer extends Component {
@@ -74,7 +75,17 @@ class VideoContainer extends Component {
             opts={opts}
             ref={this.youtubePlayer}
           />
-          <VideoOverlay configurations={configurations} play={play} />
+
+          <OpeningProvider.Consumer>
+            {context => (
+              <VideoOverlay
+                opening={context.opening}
+                configurations={configurations}
+                play={play}
+              />
+              )
+            }
+          </OpeningProvider.Consumer>
         </Fullscreen>
       </div>
     );
