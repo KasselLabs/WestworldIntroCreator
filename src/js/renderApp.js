@@ -5,6 +5,7 @@ import throttle from 'lodash.throttle';
 import resizeCalc from './resizeCalc';
 import MainApp from './MainApp';
 import ConfigurationsContext from './ConfigurationsContext';
+import OpeningProvider from './OpeningProvider';
 
 const renderWithConfigurations = (configurations) => {
   const ConfigurationsProvider = ConfigurationsContext.Provider;
@@ -13,7 +14,9 @@ const renderWithConfigurations = (configurations) => {
   ReactDOM.render(
     (
       <ConfigurationsProvider value={configurations}>
-        <MainApp />
+        <OpeningProvider>
+          <MainApp />
+        </OpeningProvider>
       </ConfigurationsProvider>
     ),
     mountNode,
