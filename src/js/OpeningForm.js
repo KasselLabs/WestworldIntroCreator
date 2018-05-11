@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router'
 
 import OpeningProvider from './OpeningProvider';
 
@@ -8,16 +9,19 @@ class RawOpeningForm extends Component {
     opening: PropTypes.shape({
       texts: PropTypes.array.isRequired,
     }),
+    loadOpening: PropTypes.func,
+    history: PropTypes.object,
   }
 
   constructor(props) {
     super(props);
 
-    this.inputsRefs = {};
+    this.inputsRefs = [];
   }
 
-  _textAreaInput = (id, value, rows) => (
+  _textAreaInput = (id, value, rows, ref) => (
     <textarea
+      ref={ref}
       key={id}
       name={id}
       id={id}
@@ -35,24 +39,31 @@ class RawOpeningForm extends Component {
 
     for (let i = 0; i < inputsCount; i += 1) {
       const ref = React.createRef();
-      this.inputsRefs[i] = ref;
       const id = `input-text${i}`;
       const isLogoText = 28 === i;
       const rows = isLogoText ? 1 : 2;
-      const input = this._textAreaInput(id, texts[i], rows);
+      const input = this._textAreaInput(id, texts[i], rows, ref);
+
+      this.inputsRefs.push(ref);
       inputs.push(input);
     }
     return inputs;
   }
 
   _getFormValues() {
-    // TODO implement this
-    return [];
+    const values = this.inputsRefs.map((input) => {
+      return input.current.value;
+    });
+    return values;
   }
 
   _handleSubmit = (e) => {
     e.preventDefault();
-    console.log((this._getFormValues()));
+    const values = this._getFormValues();
+    this.props.loadOpening({
+      texts: values,
+    });
+    this.props.history.push('/video');
   }
 
   render() {
@@ -70,13 +81,17 @@ class RawOpeningForm extends Component {
   }
 }
 
-const OpeningForm = () => (
+const OpeningForm = props => (
   <OpeningProvider.Consumer>
     {context => (
-      <RawOpeningForm opening={context.opening} />
+      <RawOpeningForm
+        opening={context.opening}
+        loadOpening={context.loadOpening}
+        {...props}
+      />
       )
     }
   </OpeningProvider.Consumer>
 );
 
-export default OpeningForm;
+export default withRouter(OpeningForm);
