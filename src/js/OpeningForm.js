@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router'
-
+import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import OpeningProvider from './OpeningProvider';
+
 
 class RawOpeningForm extends Component {
   static propTypes = {
@@ -27,7 +27,7 @@ class RawOpeningForm extends Component {
       id={id}
       rows={rows}
       spellCheck={false}
-      maxLength={300}
+      maxLength={150}
       defaultValue={value}
     />
   );
@@ -69,7 +69,7 @@ class RawOpeningForm extends Component {
   render() {
     return (
       <div id="opening-form">
-        <div className="info-box">Fill the inputs below, the order is left to right, top to bottom</div>
+        <div className="info-box">FILL THE INPUTS BELOW, THE ORDER IS LEFT TO RIGHT, TOP TO BOTTOM</div>
         <form onSubmit={this._handleSubmit}>
           <div className="form-inputs">
             {this._renderInputs()}
