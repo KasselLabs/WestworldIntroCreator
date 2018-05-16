@@ -51,9 +51,7 @@ class RawOpeningForm extends Component {
   }
 
   _getFormValues() {
-    const values = this.inputsRefs.map((input) => {
-      return input.current.value;
-    });
+    const values = this.inputsRefs.map(input => input.current.value);
     return values;
   }
 
