@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import OpeningProvider from './OpeningProvider';
-
+import Swal from '../swal';
 
 class RawOpeningForm extends Component {
   static propTypes = {
@@ -19,7 +19,24 @@ class RawOpeningForm extends Component {
     this.inputsRefs = [];
   }
 
-  _textAreaInput = (id, value, rows, ref) => (
+
+  _isValidOpening = (opening) => {
+    const { texts } = opening;
+
+    const isAllTextsValid = texts.every((text, index) => {
+      const maxLength = 28 === index ? 50 : 150;
+      return text.length <= maxLength;
+    });
+
+    if (!isAllTextsValid) {
+      Swal.fire('OOPS...', 'All text fields should be less than 150 characters and the logo should be less than 50. ;)', 'warning');
+      return false;
+    }
+
+    return true;
+  };
+
+  _textAreaInput = (id, value, rows, maxLength, ref) => (
     <textarea
       ref={ref}
       key={id}
@@ -27,7 +44,7 @@ class RawOpeningForm extends Component {
       id={id}
       rows={rows}
       spellCheck={false}
-      maxLength={150}
+      maxLength={maxLength}
       defaultValue={value}
     />
   );
@@ -42,7 +59,8 @@ class RawOpeningForm extends Component {
       const id = `input-text${i}`;
       const isLogoText = 28 === i;
       const rows = isLogoText ? 1 : 2;
-      const input = this._textAreaInput(id, texts[i], rows, ref);
+      const maxLength = isLogoText ? 50 : 150;
+      const input = this._textAreaInput(id, texts[i], rows, maxLength, ref);
 
       this.inputsRefs.push(ref);
       inputs.push(input);
@@ -60,10 +78,13 @@ class RawOpeningForm extends Component {
     const values = this._getFormValues();
     const { playNewOpening, history } = this.props;
 
-    playNewOpening({
+    const opening = {
       texts: values,
-    }, history);
-    // this.props.history.push('/video');
+    };
+
+    if (this._isValidOpening(opening)) {
+      playNewOpening(opening, history);
+    }
   }
 
   render() {

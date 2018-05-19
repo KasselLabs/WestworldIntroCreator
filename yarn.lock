@@ -3889,6 +3889,10 @@ lodash.defaults@4.0.1:
     lodash.assigninwith "^4.0.0"
     lodash.rest "^4.0.0"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -5124,7 +5128,7 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-react-dom@^16.3.2:
+react-dom@^16.0.0:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.3.2.tgz#cb90f107e09536d683d84ed5d4888e9640e0e4df"
   dependencies:
@@ -5168,7 +5172,7 @@ react-youtube@^7.5.0:
     prop-types "^15.5.3"
     youtube-player "^5.4.0"
 
-react@^16.3.2:
+react@^16.0.0:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
   dependencies:
@@ -6007,6 +6011,14 @@ svgo@^1.0.5:
     stable "~0.1.6"
     unquote "~1.1.1"
     util.promisify "~1.0.0"
+
+sweetalert2-react-content@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2-react-content/-/sweetalert2-react-content-1.0.0.tgz#5eb84f9c5b79db4a394f920cc969ac7123245089"
+
+sweetalert2@7.18:
+  version "7.18.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.18.0.tgz#10f1019aae0a842eebefcf5b06fe42ea1ef53e79"
 
 symbol-tree@^3.2.2:
   version "3.2.2"

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import isEqual from 'lodash.isequal';
+
+import { defaultKey } from '../api/config';
 
 import { season1 } from '../../json/defaultTexts.json';
 
@@ -14,10 +17,15 @@ class OpeningProvider extends Component {
     opening: {
       texts: season1,
     },
-    playNewOpening: (opening) => {
-      this.setState({
-        opening,
-      });
+    key: defaultKey,
+    playNewOpening: (opening, history) => {
+      const isOpeningUnchanged = isEqual(opening, this.state.opening);
+
+      if (isOpeningUnchanged) {
+        // TODO call api
+
+        history.push(`/${this.state.key}`);
+      }
     },
   }
 
