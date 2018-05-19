@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import throttle from 'lodash.throttle';
 
 import resizeCalc from '../resizeCalc';
-import MainApp from './MainApp';
+import Routes from './Routes';
 import ConfigurationsContext from './ConfigurationsContext';
 import OpeningProvider from './OpeningProvider';
 
@@ -15,7 +15,7 @@ const renderWithConfigurations = (configurations) => {
     (
       <ConfigurationsProvider value={configurations}>
         <OpeningProvider>
-          <MainApp />
+          <Routes />
         </OpeningProvider>
       </ConfigurationsProvider>
     ),

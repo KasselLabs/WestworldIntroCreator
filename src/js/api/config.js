@@ -1,11 +1,11 @@
 export const defaultKey = 'Season1';
 
 export const firebases = {
-  initial: process.env.FIREBASE_INITIAL,
+  W: process.env.FIREBASE_INITIAL,
 };
 
-export const defaultFirebase = firebases.initial;
-export const defaultFirebasePrefix = '';
+export const defaultFirebase = firebases.W;
+export const defaultFirebasePrefix = 'W';
 
 // export const serverApi = process.env.SERVER_API;
 

@@ -1,15 +1,15 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 import VideoPage from './VideoPage';
 import CreatePage from './CreatePage';
 
-const MainApp = () => (
+const Routes = () => (
   <Router>
     <div>
       <Route exact path="/" component={CreatePage} />
-      <Route path="/video" component={VideoPage} />
+      <Route path="/:openingKey" component={VideoPage} />
     </div>
   </Router>
 );
 
-export default MainApp;
+export default Routes;
