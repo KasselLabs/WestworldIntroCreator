@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { season1 } from '../json/defaultTexts.json';
+import { season1 } from '../../json/defaultTexts.json';
 
 const OpeningContext = React.createContext();
 
@@ -14,7 +14,7 @@ class OpeningProvider extends Component {
     opening: {
       texts: season1,
     },
-    loadOpening: (opening) => {
+    playNewOpening: (opening) => {
       this.setState({
         opening,
       });

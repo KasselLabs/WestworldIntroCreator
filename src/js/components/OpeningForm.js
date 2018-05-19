@@ -9,7 +9,7 @@ class RawOpeningForm extends Component {
     opening: PropTypes.shape({
       texts: PropTypes.array.isRequired,
     }),
-    loadOpening: PropTypes.func,
+    playNewOpening: PropTypes.func,
     history: PropTypes.object,
   }
 
@@ -58,10 +58,12 @@ class RawOpeningForm extends Component {
   _handleSubmit = (e) => {
     e.preventDefault();
     const values = this._getFormValues();
-    this.props.loadOpening({
+    const { playNewOpening, history } = this.props;
+
+    playNewOpening({
       texts: values,
-    });
-    this.props.history.push('/video');
+    }, history);
+    // this.props.history.push('/video');
   }
 
   render() {
@@ -84,7 +86,7 @@ const OpeningForm = props => (
     {context => (
       <RawOpeningForm
         opening={context.opening}
-        loadOpening={context.loadOpening}
+        playNewOpening={context.playNewOpening}
         {...props}
       />
       )

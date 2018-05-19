@@ -1,7 +1,7 @@
 
 import '../styles/index.styl';
 import { documentReady } from './utils';
-import renderApp from './renderApp';
+import renderApp from './components/renderApp';
 
 (function _() {
   if ('production' !== process.env.NODE_ENV) {
