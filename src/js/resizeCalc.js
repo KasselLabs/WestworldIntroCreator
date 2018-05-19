@@ -85,11 +85,6 @@ const resizeCalc = () => {
       { top: 369, left: 0 },
       { top: 111, left: 0 },
       { top: 332, left: 354, width: 220 },
-      { top: 241, left: 0 },
-      { top: 241, left: 0 },
-      { top: 241, left: 0 },
-      { top: 218, left: 0 },
-      { top: 241, left: 0 },
     ],
   };
 
