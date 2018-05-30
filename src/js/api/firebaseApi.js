@@ -68,6 +68,8 @@ export const _generateUrlWithKey = (key) => {
 //   });
 //   const response = await http.get(url);
 //   const opening = response.data;
+//   // Remove created for when the opening is compared to the form it should ignore this property.
+//   delete opening.created;
 //   // const opening = {"center":true,"episode":"Episode VIII","intro":"Kassel Labs","logo":"kassel\nlabs","text":"Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs","title":"KASSEL LABS"};
 //   if (!opening) {
 //     const error = new Error(`Opening not found: ${initialKey}`);

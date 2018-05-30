@@ -3,13 +3,11 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import OpeningProvider from './OpeningProvider';
 import Swal from '../swal';
+import contextProviderWrapper from './contextProviderWrapper';
 
-class RawOpeningForm extends Component {
+class OpeningForm extends Component {
   static propTypes = {
-    opening: PropTypes.shape({
-      texts: PropTypes.array.isRequired,
-    }),
-    playNewOpening: PropTypes.func,
+    openingProvider: PropTypes.object,
     history: PropTypes.object,
   }
 
@@ -52,7 +50,7 @@ class RawOpeningForm extends Component {
   _renderInputs() {
     const inputsCount = 34;
     const inputs = [];
-    const { texts } = this.props.opening;
+    const { texts } = this.props.openingProvider.opening;
 
     for (let i = 0; i < inputsCount; i += 1) {
       const ref = React.createRef();
@@ -76,14 +74,14 @@ class RawOpeningForm extends Component {
   _handleSubmit = (e) => {
     e.preventDefault();
     const values = this._getFormValues();
-    const { playNewOpening, history } = this.props;
+    const { openingProvider, history } = this.props;
 
     const opening = {
       texts: values,
     };
 
     if (this._isValidOpening(opening)) {
-      playNewOpening(opening, history);
+      openingProvider.playNewOpening(opening, history);
     }
   }
 
@@ -102,17 +100,6 @@ class RawOpeningForm extends Component {
   }
 }
 
-const OpeningForm = props => (
-  <OpeningProvider.Consumer>
-    {context => (
-      <RawOpeningForm
-        opening={context.opening}
-        playNewOpening={context.playNewOpening}
-        {...props}
-      />
-      )
-    }
-  </OpeningProvider.Consumer>
-);
-
-export default withRouter(OpeningForm);
+export default withRouter(contextProviderWrapper(OpeningProvider, context => ({
+  openingProvider: context,
+}))(OpeningForm));
