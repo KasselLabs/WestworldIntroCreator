@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Counter from './Counter';
 
-const REQUEST_TIMEOUT = 10000;
+const REQUEST_TIMEOUT = 20000;
 const MAX_TRIES = 3;
 
 const Tries = new Counter(MAX_TRIES);
@@ -28,25 +28,29 @@ const _retryLastRequest = ({ config }, resolve) => {
 
 const _errorInterceptor = (error) => {
   const errorData = error.response;
-  if (!errorData) {
-    Raven.captureBreadcrumb({
-      message: `Unknow error on request, probably timeout error. Error code: ${error.code}`,
-      level: 'error',
-    });
-    _sendRavenNotification(error);
-    return Promise.reject(error);
-  }
+  // if (!errorData) {
+  //   Raven.captureBreadcrumb({
+  //     message: `Unknow error on request, probably timeout error. Error code: ${error.code}`,
+  //     level: 'error',
+  //   });
+  //   _sendRavenNotification(error);
+  //   return Promise.reject(error);
+  // }
 
   return new Promise((resolve, reject) => {
     if (Tries.isMaxValue()) {
       Tries.reset();
       reject(error);
+      Raven.captureBreadcrumb({
+        message: `Error on request: ${error.code}`,
+        level: 'error',
+      });
       _sendRavenNotification(errorData);
       return;
     }
 
     Tries.increment();
-    _retryLastRequest(errorData, resolve);
+    _retryLastRequest(error, resolve);
   });
 };
 
