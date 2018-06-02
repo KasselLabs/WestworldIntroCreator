@@ -1,6 +1,6 @@
 import React from 'react';
 
-const contextProviderWrapper =
+const connectContext =
 (ContextProvider, mapContextToProps) =>
   (Component) => {
     const wrappedComponent = props => (
@@ -17,4 +17,4 @@ const contextProviderWrapper =
     return wrappedComponent;
   };
 
-export default contextProviderWrapper;
+export default connectContext;
