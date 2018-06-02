@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import OpeningProvider from './OpeningProvider';
+import connectContext from './connectContext';
+
 class VideoOverlay extends Component {
   static propTypes = {
     configurations: PropTypes.object,
@@ -14,7 +17,7 @@ class VideoOverlay extends Component {
     for (let i = 0; i < 34; i += 1) {
       const key = `text${i}`;
       textsDiv.push((
-        <div key={key} id={key} style={configurations.texts[i]}>{ opening.texts[i] }</div>
+        <div key={key} id={key} style={configurations.texts[i]}>{ opening.texts[`text${i}`] }</div>
       ));
     }
     return textsDiv;
@@ -40,4 +43,9 @@ class VideoOverlay extends Component {
   }
 }
 
-export default VideoOverlay;
+const mapContextToProps = context => ({
+  opening: context.opening,
+});
+
+
+export default connectContext(OpeningProvider, mapContextToProps)(VideoOverlay);

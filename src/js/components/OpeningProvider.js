@@ -4,9 +4,7 @@ import isEqual from 'lodash.isequal';
 
 import { defaultKey } from '../api/config';
 
-import { season1 } from '../../json/defaultTexts.json';
-import { saveOpening } from '../api/firebaseApi';
-import firebaseOpeningEncode from '../api/firebaseOpeningEncode';
+import { saveOpening, fetchKey } from '../api/firebaseApi';
 
 const OpeningContext = React.createContext();
 
@@ -16,32 +14,56 @@ class OpeningProvider extends Component {
   }
 
   state = {
-    opening: {
-      texts: season1,
+    opening: null,
+
+    key: null,
+
+    setDefaultOpening: (opening) => {
+      this.setState({
+        opening,
+        key: defaultKey,
+      });
     },
-    key: defaultKey,
+
     playNewOpening: async (opening, history) => {
       const isOpeningUnchanged = isEqual(opening, this.state.opening);
 
       if (isOpeningUnchanged) {
         history.push(`/${this.state.key}`);
+        return;
       }
-
-      const encodedOpening = firebaseOpeningEncode(opening);
 
       let key;
       try {
-        key = await saveOpening(encodedOpening);
+        key = await saveOpening(opening);
       } catch (error) {
         // TODO handle error
         return;
       }
 
-      this.setState({
-        key,
-      });
+      history.push(`/${key}`);
+    },
 
-      history.push(`/${this.state.key}`);
+    loadOpening: async (openingKey) => {
+      let opening;
+      try {
+        opening = await fetchKey(openingKey);
+      } catch (error) {
+        // apiError(`We could not load the introduction "${key}"`, true);
+        return;
+      }
+
+      if (!opening) {
+        console.log('not found');
+        // setCreateMode();
+        // swal('ops...', `The introduction with the key "${key}" was not found.`, 'error');
+        return;
+      }
+
+      this.setState({
+        opening,
+        key: openingKey,
+      });
     },
   }
 

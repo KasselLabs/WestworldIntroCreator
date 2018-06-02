@@ -1,20 +1,39 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import OpeningProvider from './OpeningProvider';
 import Swal from '../swal';
-import contextProviderWrapper from './contextProviderWrapper';
+import OpeningProvider from './OpeningProvider';
+import connectContext from './connectContext';
+
+import { season1 } from '../../json/defaultTexts.json';
+import firebaseOpeningEncode from '../api/firebaseOpeningEncode';
 
 class OpeningForm extends Component {
   static propTypes = {
-    openingProvider: PropTypes.object,
+    opening: PropTypes.object,
+    setDefaultOpening: PropTypes.func,
+    playNewOpening: PropTypes.func,
     history: PropTypes.object,
   }
 
   constructor(props) {
     super(props);
 
-    this.inputsRefs = [];
+    this.inputsRefs = {};
+
+    const defaultOpening = {
+      texts: season1,
+    };
+
+    const openingEncoded = firebaseOpeningEncode(defaultOpening);
+
+    this.state = {
+      opening: props.opening || openingEncoded,
+    };
+
+    if (!props.opening) {
+      this.props.setDefaultOpening(openingEncoded);
+    }
   }
 
 
@@ -50,7 +69,7 @@ class OpeningForm extends Component {
   _renderInputs() {
     const inputsCount = 34;
     const inputs = [];
-    const { texts } = this.props.openingProvider.opening;
+    const { texts } = this.state.opening;
 
     for (let i = 0; i < inputsCount; i += 1) {
       const ref = React.createRef();
@@ -58,30 +77,33 @@ class OpeningForm extends Component {
       const isLogoText = 28 === i;
       const rows = isLogoText ? 1 : 2;
       const maxLength = isLogoText ? 50 : 150;
-      const input = this._textAreaInput(id, texts[i], rows, maxLength, ref);
+      const input = this._textAreaInput(id, texts[`text${i}`], rows, maxLength, ref);
 
-      this.inputsRefs.push(ref);
+      this.inputsRefs[i] = ref;
       inputs.push(input);
     }
+
     return inputs;
   }
 
   _getFormValues() {
-    const values = this.inputsRefs.map(input => input.current.value);
+    const keys = Object.keys(this.inputsRefs);
+    const values = keys.map(key => this.inputsRefs[key].current.value);
     return values;
   }
 
   _handleSubmit = (e) => {
     e.preventDefault();
     const values = this._getFormValues();
-    const { openingProvider, history } = this.props;
+    const { playNewOpening, history } = this.props;
 
     const opening = {
       texts: values,
     };
 
     if (this._isValidOpening(opening)) {
-      openingProvider.playNewOpening(opening, history);
+      const encodedOpening = firebaseOpeningEncode(opening);
+      playNewOpening(encodedOpening, history);
     }
   }
 
@@ -100,6 +122,10 @@ class OpeningForm extends Component {
   }
 }
 
-export default withRouter(contextProviderWrapper(OpeningProvider, context => ({
-  openingProvider: context,
-}))(OpeningForm));
+const mapContextToProps = context => ({
+  opening: context.opening,
+  setDefaultOpening: context.setDefaultOpening,
+  playNewOpening: context.playNewOpening,
+});
+
+export default withRouter(connectContext(OpeningProvider, mapContextToProps)(OpeningForm));

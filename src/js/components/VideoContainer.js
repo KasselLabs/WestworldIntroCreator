@@ -6,6 +6,7 @@ import Fullscreen from 'react-fullscreen-crossbrowser';
 import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
 import OpeningProvider from './OpeningProvider';
+import connectContext from './connectContext';
 
 
 class VideoContainer extends Component {
@@ -13,6 +14,7 @@ class VideoContainer extends Component {
     fullscreen: PropTypes.bool,
     onChangeFullscreen: PropTypes.func,
     configurations: PropTypes.object,
+    opening: PropTypes.object,
   }
 
   static defaultProps = {
@@ -48,7 +50,7 @@ class VideoContainer extends Component {
       width: '100%',
       height: '100%',
       playerVars: {
-        autoplay: 1,
+        autoplay: 0,
         controls: 0,
         enablejsapi: 1,
         fs: 1,
@@ -58,7 +60,7 @@ class VideoContainer extends Component {
       },
     };
 
-    const { configurations } = this.props;
+    const { configurations, opening } = this.props;
     const { play } = this.state;
 
     return (
@@ -76,20 +78,21 @@ class VideoContainer extends Component {
             ref={this.youtubePlayer}
           />
 
-          <OpeningProvider.Consumer>
-            {context => (
-              <VideoOverlay
-                opening={context.opening}
-                configurations={configurations}
-                play={play}
-              />
-              )
-            }
-          </OpeningProvider.Consumer>
+          {!!opening &&
+            <VideoOverlay
+              configurations={configurations}
+              play={play}
+            />
+          }
         </Fullscreen>
       </div>
     );
   }
 }
 
-export default VideoContainer;
+const mapContextToProps = context => ({
+  opening: context.opening,
+});
+
+
+export default connectContext(OpeningProvider, mapContextToProps)(VideoContainer);

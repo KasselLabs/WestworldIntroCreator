@@ -29,7 +29,7 @@ export const _parseFirebasekey = (key) => {
 export const _parseSpecialKeys = (key) => {
   switch (key) {
     case 'Season1':
-      return '----';
+      return 'WLDoWtZ4-d3ytwMembH4';
     // TODO other season
     default:
       return key;
@@ -44,40 +44,41 @@ export const _generateUrlWithKey = (key) => {
 };
 
 
-// export const fetchKey = async (initialKey) => {
-//   const openingFromCache = openingsCache[initialKey];
-//   if (openingFromCache) {
-//     Raven.captureBreadcrumb({
-//       message: 'Getting intro from cache.',
-//       category: 'info',
-//       data: openingFromCache,
-//     });
-//     return openingFromCache;
-//   }
+export const fetchKey = async (initialKey) => {
+  const openingFromCache = openingsCache[initialKey];
+  if (openingFromCache) {
+    // Raven.captureBreadcrumb({
+    //   message: 'Getting intro from cache.',
+    //   category: 'info',
+    //   data: openingFromCache,
+    // });
+    return openingFromCache;
+  }
 
-//   const rawkey = _parseSpecialKeys(initialKey);
-//   const { baseURL, key } = _parseFirebasekey(rawkey);
-//   const http = Http(baseURL);
+  const rawkey = _parseSpecialKeys(initialKey);
+  const { baseURL, key } = _parseFirebasekey(rawkey);
+  const http = Http(baseURL);
 
-//   const url = _generateUrlWithKey(key);
+  const url = _generateUrlWithKey(key);
 
-//   Raven.captureBreadcrumb({
-//     message: 'Loading intro from Firebase.',
-//     category: 'info',
-//     data: { initialKey },
-//   });
-//   const response = await http.get(url);
-//   const opening = response.data;
-//   // Remove created for when the opening is compared to the form it should ignore this property.
-//   delete opening.created;
-//   // const opening = {"center":true,"episode":"Episode VIII","intro":"Kassel Labs","logo":"kassel\nlabs","text":"Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs","title":"KASSEL LABS"};
-//   if (!opening) {
-//     const error = new Error(`Opening not found: ${initialKey}`);
-//     Raven.captureException(error);
-//   }
-//   openingsCache[initialKey] = opening;
-//   return opening;
-// };
+  Raven.captureBreadcrumb({
+    message: 'Loading intro from Firebase.',
+    category: 'info',
+    data: { initialKey },
+  });
+  const response = await http.get(url);
+  const opening = response.data;
+  // const opening = {"center":true,"episode":"Episode VIII","intro":"Kassel Labs","logo":"kassel\nlabs","text":"Kassel Labs\n\nkassel\nlabs\n\nKASSEL LABS\n\nKASSEL\nLABS\n\nkassel labs","title":"KASSEL LABS"};
+  if (!opening) {
+    const error = new Error(`Opening not found: ${initialKey}`);
+    Raven.captureException(error);
+    return opening;
+  }
+  // Remove created for when the opening is compared to the form it should ignore this property.
+  delete opening.created;
+  openingsCache[initialKey] = opening;
+  return opening;
+};
 
 
 export const saveOpening = async (opening) => {

@@ -1,5 +1,5 @@
 const firebaseOpeningEncode = (opening) => {
-  const encodedOpening = {};
+  const encodedOpening = { ...opening };
 
   encodedOpening.texts = opening.texts.reduce((texts, current, index) => {
     const key = `text${index}`;

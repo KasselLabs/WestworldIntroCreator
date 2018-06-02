@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 import withReactContent from 'sweetalert2-react-content';
 
-Swal.setDefaults({
+Swal.mixin({
   customClass: 'westworld-sweetalert',
 });
 
