@@ -17,6 +17,7 @@ const _retryLastRequest = ({ config }, resolve) => {
     method: config.method,
     url: config.url,
     data: config.data ? JSON.parse(config.data) : null,
+    params: config.params,
   };
 
   return Http().request(options)
@@ -27,7 +28,7 @@ const _retryLastRequest = ({ config }, resolve) => {
 };
 
 const _errorInterceptor = (error) => {
-  const errorData = error.response;
+  // const errorData = error.response;
   // if (!errorData) {
   //   Raven.captureBreadcrumb({
   //     message: `Unknow error on request, probably timeout error. Error code: ${error.code}`,
@@ -42,10 +43,10 @@ const _errorInterceptor = (error) => {
       Tries.reset();
       reject(error);
       Raven.captureBreadcrumb({
-        message: `Error on request: ${error.code}`,
+        message: `Error on request. Error code: ${error.code}`,
         level: 'error',
       });
-      _sendRavenNotification(errorData);
+      _sendRavenNotification(JSON.stringify(error));
       return;
     }
 
