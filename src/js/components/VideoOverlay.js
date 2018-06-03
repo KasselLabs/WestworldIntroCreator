@@ -8,7 +8,7 @@ class VideoOverlay extends Component {
   static propTypes = {
     configurations: PropTypes.object,
     opening: PropTypes.object,
-    play: PropTypes.bool,
+    playing: PropTypes.bool,
   };
 
   _renderTexts() {
@@ -24,8 +24,8 @@ class VideoOverlay extends Component {
   }
 
   render() {
-    const { configurations, play } = this.props;
-    const classnames = `video-overlay ${play ? 'animate' : ''}`;
+    const { configurations, playing } = this.props;
+    const classnames = `video-overlay ${playing ? 'animate' : ''}`;
 
     return (
       <div

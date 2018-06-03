@@ -9,6 +9,7 @@ import OpeningProvider from './OpeningProvider';
 import connectContext from './connectContext';
 import LoadingLayer from './LoadingLayer';
 import ConfigurationsContext from './ConfigurationsContext';
+// import PlayVideoButton from './PlayVideoButton';
 
 class VideoContainer extends Component {
   static propTypes = {
@@ -29,7 +30,8 @@ class VideoContainer extends Component {
     super();
 
     this.state = {
-      play: false,
+      videoPlaying: false,
+      // startPlay: false,
     };
 
     this.youtubePlayer = React.createRef();
@@ -41,20 +43,27 @@ class VideoContainer extends Component {
     }
   }
 
-  _onPlay = () => {
+  _onStartPlay = () => {
     this.setState({
-      play: true,
+      videoPlaying: true,
     });
 
     // this.youtubePlayer.current.internalPlayer.setPlaybackRate(0.25);
   }
+
+  _handleClickPlay = () => {
+    this.youtubePlayer.current.internalPlayer.playVideo();
+    this.setState({
+      startPlay: true,
+    });
+  };
 
   render() {
     const opts = {
       width: '100%',
       height: '100%',
       playerVars: {
-        autoplay: 0,
+        autoplay: 1,
         controls: 0,
         enablejsapi: 1,
         fs: 1,
@@ -65,7 +74,10 @@ class VideoContainer extends Component {
     };
 
     const { configurations, opening } = this.props;
-    const { play } = this.state;
+    const {
+      videoPlaying,
+      // startPlay,
+    } = this.state;
 
     return (
       <div className="video-container">
@@ -77,7 +89,7 @@ class VideoContainer extends Component {
             className="youtube-player"
             videoId="XQhl3Hgu_TU"
             // videoId="elkHuRROPfk"
-            onPlay={this._onPlay}
+            onPlay={this._onStartPlay}
             opts={opts}
             ref={this.youtubePlayer}
           />
@@ -85,10 +97,14 @@ class VideoContainer extends Component {
           {!!opening &&
             <VideoOverlay
               configurations={configurations}
-              play={play}
+              playing={videoPlaying}
             />
           }
-          <LoadingLayer isLoading={!this.props.opening} />
+          {/* <LoadingLayer isLoading={!opening} /> */}
+          <LoadingLayer isLoading={!videoPlaying} />
+          {/* {!!opening && !startPlay &&
+            <PlayVideoButton onClick={this._handleClickPlay} />
+          } */}
         </Fullscreen>
       </div>
     );
