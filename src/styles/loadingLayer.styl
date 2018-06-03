@@ -1,0 +1,53 @@
+$loadingLayerColor = alpha(black, .6);
+$hiddenBorderColor= alpha(black, .25);
+$loaderColor = white;
+$loadingSize = 200px;
+
+
+.loading-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: $loadingLayerColor;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $loadingSize;
+    height: $loadingSize;
+    border-radius: 50%;
+    background-color: $loaderColor;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .circle {
+    position: absolute;
+    padding: 10px;
+    width: $loadingSize;
+    height: $loadingSize;
+    border: 5px solid $hiddenBorderColor;
+    border-top-color: $loaderColor;
+    border-radius: 50%;
+    animation: rotateLoading infinite 2s linear;
+  }
+}
+
+@keyframes rotateLoading
+{
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

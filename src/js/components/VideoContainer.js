@@ -7,6 +7,7 @@ import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
 import OpeningProvider from './OpeningProvider';
 import connectContext from './connectContext';
+import LoadingLayer from './LoadingLayer';
 import ConfigurationsContext from './ConfigurationsContext';
 
 class VideoContainer extends Component {
@@ -87,6 +88,7 @@ class VideoContainer extends Component {
               play={play}
             />
           }
+          <LoadingLayer isLoading={!this.props.opening} />
         </Fullscreen>
       </div>
     );
