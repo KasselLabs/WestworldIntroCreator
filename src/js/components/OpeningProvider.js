@@ -5,6 +5,8 @@ import isEqual from 'lodash.isequal';
 import { defaultKey } from '../api/config';
 
 import { saveOpening, fetchKey } from '../api/firebaseApi';
+import firebaseOpeningEncode from '../api/firebaseOpeningEncode';
+import { season1 } from '../../json/defaultTexts.json';
 
 const OpeningContext = React.createContext();
 
@@ -15,21 +17,22 @@ class OpeningProvider extends Component {
 
   state = {
     opening: null,
-
     key: null,
 
-    setDefaultOpening: (opening) => {
-      this.setState({
-        opening,
-        key: defaultKey,
-      });
-    },
-
     playNewOpening: async (opening, history) => {
-      const isOpeningUnchanged = isEqual(opening, this.state.opening);
+      let openingBefore = this.state.opening;
+      if (!this.state.opening) {
+        const defaultOpening = {
+          texts: season1,
+        };
+
+        openingBefore = firebaseOpeningEncode(defaultOpening);
+      }
+      const isOpeningUnchanged = isEqual(opening, openingBefore);
 
       if (isOpeningUnchanged) {
-        history.push(`/${this.state.key}`);
+        const key = this.state.key || defaultKey;
+        history.push(`/${key}`);
         return;
       }
 

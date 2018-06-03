@@ -7,7 +7,7 @@ import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
 import OpeningProvider from './OpeningProvider';
 import connectContext from './connectContext';
-
+import ConfigurationsContext from './ConfigurationsContext';
 
 class VideoContainer extends Component {
   static propTypes = {
@@ -19,6 +19,9 @@ class VideoContainer extends Component {
 
   static defaultProps = {
     fullscreen: false,
+    configurations: {
+      texts: [],
+    },
   }
 
   constructor() {
@@ -90,9 +93,16 @@ class VideoContainer extends Component {
   }
 }
 
-const mapContextToProps = context => ({
+const mapConfigurationsToProps = context => ({
+  configurations: context,
+});
+
+const mapOpeningProviderToProps = context => ({
   opening: context.opening,
 });
 
 
-export default connectContext(OpeningProvider, mapContextToProps)(VideoContainer);
+const connectConfigurations = connectContext(ConfigurationsContext, mapConfigurationsToProps);
+const connectOpeningProvider = connectContext(OpeningProvider, mapOpeningProviderToProps);
+
+export default connectConfigurations(connectOpeningProvider(VideoContainer));

@@ -11,7 +11,6 @@ import firebaseOpeningEncode from '../api/firebaseOpeningEncode';
 class OpeningForm extends Component {
   static propTypes = {
     opening: PropTypes.object,
-    setDefaultOpening: PropTypes.func,
     playNewOpening: PropTypes.func,
     history: PropTypes.object,
   }
@@ -30,10 +29,6 @@ class OpeningForm extends Component {
     this.state = {
       opening: props.opening || openingEncoded,
     };
-
-    if (!props.opening) {
-      this.props.setDefaultOpening(openingEncoded);
-    }
   }
 
 
@@ -124,7 +119,6 @@ class OpeningForm extends Component {
 
 const mapContextToProps = context => ({
   opening: context.opening,
-  setDefaultOpening: context.setDefaultOpening,
   playNewOpening: context.playNewOpening,
 });
 
