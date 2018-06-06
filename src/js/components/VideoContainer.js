@@ -26,12 +26,28 @@ class VideoContainer extends Component {
     },
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { openingLoaded } = prevState;
+    const { opening } = nextProps;
+
+    if (!openingLoaded && opening) {
+      const nextState = {
+        openingLoaded: true,
+      };
+      return nextState;
+    }
+
+    return null;
+  }
+
   constructor() {
     super();
 
     this.state = {
+      videoReady: false,
+      openingLoaded: false,
       videoPlaying: false,
-      // startPlay: false,
+      videoStarted: false,
     };
 
     this.youtubePlayer = React.createRef();
@@ -43,28 +59,57 @@ class VideoContainer extends Component {
     }
   }
 
-  _onStartPlay = () => {
+  componentDidUpdate(prevProps, prevState) {
+    const wasVideoReady = prevState.videoReady && prevState.openingLoaded;
+    const isNowVideoReady = this.state.videoReady && this.state.openingLoaded;
+
+    if (!wasVideoReady && isNowVideoReady) {
+      this.youtubePlayer.current.internalPlayer.playVideo();
+    }
+  }
+
+  _onVideoStartPlay = () => {
     this.setState({
       videoPlaying: true,
+      videoStarted: true,
     });
 
     // this.youtubePlayer.current.internalPlayer.setPlaybackRate(0.25);
   }
 
-  _handleClickPlay = () => {
-    this.youtubePlayer.current.internalPlayer.playVideo();
+  _onVideoStateChange = (event) => {
+    const state = event.data;
+    const isBuffering = YouTube.PlayerState.BUFFERING === state;
+    const isPaused = YouTube.PlayerState.PAUSED === state;
+
+    if (isBuffering || isPaused) {
+      this.setState({
+        videoPlaying: false,
+      });
+    }
+  }
+
+  _onVideoReady = () => {
     this.setState({
-      startPlay: true,
+      videoReady: true,
     });
-  };
+  }
+
+  // _handleClickPlay = () => {
+  //   this.youtubePlayer.current.internalPlayer.playVideo();
+  //   this.setState({
+  //     startPlay: true,
+  //   });
+  // };
 
   render() {
     const opts = {
       width: '100%',
       height: '100%',
       playerVars: {
-        autoplay: 1,
+        autoplay: 0,
         controls: 0,
+        disablekb: 1,
         enablejsapi: 1,
         fs: 1,
         modestbranding: 1,
@@ -74,10 +119,15 @@ class VideoContainer extends Component {
     };
 
     const { configurations, opening } = this.props;
+
     const {
       videoPlaying,
-      // startPlay,
+      videoReady,
+      videoStarted,
+      openingLoaded,
     } = this.state;
+
+    const isLoading = !openingLoaded || !videoReady || !videoStarted;
 
     return (
       <div className="video-container">
@@ -89,7 +139,9 @@ class VideoContainer extends Component {
             className="youtube-player"
             videoId="XQhl3Hgu_TU"
             // videoId="elkHuRROPfk"
-            onPlay={this._onStartPlay}
+            onPlay={this._onVideoStartPlay}
+            onStateChange={this._onVideoStateChange}
+            onReady={this._onVideoReady}
             opts={opts}
             ref={this.youtubePlayer}
           />
@@ -98,10 +150,11 @@ class VideoContainer extends Component {
             <VideoOverlay
               configurations={configurations}
               playing={videoPlaying}
+              playStart={videoStarted}
             />
           }
           {/* <LoadingLayer isLoading={!opening} /> */}
-          <LoadingLayer isLoading={!videoPlaying} />
+          <LoadingLayer isLoading={isLoading} />
           {/* {!!opening && !startPlay &&
             <PlayVideoButton onClick={this._handleClickPlay} />
           } */}
