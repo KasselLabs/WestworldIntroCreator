@@ -91,20 +91,26 @@ inputStyle() {
   text-align: center;
 }
 
+#play-button {
+  margin-top: 30px;
+}
+
 .button {
   logoTextStyle();
 
-  margin-top: 30px;
   padding: 5px 15px;
   border: 1px solid $delosLightBlue;
   background-color: alpha($delosDarkBlue, 80%);
   color: white;
-  font-size: 3em;
   cursor: pointer;
   transition: border-color, background-color .3s;
 
   &:hover {
     border-color: $inputBorderColorFocus;
     background-color: alpha($delosLightBlue, 80%);
+  }
+
+  &.big {
+    font-size: 3em;
   }
 }

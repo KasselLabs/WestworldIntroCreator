@@ -58,8 +58,8 @@ class VideoPage extends React.Component {
           onChangeFullscreen={this.handleChangeFullscreen}
         />
         <div className="buttons-container">
-          <button onClick={this._setFullscreen}>
-            Go Fullscreen
+          <button onClick={this._setFullscreen} className="button">
+            GO FULLSCREEN
           </button>
         </div>
       </div>

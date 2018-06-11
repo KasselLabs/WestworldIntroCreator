@@ -110,7 +110,7 @@ class OpeningForm extends Component {
           <div className="form-inputs">
             {this._renderInputs()}
           </div>
-          <button className="button">PLAY</button>
+          <button id="play-button" className="button big">PLAY</button>
         </form>
       </div>
     );
