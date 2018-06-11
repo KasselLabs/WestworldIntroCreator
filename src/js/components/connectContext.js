@@ -3,18 +3,21 @@ import React from 'react';
 const connectContext =
 (ContextProvider, mapContextToProps) =>
   (Component) => {
-    const wrappedComponent = props => (
-      <ContextProvider.Consumer>
-        {context => (
-          <Component
-            {...mapContextToProps(context)}
-            {...props}
-          />
-          )
-        }
-      </ContextProvider.Consumer>
-    );
-    return wrappedComponent;
+    return class WrappedContextComponent extends React.Component {
+      render() {
+        return (
+          <ContextProvider.Consumer>
+            {context => (
+              <Component
+                {...mapContextToProps(context)}
+                {...this.props}
+              />
+              )
+            }
+          </ContextProvider.Consumer>
+        );
+      }
+    };
   };
 
 export default connectContext;
