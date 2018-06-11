@@ -17,6 +17,8 @@ class VideoContainer extends Component {
     onChangeFullscreen: PropTypes.func,
     configurations: PropTypes.object,
     opening: PropTypes.object,
+    onVideoEnd: PropTypes.func,
+    playAgain: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -28,11 +30,18 @@ class VideoContainer extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState) {
     const { openingLoaded } = prevState;
-    const { opening } = nextProps;
+    const { opening, playAgain } = nextProps;
 
     if (!openingLoaded && opening) {
       const nextState = {
         openingLoaded: true,
+      };
+      return nextState;
+    }
+
+    if (playAgain) {
+      const nextState = {
+        videoEnded: false,
       };
       return nextState;
     }
@@ -48,6 +57,7 @@ class VideoContainer extends Component {
       openingLoaded: false,
       videoPlaying: false,
       videoStarted: false,
+      videoEnded: false,
     };
 
     this.youtubePlayer = React.createRef();
@@ -63,7 +73,9 @@ class VideoContainer extends Component {
     const wasVideoReady = prevState.videoReady && prevState.openingLoaded;
     const isNowVideoReady = this.state.videoReady && this.state.openingLoaded;
 
-    if (!wasVideoReady && isNowVideoReady) {
+    const { playAgain } = this.props;
+
+    if ((!wasVideoReady && isNowVideoReady) || playAgain) {
       this.youtubePlayer.current.internalPlayer.playVideo();
     }
   }
@@ -92,6 +104,15 @@ class VideoContainer extends Component {
   _onVideoReady = () => {
     this.setState({
       videoReady: true,
+    });
+  }
+
+  _onVideoEnd = () => {
+    this.props.onVideoEnd();
+    this.setState({
+      videoPlaying: false,
+      videoStarted: false,
+      videoEnded: true,
     });
   }
 
@@ -125,9 +146,10 @@ class VideoContainer extends Component {
       videoReady,
       videoStarted,
       openingLoaded,
+      videoEnded,
     } = this.state;
 
-    const isLoading = !openingLoaded || !videoReady || !videoStarted;
+    const isLoading = !videoEnded && (!openingLoaded || !videoReady || !videoStarted);
 
     return (
       <div className="video-container">
@@ -142,6 +164,7 @@ class VideoContainer extends Component {
             onPlay={this._onVideoStartPlay}
             onStateChange={this._onVideoStateChange}
             onReady={this._onVideoReady}
+            onEnd={this._onVideoEnd}
             opts={opts}
             ref={this.youtubePlayer}
           />

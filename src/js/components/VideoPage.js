@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
@@ -33,6 +33,8 @@ class VideoPage extends React.Component {
   state = {
     isFullscreenEnabled: false,
     isLoading: true,
+    videoEnded: false,
+    playAgain: false,
   };
 
   componentDidMount() {
@@ -50,17 +52,37 @@ class VideoPage extends React.Component {
     this.setState({ isFullscreenEnabled });
   }
 
+  handleVideoEnd = () => {
+    this.setState({ isFullscreenEnabled: false, videoEnded: true, playAgain: false });
+  }
+
+  _playAgain = () => {
+    this.setState({ playAgain: true, videoEnded: false });
+  }
+
   render() {
+    const { videoEnded } = this.state;
     return (
       <div id="videoPage">
         <VideoContainer
           fullscreen={this.state.isFullscreenEnabled}
           onChangeFullscreen={this.handleChangeFullscreen}
+          onVideoEnd={this.handleVideoEnd}
+          playAgain={this.state.playAgain}
         />
         <div className="buttons-container">
-          <button onClick={this._setFullscreen} className="button">
-            GO FULLSCREEN
-          </button>
+          {!videoEnded &&
+            <button onClick={this._setFullscreen} className="button">
+              GO FULLSCREEN
+            </button>
+          }
+          {videoEnded &&
+            <Fragment>
+              <button onClick={this._playAgain} className="button">
+                PLAY AGAIN
+              </button>
+            </Fragment>
+          }
         </div>
       </div>
     );
