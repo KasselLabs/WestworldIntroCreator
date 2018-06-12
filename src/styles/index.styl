@@ -26,9 +26,11 @@ logoTextStyle() {
   font-family: Presicav;
 }
 
+$defaultFontFamily = Avenir, Arial;
+
 defaultTextStyle() {
   letter-spacing: .3em;
-  font-family: Avenir, Arial;
+  font-family: $defaultFontFamily;
 }
 
 textOutline() {
@@ -42,7 +44,9 @@ textOutline() {
 // media query
 tablet = 'only screen and (min-device-width : 768px)';
 
+$boxBackgroundColor = #05141e;
 $delosDarkBlue = #153140;
+$boxBorderColor = $delosDarkBlue;
 $delosLightBlue = lighten($delosDarkBlue, 25%);
 
 @import './scrollbar';
@@ -51,3 +55,4 @@ $delosLightBlue = lighten($delosDarkBlue, 25%);
 @import './openingForm';
 @import './loadingLayer';
 @import './playVideoButton';
+@import './afterVideoCard';

@@ -176,8 +176,8 @@ class VideoContainer extends Component {
               playStart={videoStarted}
             />
           }
-          {/* <LoadingLayer isLoading={!opening} /> */}
           <LoadingLayer isLoading={isLoading} />
+
           {/* {!!opening && !startPlay &&
             <PlayVideoButton onClick={this._handleClickPlay} />
           } */}

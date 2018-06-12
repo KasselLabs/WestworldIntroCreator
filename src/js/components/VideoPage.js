@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import OpeningProvider from './OpeningProvider';
 import VideoContainer from './VideoContainer';
 import connectContext from './connectContext';
+import AfterVideoCard from './AfterVideoCard';
 
 class VideoPage extends React.Component {
   static propTypes = {
@@ -70,6 +71,9 @@ class VideoPage extends React.Component {
           onVideoEnd={this.handleVideoEnd}
           playAgain={this.state.playAgain}
         />
+        { videoEnded &&
+          <AfterVideoCard />
+        }
         <div className="buttons-container">
           {!videoEnded &&
             <button onClick={this._setFullscreen} className="button">
