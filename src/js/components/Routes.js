@@ -7,7 +7,9 @@ const Routes = () => (
   <Router>
     <div>
       <Route exact path="/" component={CreatePage} />
-      <Route path="/:openingKey" component={VideoPage} />
+      <Route exact path="/:openingKey" component={VideoPage} />
+      {/* <Route path="/:openingKey/edit" component={CreatePage} /> TODO CreatePage as edit page */}
+      {/* <Route path="/:openingKey/download" component={DownloadPage} /> */}
     </div>
   </Router>
 );
