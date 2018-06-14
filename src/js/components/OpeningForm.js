@@ -20,14 +20,23 @@ class OpeningForm extends Component {
 
     this.inputsRefs = {};
 
+    const { opening } = props;
+
+    if (opening) {
+      this.state = {
+        opening,
+      };
+      return;
+    }
+
     const defaultOpening = {
       texts: season1,
     };
 
-    const openingEncoded = firebaseOpeningEncode(defaultOpening);
+    const defaultOpeningEncoded = firebaseOpeningEncode(defaultOpening);
 
     this.state = {
-      opening: props.opening || openingEncoded,
+      opening: defaultOpeningEncoded,
     };
   }
 

@@ -4,9 +4,7 @@ import OpeningForm from './OpeningForm';
 
 const CreatePage = () => (
   <PageContainer>
-    <div>
-      <OpeningForm />
-    </div>
+    <OpeningForm />
   </PageContainer>
 );
 
