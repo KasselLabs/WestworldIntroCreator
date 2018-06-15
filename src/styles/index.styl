@@ -49,6 +49,20 @@ $delosDarkBlue = #153140;
 $boxBorderColor = $delosDarkBlue;
 $delosLightBlue = lighten($delosDarkBlue, 25%);
 
+.link {
+  color: $delosLightBlue;
+  font-weight: bold;
+  transition: color 200ms;
+
+  &:hover {
+    color: white;
+  }
+}
+
+p {
+  margin: .5em 0;
+}
+
 @import './scrollbar';
 @import './videoPage';
 @import './pageContainer';
