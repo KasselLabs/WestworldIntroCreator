@@ -33,8 +33,10 @@ class AfterVideoCard extends Component {
             </p>
             <p>
               The Download option will be available soon!
-              But you can put your email in and
-              we will tell you when the download option be available.
+            </p>
+            <p>
+              You can share your creation by copying the URL link
+              in your browser and send to your friends.
             </p>
           </div>
           <div className="buttons">
