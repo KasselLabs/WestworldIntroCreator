@@ -11,8 +11,12 @@ import firebaseOpeningEncode from '../api/firebaseOpeningEncode';
 class OpeningForm extends Component {
   static propTypes = {
     opening: PropTypes.object,
+    openingKey: PropTypes.string,
     playNewOpening: PropTypes.func,
+
     history: PropTypes.object,
+
+    showDownloadButton: PropTypes.bool,
   }
 
   constructor(props) {
@@ -40,6 +44,10 @@ class OpeningForm extends Component {
     };
   }
 
+  _download = () => {
+    const { openingKey, history } = this.props;
+    history.push(`/${openingKey}/download`);
+  }
 
   _isValidOpening = (opening) => {
     const { texts } = opening;
@@ -112,6 +120,7 @@ class OpeningForm extends Component {
   }
 
   render() {
+    const { showDownloadButton } = this.props;
     return (
       <div id="opening-form">
         <div className="info-box">FILL THE INPUTS BELOW, THE ORDER IS LEFT TO RIGHT, TOP TO BOTTOM</div>
@@ -119,7 +128,12 @@ class OpeningForm extends Component {
           <div className="form-inputs">
             {this._renderInputs()}
           </div>
-          <button id="play-button" className="button big">PLAY</button>
+          <div className="buttons">
+            <button type="submit" className="button big">PLAY</button>
+            { showDownloadButton &&
+              <button type="button" onClick={this._download} className="button big">DOWNLOAD</button>
+            }
+          </div>
         </form>
       </div>
     );
@@ -128,6 +142,7 @@ class OpeningForm extends Component {
 
 const mapContextToProps = context => ({
   opening: context.opening,
+  openingKey: context.key,
   playNewOpening: context.playNewOpening,
 });
 

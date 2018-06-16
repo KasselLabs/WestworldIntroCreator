@@ -41,7 +41,7 @@ class EditPage extends Component {
 
         {opening &&
           <OpeningForm
-            opening={opening}
+            showDownloadButton
           />
         }
 
