@@ -3,6 +3,9 @@ $inputBorderColorHover = $delosLightBlue;
 $inputBorderColorFocus = lighten($delosDarkBlue, 40%);
 $formBackgroundColor = lighten(black, 2%);
 
+$buttonColor = alpha($delosDarkBlue, 80%);
+$buttonHoverColor = alpha($delosLightBlue, 80%);
+
 inputStyle() {
 
   $inputBorder = 3px solid $inputBorderColor;
@@ -82,11 +85,35 @@ inputStyle() {
       }
     }
   }
+
+  .buttons {
+    margin-top: 30px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+
+
+    @media $tablet {
+      display: block;
+    }
+
+    button {
+      &:not(:first-child) {
+        margin-top: 15px;
+
+        @media $tablet {
+          margin-top: 0;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
 }
 
 .info-box {
   defaultTextStyle();
-  font-size: 18px;
+  fontSizeResponsive();
 
   padding: 7px 7px 4px;
   border-radius: 5px;
@@ -94,31 +121,36 @@ inputStyle() {
   text-align: center;
 }
 
-#play-button {
-  margin-top: 30px;
-}
-
 .button {
   logoTextStyle();
-  font-size: 18px;
+  fontSizeResponsive();
 
   padding: 5px 15px;
   border: 1px solid $delosLightBlue;
-  background-color: alpha($delosDarkBlue, 80%);
+  background-color: $buttonColor;
   color: white;
   cursor: pointer;
   transition: border-color, background-color .3s;
 
+
   &:hover {
     border-color: $inputBorderColorFocus;
-    background-color: alpha($delosLightBlue, 80%);
+    background-color: $buttonHoverColor;
   }
 
   &.big {
-    font-size: 3em;
+    font-size: 2em;
+
+    @media $tablet {
+      font-size: 3em;
+    }
   }
 
   &.medium {
-    font-size: 2em;
+    font-size: 1.5em;
+
+    @media $tablet {
+      font-size: 2em;
+    }
   }
 }

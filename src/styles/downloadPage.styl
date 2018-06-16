@@ -5,6 +5,14 @@
   margin-top: 10px;
   width: 100%;
 
+  .box {
+    width: unset;
+
+    @media $tablet {
+      width: 700px;
+    }
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -19,8 +27,32 @@
     margin-top: 10px;
     color: white;
     letter-spacing: .1em;
-    font-size: 20px;
+    font-size: 16px;
 
-    width: 70%;
+    width: 95%;
+
+    @media $tablet {
+      width: 70%;
+    font-size: 20px;
+    }
+  }
+
+  #closeButton {
+    position: absolute;
+    align-self: flex-end;
+    margin-top: -5px;
+    margin-left: 10px;
+    padding: 6px;
+    line-height: 9px;
+
+    background-color: transparent;
+
+    &:hover {
+      background-color: $buttonHoverColor;
+    }
+
+    @media $tablet {
+      margin-top: 0;
+    }
   }
 }

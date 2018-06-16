@@ -13,7 +13,7 @@
 
 .box {
   box-sizing: border-box;
-  padding: 20px 30px;
+  padding: 10px 15px;
   max-width: 95%;
   width: 700px;
 
@@ -22,9 +22,9 @@
 
   background-color: $boxBackgroundColor;
 
+  defaultTextStyle();
+  fontSizeResponsive();
   letter-spacing: .1em;
-  font-size: 18px;
-  font-family: $defaultFontFamily;
 
   display: flex;
   flex-direction: column;
@@ -37,10 +37,23 @@
   }
 
   .button {
-    margin-top: 20px;
+    margin-top: 15px;
 
     &:last-child {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
+  }
+
+  @media $tablet {
+    padding: 20px 30px;
+
+    .button {
+      margin-top: 20px;
+
+      &:last-child {
+        margin-bottom: 20px;
+      }
+    }
+
   }
 }

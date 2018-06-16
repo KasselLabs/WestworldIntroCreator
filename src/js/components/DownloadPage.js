@@ -1,11 +1,26 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+
 import PageContainer from './PageContainer';
 
 class DownloadPage extends Component {
+  static propTypes = {
+    history: PropTypes.object,
+    match: PropTypes.object,
+  }
+
   constructor() {
     super();
 
     this.formRef = React.createRef();
+  }
+
+  _closeButton = () => {
+    const { history, match } = this.props;
+    const { openingKey } = match.params;
+
+    history.push(`/${openingKey}/edit`);
   }
 
   _handleSubmit = () => {
@@ -20,6 +35,7 @@ class DownloadPage extends Component {
       <PageContainer>
         <div className="download-page">
           <div className="box">
+            <button id="closeButton" className="button" onClick={this._closeButton}>x</button>
             <h1 className="title">DOWNLOAD</h1>
             <p>
               The download feature will be available soon!
@@ -53,4 +69,4 @@ class DownloadPage extends Component {
   }
 }
 
-export default DownloadPage;
+export default withRouter(DownloadPage);
