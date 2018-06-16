@@ -14,6 +14,8 @@ inputStyle() {
   text-align: center;
   transition: border-color .3s ease-out;
 
+  padding-top: 6px;
+
   defaultTextStyle();
 
   &:hover{
@@ -25,7 +27,7 @@ inputStyle() {
   }
 
   @media $tablet {
-    padding: 4px;
+    padding: 6px 4px 4px;
   }
 }
 
@@ -47,15 +49,14 @@ inputStyle() {
     flex-wrap: wrap;
 
     textarea {
+      inputStyle();
+
       overflow-x: hidden;
       margin-top: 2px;
       width: 95vw;
       color: white;
       word-break: break-word;
-      font-size: 14px;
       resize: none;
-
-      inputStyle();
     }
 
     #input-text28 {
@@ -85,6 +86,8 @@ inputStyle() {
 
 .info-box {
   defaultTextStyle();
+  font-size: 18px;
+
   padding: 7px 7px 4px;
   border-radius: 5px;
   background-color: alpha($boxBackgroundColor, 80%);
@@ -97,6 +100,7 @@ inputStyle() {
 
 .button {
   logoTextStyle();
+  font-size: 18px;
 
   padding: 5px 15px;
   border: 1px solid $delosLightBlue;
