@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import connectContext from 'react-context-connector';
 
 import PageContainer from './PageContainer';
 import OpeningForm from './OpeningForm';
 import LoadingLayer from './LoadingLayer';
 
 import OpeningProvider from './OpeningProvider';
-import connectContext from './connectContext';
 
 class EditPage extends Component {
   state = {

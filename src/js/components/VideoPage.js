@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import connectContext from 'react-context-connector';
 
 import OpeningProvider from './OpeningProvider';
 import VideoContainer from './VideoContainer';
-import connectContext from './connectContext';
 import AfterVideoCard from './AfterVideoCard';
 
 class VideoPage extends React.Component {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import connectContext from 'react-context-connector';
 
 import OpeningProvider from './OpeningProvider';
-import connectContext from './connectContext';
 
 class VideoOverlay extends Component {
   static propTypes = {

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 import Fullscreen from 'react-fullscreen-crossbrowser';
+import connectContext from 'react-context-connector';
 
 import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
 import OpeningProvider from './OpeningProvider';
-import connectContext from './connectContext';
 import LoadingLayer from './LoadingLayer';
 import ConfigurationsContext from './ConfigurationsContext';
 // import PlayVideoButton from './PlayVideoButton';

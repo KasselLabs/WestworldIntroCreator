@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import connectContext from 'react-context-connector';
+
 import Swal from '../swal';
 import OpeningProvider from './OpeningProvider';
-import connectContext from './connectContext';
 
 import { season1 } from '../../json/defaultTexts.json';
 import firebaseOpeningEncode from '../api/firebaseOpeningEncode';

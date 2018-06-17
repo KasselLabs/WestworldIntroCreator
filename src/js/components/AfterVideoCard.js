@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import connectContext from 'react-context-connector';
+
 import OpeningProvider from './OpeningProvider';
-import connectContext from './connectContext';
 import ContactButton from './ContactButton';
 import TermsOfServiceAcceptance from './TermsOfServiceAcceptance';
 
