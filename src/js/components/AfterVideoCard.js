@@ -43,6 +43,7 @@ class AfterVideoCard extends Component {
             <button onClick={this._download} className="button big">
               DOWNLOAD
             </button>
+            <br />
             <button onClick={this._backToEdit} className="button medium">
               BACK TO EDIT
             </button>
