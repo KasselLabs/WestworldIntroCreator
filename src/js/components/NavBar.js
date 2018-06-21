@@ -18,21 +18,16 @@ class NavBar extends Component {
 
     const menu = (
       <ul className="menu">
+        <li><a href="/#/donate">DONATE</a></li>
+        <li><a href="mailto:kassellabs+westworld@gmail.com">CONTACT</a></li>
         <li>
           <a>ABOUT</a>
           <ul className="dropdown">
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Terms of Service</a></li>
+            <li><a href="https://kassellabs.io/TermsOfService/WestWorldIntroCreator.html">FAQ</a></li>
+            <li><a href="https://kassellabs.io/TermsOfService/WestWorldIntroCreator.html">TERMS OF SERVICE</a></li>
           </ul>
         </li>
-        <li><a href="#">CONTACT</a></li>
-        <li>
-          <a>ABOUT</a>
-          <ul className="dropdown">
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Terms of Service</a></li>
-          </ul>
-        </li>
+        <li><a href="http://kassellabs.io">MORE APPS</a></li>
       </ul>);
 
     return (

@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NavBar from './NavBar';
-import stic from '../../assets/img/stic.jpg';
-import swic from '../../assets/img/swic.jpg';
 
 const PageContainer = ({ children }) => (
   <div className="page-container">
