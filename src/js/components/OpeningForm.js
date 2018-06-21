@@ -59,7 +59,7 @@ class OpeningForm extends Component {
     });
 
     if (!isAllTextsValid) {
-      Swal.fire('OOPS...', 'All text fields should be less than 150 characters and the logo should be less than 50. ;)', 'warning');
+      Swal('OOPS...', 'All text fields should be less than 150 characters and the logo should be less than 50. ;)', 'warning');
       return false;
     }
 

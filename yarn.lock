@@ -4401,9 +4401,9 @@ pako@~1.0.5:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.6.tgz#0101211baa70c4bca4a0f63f2206e97b7dfaf258"
 
-parcel-bundler@^1.8.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/parcel-bundler/-/parcel-bundler-1.9.1.tgz#5557e41bb695890f01db144ec7d777c818598ef8"
+parcel-bundler@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/parcel-bundler/-/parcel-bundler-1.9.2.tgz#6b697cd58d9b4c155bb054029394b75a3d4d0831"
   dependencies:
     ansi-to-html "^0.6.4"
     babel-code-frame "^6.26.0"
@@ -5858,13 +5858,9 @@ svgo@^1.0.5:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
-sweetalert2-react-content@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/sweetalert2-react-content/-/sweetalert2-react-content-1.0.0.tgz#5eb84f9c5b79db4a394f920cc969ac7123245089"
-
-sweetalert2@7.21.1:
-  version "7.21.1"
-  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.21.1.tgz#0d532d05e367d68e86fb0e7f48c6a96d60ab9d82"
+sweetalert2@7.17:
+  version "7.17.0"
+  resolved "https://registry.yarnpkg.com/sweetalert2/-/sweetalert2-7.17.0.tgz#e04d42bcad3c8dbbe94a96fa275dc924e73073d4"
 
 symbol-tree@^3.2.2:
   version "3.2.2"
