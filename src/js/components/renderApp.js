@@ -6,6 +6,7 @@ import resizeCalc from '../extras/resizeCalc';
 import Routes from './Routes';
 import ConfigurationsContext from './ConfigurationsContext';
 import OpeningProvider from './OpeningProvider';
+import ErrorBoundary from './ErrorBoundary';
 
 const renderWithConfigurations = (configurations) => {
   const ConfigurationsProvider = ConfigurationsContext.Provider;
@@ -13,11 +14,13 @@ const renderWithConfigurations = (configurations) => {
   const mountNode = document.getElementById('app');
   ReactDOM.render(
     (
-      <ConfigurationsProvider value={configurations}>
-        <OpeningProvider>
-          <Routes />
-        </OpeningProvider>
-      </ConfigurationsProvider>
+      <ErrorBoundary>
+        <ConfigurationsProvider value={configurations}>
+          <OpeningProvider>
+            <Routes />
+          </OpeningProvider>
+        </ConfigurationsProvider>
+      </ErrorBoundary>
     ),
     mountNode,
   );
