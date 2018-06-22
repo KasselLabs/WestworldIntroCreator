@@ -33,7 +33,7 @@ class DownloadPage extends Component {
   render() {
     return (
       <PageContainer>
-        <div className="download-page">
+        <div className="download-page box-page">
           <div className="box">
             <button id="closeButton" className="button" onClick={this._closeButton}>x</button>
             <h1 className="title">DOWNLOAD</h1>

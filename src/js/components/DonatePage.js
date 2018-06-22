@@ -20,7 +20,7 @@ class DonatePage extends Component {
     const hasHistory = history.length > 1;
     return (
       <PageContainer>
-        <div className="donate-page">
+        <div className="box-page">
           <div className="box">
             <h1 className="title">DONATE</h1>
             <p>
