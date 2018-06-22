@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import connectContext from 'react-context-connector';
 
-import Swal from '../swal';
+import Swal from '../extras/swal';
 import OpeningProvider from './OpeningProvider';
 
 import { season1 } from '../../json/defaultTexts.json';

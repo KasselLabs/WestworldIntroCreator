@@ -1,6 +1,6 @@
 
 import '../styles/index.styl';
-import { documentReady } from './utils';
+import { documentReady } from './extras/utils';
 import renderApp from './components/renderApp';
 
 (function _() {

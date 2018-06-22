@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import throttle from 'lodash.throttle';
 
-import resizeCalc from '../resizeCalc';
+import resizeCalc from '../extras/resizeCalc';
 import Routes from './Routes';
 import ConfigurationsContext from './ConfigurationsContext';
 import OpeningProvider from './OpeningProvider';
