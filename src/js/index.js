@@ -5,7 +5,7 @@ import renderApp from './components/renderApp';
 import './extras/googleanalytics';
 
 (function _() {
-  if ('production' !== process.env.NODE_ENV) {
+  if ('development' === process.env.NODE_ENV) {
     _startApplication();
     return;
   }
