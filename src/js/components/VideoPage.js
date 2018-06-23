@@ -9,11 +9,17 @@ import AfterVideoCard from './AfterVideoCard';
 
 class VideoPage extends React.Component {
   static propTypes = {
-    // history: PropTypes.object,
     match: PropTypes.object,
     loadOpening: PropTypes.func,
     // eslint-disable-next-line
     openingKey: PropTypes.string,
+  };
+
+  state = {
+    isFullscreenEnabled: false,
+    isLoading: true,
+    videoEnded: false,
+    playAgain: false,
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -30,13 +36,6 @@ class VideoPage extends React.Component {
 
     return prevState;
   }
-
-  state = {
-    isFullscreenEnabled: false,
-    isLoading: true,
-    videoEnded: false,
-    playAgain: false,
-  };
 
   componentDidMount() {
     const { match, loadOpening } = this.props;

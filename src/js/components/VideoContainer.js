@@ -28,6 +28,20 @@ class VideoContainer extends Component {
     },
   }
 
+  constructor() {
+    super();
+
+    this.state = {
+      videoReady: false,
+      openingLoaded: false,
+      videoPlaying: false,
+      videoStarted: false,
+      videoEnded: false,
+    };
+
+    this.youtubePlayer = React.createRef();
+  }
+
   static getDerivedStateFromProps(nextProps, prevState) {
     const { openingLoaded } = prevState;
     const { opening, playAgain } = nextProps;
@@ -47,20 +61,6 @@ class VideoContainer extends Component {
     }
 
     return null;
-  }
-
-  constructor() {
-    super();
-
-    this.state = {
-      videoReady: false,
-      openingLoaded: false,
-      videoPlaying: false,
-      videoStarted: false,
-      videoEnded: false,
-    };
-
-    this.youtubePlayer = React.createRef();
   }
 
   componentDidMount() {
