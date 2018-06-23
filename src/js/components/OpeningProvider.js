@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 
+import showErrorAlert from '../extras/showErrorAlert';
 import { defaultKey } from '../api/config';
 
 import { saveOpening, fetchKey } from '../api/firebaseApi';
@@ -40,26 +41,34 @@ class OpeningProvider extends Component {
       try {
         key = await saveOpening(opening);
       } catch (error) {
-        // TODO handle error
+        showErrorAlert({ text: 'There was an error saving your intro.' });
         return;
       }
 
       history.push(`/${key}`);
     },
 
-    loadOpening: async (openingKey) => {
+    loadOpening: async (openingKey, history) => {
       let opening;
       try {
         opening = await fetchKey(openingKey);
       } catch (error) {
-        // apiError(`We could not load the introduction "${key}"`, true);
+        showErrorAlert({ text: `We could not load the introduction "${openingKey}".`, cancelButtonText: 'RELOAD PAGE' })
+          .then((result) => {
+            if (!result.value) {
+              window.location.reload();
+            }
+          });
         return;
       }
 
       if (!opening) {
-        console.log('not found');
-        // setCreateMode();
-        // swal('ops...', `The introduction with the key "${key}" was not found.`, 'error');
+        showErrorAlert({ text: `The introduction with the key "${openingKey}" was not found.` })
+          .then((result) => {
+            if (!result.value) {
+              history.push('/');
+            }
+          });
         return;
       }
 

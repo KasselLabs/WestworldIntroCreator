@@ -10,6 +10,13 @@ import LoadingLayer from './LoadingLayer';
 import OpeningProvider from './OpeningProvider';
 
 class EditPage extends Component {
+  static propTypes = {
+    match: PropTypes.object,
+    loadOpening: PropTypes.func,
+    opening: PropTypes.object,
+    history: PropTypes.object,
+  };
+
   state = {
     isLoading: true,
     opening: null,
@@ -26,9 +33,14 @@ class EditPage extends Component {
   }
 
   componentDidMount() {
-    const { match, loadOpening, opening } = this.props;
+    const {
+      match,
+      history,
+      loadOpening,
+      opening,
+    } = this.props;
     if (!opening) {
-      loadOpening(match.params.openingKey);
+      loadOpening(match.params.openingKey, history);
     }
   }
 
@@ -49,12 +61,6 @@ class EditPage extends Component {
     );
   }
 }
-
-EditPage.propTypes = {
-  match: PropTypes.object,
-  loadOpening: PropTypes.func,
-  opening: PropTypes.object,
-};
 
 const mapOpeningProviderToProps = context => ({
   loadOpening: context.loadOpening,
