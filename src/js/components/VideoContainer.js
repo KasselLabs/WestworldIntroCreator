@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import connectContext from 'react-context-connector';
+import fscreen from 'fscreen';
 
 import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
@@ -154,7 +155,7 @@ class VideoContainer extends Component {
     return (
       <div className="video-container">
         <Fullscreen
-          enabled={this.props.fullscreen}
+          enabled={fscreen.fullscreenEnabled && this.props.fullscreen}
           onChange={this.props.onChangeFullscreen}
         >
           <YouTube
