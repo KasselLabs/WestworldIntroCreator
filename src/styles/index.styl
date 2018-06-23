@@ -21,6 +21,7 @@ body {
 }
 
 logoTextStyle() {
+  color: $white;
   text-align: center;
   letter-spacing: .1em;
   font-family: Presicav;
@@ -62,6 +63,7 @@ $boxBackgroundColor = #05141e;
 $delosDarkBlue = #153140;
 $boxBorderColor = $delosDarkBlue;
 $delosLightBlue = lighten($delosDarkBlue, 25%);
+$white = white;
 
 .link {
   color: $delosLightBlue;
@@ -69,7 +71,7 @@ $delosLightBlue = lighten($delosDarkBlue, 25%);
   transition: color 200ms;
 
   &:hover {
-    color: white;
+    color: $white;
   }
 }
 
@@ -90,3 +92,4 @@ p {
 @import './afterVideoCard';
 @import './downloadPage';
 @import './navbar';
+@import './sweetalert';
