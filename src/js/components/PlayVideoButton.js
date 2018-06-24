@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const PlayVideoButton = ({ onClick }) => (
   <div className="play-video-button">
-    <button onClick={onClick}>Play</button>
+    <button className="button big" onClick={onClick}>PLAY</button>
   </div>
 );
 
