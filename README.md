@@ -1,6 +1,6 @@
 # Westworld Intro Creator
 
-[Acess it here!](https://WestworldIntroCreator.KasselLabs.io/#/)
+[Access it here!](https://WestworldIntroCreator.KasselLabs.io/#/)
 
 <p align="center">
   <a target="_blank" href="https://WestworldIntroCreator.KasselLabs.io">
