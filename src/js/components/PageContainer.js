@@ -13,6 +13,14 @@ const PageContainer = ({ children }) => (
         {children}
       </div>
     </div>
+    <div className="share-buttons">
+      <a href="http://www.facebook.com/sharer.php?u=https://westworldintrocreator.kassellabs.io/" target="_blank" rel="noopener noreferrer">
+        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" width="40" />
+      </a>
+      <a href="https://twitter.com/share?url=https://westworldintrocreator.kassellabs.io/&amp;text=Check%20out%20the%20Westworld%20Intro%20Creator!&amp;hashtags=Westworld,KasselLabs" target="_blank" rel="noopener noreferrer">
+        <img src="https://simplesharebuttons.com/images/somacro/twitter.png" alt="Twitter" width="40" />
+      </a>
+    </div>
   </div>
 );
 

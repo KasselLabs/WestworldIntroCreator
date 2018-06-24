@@ -41,3 +41,20 @@
     margin-bottom: 20px;
   }
 }
+
+.share-buttons {
+  margin-bottom: 5px;
+  text-align: center;
+
+  a {
+    &:not(:first-child) {
+      margin-left: 7px;
+    }
+  }
+
+  @media $tablet {
+    position: fixed;
+    bottom: 0;
+    left: 5px;
+  }
+}
