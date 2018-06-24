@@ -9,7 +9,7 @@ const showErrorAlert = ({ text, ...config }) => (
     confirmButtonText: 'REPORT',
     confirmButtonAriaLabel: 'REPORT',
     imageUrl: 'https://media.giphy.com/media/fxIk0cODMTZrchdLzm/giphy.gif',
-    imageAlt: 'A gif image with Bernard from Westworld breaking a computer screen.',
+    imageAlt: 'A GIF with Bernard from Westworld breaking a computer screen.',
     html: `${text} <br/> Sorry for the inconvience! We have been notified,
  but you can click on the button below to fill out a report with more information.`,
     ...config,

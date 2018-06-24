@@ -20,9 +20,10 @@ class ErrorBoundary extends Component {
     if (this.state.error) {
       return (
         <PageContainer>
-          <div className="box-page">
+          <div className="box-page error-boundary">
             <div className="box" >
               <h1 className="title">ERROR</h1>
+              <img src="https://media.giphy.com/media/fxIk0cODMTZrchdLzm/giphy.gif" alt="A GIF with Bernard from Westworld breaking a computer screen." />
               <p>We&apos;re sorry — something&apos;s gone wrong.</p>
               <p>
                 We have been notified,
