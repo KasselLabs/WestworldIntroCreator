@@ -2,12 +2,12 @@
   "name": "westworld-intro-creator",
   "version": "1.0.0",
   "description": "Westword Intro Creator by Kassel Labs",
-  "repository": "git@github.com:BrOrlandi/WestworldIntroCreator.git",
+  "repository": "git@github.com:KasselLabs/WestworldIntroCreator.git",
   "author": "Kassel Labs <kassellabs@googlegroups.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "rm -rf ./dist && parcel build ./src/index.html --public-url /WestworldIntroCreator/ --no-cache",
+    "build": "rm -rf ./dist && parcel build ./src/index.html --public-url / --no-cache",
     "build-dev": "yarn build --public-url / --no-cache",
     "start": "parcel ./src/index.html -p 8080 --no-hmr",
     "test": "jest",
@@ -15,8 +15,7 @@
     "test:coverage": "yarn test --coverage",
     "test:coverage:results": "google-chrome coverage/lcov-report/index.html",
     "lint": "eslint .",
-    "deployp": "yarn build && cp CNAME dist/ && gh-pages -d dist -m ",
-    "deploy": "yarn build && gh-pages -d dist -m "
+    "deploy": "yarn build && cp CNAME dist/ && gh-pages -d dist -m "
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
