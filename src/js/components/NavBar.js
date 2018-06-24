@@ -23,8 +23,8 @@ class NavBar extends Component {
         <li>
           <a>ABOUT</a>
           <ul className="dropdown">
-            <li><a href="https://kassellabs.io/TermsOfService/WestWorldIntroCreator.html">FAQ</a></li>
-            <li><a href="https://kassellabs.io/TermsOfService/WestWorldIntroCreator.html">TERMS OF SERVICE</a></li>
+            <li><a href="https://kassellabs.io/TermsOfService/WestworldIntroCreator.html">FAQ</a></li>
+            <li><a href="https://kassellabs.io/TermsOfService/WestworldIntroCreator.html">TERMS OF SERVICE</a></li>
           </ul>
         </li>
         <li><a href="http://kassellabs.io">MORE APPS</a></li>
