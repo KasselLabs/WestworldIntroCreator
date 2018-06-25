@@ -1,5 +1,7 @@
 # Westworld Intro Creator
 
+**Create your own Westworld opening.**
+
 [Access it here!](https://WestworldIntroCreator.KasselLabs.io/#/)
 
 <p align="center">
@@ -7,6 +9,8 @@
     <img src="./src/assets/img/preview2.jpg"/>
   </a>
 </p>
+
+> Have you ever seen anything so full of splendor?
 
 ## Contact
 
