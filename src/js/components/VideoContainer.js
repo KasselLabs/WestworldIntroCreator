@@ -112,7 +112,7 @@ class VideoContainer extends Component {
     Raven.captureBreadcrumb({
       message: 'Video state change',
       category: 'videoPlayer',
-      data: state,
+      data: { state },
     });
 
     const {
