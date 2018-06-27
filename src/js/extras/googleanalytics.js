@@ -6,7 +6,6 @@ const gtagKey = 'UA-116931857-4';
 
 if ('production' === process.env.NODE_ENV) {
   gtag('js', new Date());
-  gtag('config', gtagKey);
 }
 
 const sendGAPageView = () => {
