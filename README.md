@@ -1,4 +1,4 @@
-# Westworld Intro Creator
+# Westworld Intro Creator [![Build Status](https://travis-ci.org/luanorlandi/WestworldIntroCreator.svg?branch=master)](https://travis-ci.org/luanorlandi/WestworldIntroCreator)
 
 **Create your own Westworld opening.**
 
