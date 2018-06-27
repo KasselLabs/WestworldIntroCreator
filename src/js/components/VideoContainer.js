@@ -183,7 +183,9 @@ class VideoContainer extends Component {
       message: 'Video error',
       category: 'videoPlayer',
       level: 'error',
-      data: event.data,
+      data: {
+        data: event.data,
+      },
     });
 
     this.setState({
@@ -195,7 +197,9 @@ class VideoContainer extends Component {
     Raven.captureBreadcrumb({
       message: 'Video playback rate change',
       category: 'videoPlayer',
-      data: event.data,
+      data: {
+        data: event.data,
+      },
     });
   }
 
@@ -203,7 +207,9 @@ class VideoContainer extends Component {
     Raven.captureBreadcrumb({
       message: 'Video playback quality change',
       category: 'videoPlayer',
-      data: event.data,
+      data: {
+        data: event.data,
+      },
     });
   }
 
