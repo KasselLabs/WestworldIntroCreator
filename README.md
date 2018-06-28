@@ -1,4 +1,4 @@
-# Westworld Intro Creator
+# Westworld Intro Creator [![Build Status](https://travis-ci.org/KasselLabs/WestworldIntroCreator.svg?branch=master)](https://travis-ci.org/KasselLabs/WestworldIntroCreator)
 
 **Create your own Westworld opening.**
 
