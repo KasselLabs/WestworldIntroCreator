@@ -14,5 +14,6 @@ deploy:
   github_token: $GITHUB_TOKEN
   local_dir: dist
   keep-history: true
+  fqdn: westworldintrocreator.kassellabs.io
   on:
     branch: master
