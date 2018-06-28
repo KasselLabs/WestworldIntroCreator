@@ -1,7 +1,6 @@
-/* eslint-disable */
 window.dataLayer = window.dataLayer || [];
 function gtag() {
-  window.dataLayer.push(arguments);
+  window.dataLayer.push(arguments); // eslint-disable-line prefer-rest-params
 }
 const gtagKey = 'UA-116931857-4';
 
