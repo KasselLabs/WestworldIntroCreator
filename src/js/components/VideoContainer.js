@@ -89,7 +89,7 @@ class VideoContainer extends Component {
     // or if the user hit play again.
     if ((!videoStarted && (isNowVideoReady || playAgain))) {
       // this.youtubePlayer.current.internalPlayer.playVideo();
-      window.player.play();
+      // window.player.play();
     }
   }
 
@@ -98,13 +98,13 @@ class VideoContainer extends Component {
       message: 'Video start play',
       category: 'videoPlayer',
     });
-    this.setState({
-      videoPlaying: true,
-      videoStarted: true,
-      showPlayButton: false,
-    });
-
-    // this.youtubePlayer.current.internalPlayer.setPlaybackRate(0.25);
+    setTimeout(() => {
+      this.setState({
+        videoPlaying: true,
+        videoStarted: true,
+        showPlayButton: false,
+      });
+    }, 50);
   }
 
   _onVideoStateChange = (event) => {

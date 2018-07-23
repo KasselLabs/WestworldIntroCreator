@@ -1,3 +1,6 @@
+$timeFactor = 1;
+$start_at = 0 * $timeFactor;
+
 @keyframes animationSlowFade {
   0% { opacity: 0; }
   25% { opacity: 1; }
@@ -52,40 +55,40 @@
     color: #2d2d2d;
   }
 
-  #text0 { animation: animationSlowFade 2.500s linear 4.3s; }
-  #text1 { animation: animationSlowFade 2.500s linear 7.39s; }
-  #text2 { animation: animationSlowFade 2.500s linear 12.26s; }
-  #text3 { animation: animationSlowFade 2.387s linear 15.372s; }
-  #text4 { animation: animationSlowFade 1.982s linear 18.018s; }
-  #text5 { animation: animationSlowFade 3.000s linear 21s; }
-  #text6 { animation: animationFastFade 1.579s linear 25.125s; }
-  #text7 { animation: animationFastFade 1.619s linear 26.726s; }
-  #text8 { animation: animationFastFade 1.521s linear 28.387s; }
-  #text9 { animation: animationFastFade 1.437s linear 30.063s; }
-  #text10 { animation: animationFastFade 1.416s linear 31.5s; }
-  #text11 { animation: animationSlowFade 2.500s linear 33.5s; }
-  #text12 { animation: animationSlowFade 2.500s linear 36.5s; }
-  #text13 { animation: animationSlowFade 2.500s linear 39.372s; }
-  #text14 { animation: animationSlowFade 2.500s linear 43.743s; }
-  #text15 { animation: animationFastFade 1.571s linear 46.243s; }
-  #text16 { animation: animationFastFade 1.602s linear 47.814s; }
-  #text17 { animation: animationFastFade 1.267s linear 49.416s; }
-  #text18 { animation: animationFastFade 1.836s linear 50.683s; }
-  #text19 { animation: animationSlowFade 2.669s linear 52.519s; }
-  #text20 { animation: animationSlowFade 2.202s linear 55.188s; }
-  #text21 { animation: animationFastFade 1.735s linear 57.39s; }
-  #text22 { animation: animationSlowFade 2.570s linear 59.125s; }
-  #text23 { animation: animationSlowFade 2.500s linear 65.899s; }
-  #text24 { animation: animationSlowFade 2.500s linear 68.802s; }
-  #text25 { animation: animationSlowFade 2.500s linear 72.808s; }
-  #text26 { animation: animationFastFade 1.602s linear 78.578s; }
-  #text27 { animation: animationSlowFade 2.056s linear 81.927s; }
-  #text28 { transition: 3.2s linear; animation: logoAnimation 3.2s linear 88.322s; letter-spacing: .32em; font-family: Presicav; }
-  #text29 { animation: animationFastFade 1.779s linear 91.513s; }
-  #text30 { animation: animationSlowFade 1.937s linear 93.292s; }
-  #text31 { animation: animationSlowFade 2.256s linear 95.229s; }
-  #text32 { animation: animationSlowFade 2.500s linear 98.487s; }
-  #text33 { animation: animationSlowFade 2.178s linear 101.329s; }
+  #text0 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 4.3s - $start_at; }
+  #text1 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 7.39s - $start_at; }
+  #text2 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 12.26s - $start_at; }
+  #text3 { animation: animationSlowFade $timeFactor * 2.387s linear $timeFactor * 15.372s - $start_at; }
+  #text4 { animation: animationSlowFade $timeFactor * 1.982s linear $timeFactor * 18.018s - $start_at; }
+  #text5 { animation: animationSlowFade $timeFactor * 3.000s linear $timeFactor * 21s - $start_at; }
+  #text6 { animation: animationFastFade $timeFactor * 1.579s linear $timeFactor * 25.125s - $start_at; }
+  #text7 { animation: animationFastFade $timeFactor * 1.619s linear $timeFactor * 26.726s - $start_at; }
+  #text8 { animation: animationFastFade $timeFactor * 1.521s linear $timeFactor * 28.387s - $start_at; }
+  #text9 { animation: animationFastFade $timeFactor * 1.437s linear $timeFactor * 30.063s - $start_at; }
+  #text10 { animation: animationFastFade $timeFactor * 1.416s linear $timeFactor * 31.5s - $start_at; }
+  #text11 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 33.5s - $start_at; }
+  #text12 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 36.5s - $start_at; }
+  #text13 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 39.372s - $start_at; }
+  #text14 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 43.743s - $start_at; }
+  #text15 { animation: animationFastFade $timeFactor * 1.571s linear $timeFactor * 46.243s - $start_at; }
+  #text16 { animation: animationFastFade $timeFactor * 1.602s linear $timeFactor * 47.814s - $start_at; }
+  #text17 { animation: animationFastFade $timeFactor * 1.267s linear $timeFactor * 49.416s - $start_at; }
+  #text18 { animation: animationFastFade $timeFactor * 1.836s linear $timeFactor * 50.683s - $start_at; }
+  #text19 { animation: animationSlowFade $timeFactor * 2.669s linear $timeFactor * 52.519s - $start_at; }
+  #text20 { animation: animationSlowFade $timeFactor * 2.202s linear $timeFactor * 55.188s - $start_at; }
+  #text21 { animation: animationFastFade $timeFactor * 1.735s linear $timeFactor * 57.39s - $start_at; }
+  #text22 { animation: animationSlowFade $timeFactor * 2.570s linear $timeFactor * 59.125s - $start_at; }
+  #text23 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 65.899s - $start_at; }
+  #text24 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 68.802s - $start_at; }
+  #text25 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 72.808s - $start_at; }
+  #text26 { animation: animationFastFade $timeFactor * 1.602s linear $timeFactor * 78.578s - $start_at; }
+  #text27 { animation: animationSlowFade $timeFactor * 2.056s linear $timeFactor * 81.927s - $start_at; }
+  #text28 { transition: $timeFactor * 3.2s linear; animation: logoAnimation $timeFactor * 3.2s linear $timeFactor * 88.322s - $start_at; letter-spacing: .32em; font-family: Presicav; }
+  #text29 { animation: animationFastFade $timeFactor * 1.779s linear $timeFactor * 91.513s - $start_at; }
+  #text30 { animation: animationSlowFade $timeFactor * 1.937s linear $timeFactor * 93.292s - $start_at; }
+  #text31 { animation: animationSlowFade $timeFactor * 2.256s linear $timeFactor * 95.229s - $start_at; }
+  #text32 { animation: animationSlowFade $timeFactor * 2.500s linear $timeFactor * 98.487s - $start_at; }
+  #text33 { animation: animationSlowFade $timeFactor * 2.178s linear $timeFactor * 101.329s - $start_at; }
 }
 
 .pause-animation {

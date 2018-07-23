@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Clappr from 'clappr';
 
-import { TIME_FACTOR } from '../api/config';
+import { TIME_FACTOR, START_AT } from '../api/config';
 
 import videoSource from '../../assets/intro.mp4';
 
@@ -40,32 +40,33 @@ class EmbeddedVideo extends Component {
       source: videoSource,
       width: '100%',
       height: '100%',
-      // autoPlay: true,
       // mute: true,
-      hideMediaControl: false,
+      // hideMediaControl: false,
       hlsjsConfig: {
         enableWorker: true,
       },
     });
 
     window.player = this.player;
-    // this.player.core.$el.find('.media-control').remove();
-    this.props.onReady();
+    this.player.core.$el.find('.media-control').remove();
 
     // this.player.on(Clappr.Events.PLAYER_TIMEUPDATE, (e) => { console.log('time update', e); });
 
     this.player.once(Clappr.Events.PLAYER_PLAY, () => {
-      console.log('PLAYER_PLAY');
       this.props.onPlay();
     });
 
     this.player.once(Clappr.Events.PLAYER_ENDED, () => {
-      console.log('PLAYER_ENDED');
       this.props.onEnd();
     });
 
     // set Time factor
     this.player.core.$el.find('video,audio').get(0).playbackRate = 1 / TIME_FACTOR;
+
+    if (START_AT) {
+      this.player.seek(START_AT);
+    }
+    this.props.onReady();
   }
 
   destroyPlayer() {

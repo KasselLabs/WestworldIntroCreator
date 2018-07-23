@@ -20,4 +20,5 @@ if (!defaultFirebase) {
 // MOCK Api
 // export const serverApi = 'https://5mitidksxm7xfn4g4-mock.stoplight-proxy.io/';
 
-export const TIME_FACTOR = 4;
+export const TIME_FACTOR = 1;
+export const START_AT = 0;
