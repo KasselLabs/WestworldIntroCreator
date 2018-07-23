@@ -12,6 +12,8 @@ import ConfigurationsContext from './ConfigurationsContext';
 import PlayVideoButton from './PlayVideoButton';
 import EmbeddedVideo from './EmbeddedVideo';
 
+import { ANIMATION_START_DELAY } from '../api/config';
+
 class VideoContainer extends Component {
   static propTypes = {
     fullscreen: PropTypes.bool,
@@ -104,7 +106,7 @@ class VideoContainer extends Component {
         videoStarted: true,
         showPlayButton: false,
       });
-    }, 50);
+    }, ANIMATION_START_DELAY);
   }
 
   _onVideoStateChange = (event) => {

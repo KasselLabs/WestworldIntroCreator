@@ -22,3 +22,4 @@ if (!defaultFirebase) {
 
 export const TIME_FACTOR = 1;
 export const START_AT = 0;
+export const ANIMATION_START_DELAY = 0;
