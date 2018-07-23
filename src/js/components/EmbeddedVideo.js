@@ -40,8 +40,7 @@ class EmbeddedVideo extends Component {
       source: videoSource,
       width: '100%',
       height: '100%',
-      // mute: true,
-      // hideMediaControl: false,
+      mute: true,
       hlsjsConfig: {
         enableWorker: true,
       },
@@ -49,8 +48,6 @@ class EmbeddedVideo extends Component {
 
     window.player = this.player;
     this.player.core.$el.find('.media-control').remove();
-
-    // this.player.on(Clappr.Events.PLAYER_TIMEUPDATE, (e) => { console.log('time update', e); });
 
     this.player.once(Clappr.Events.PLAYER_PLAY, () => {
       this.props.onPlay();
