@@ -4,3 +4,4 @@ dist/*
 .cache/
 coverage/
 .env
+src/assets/intro.mp4
