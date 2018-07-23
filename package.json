@@ -35,6 +35,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "babel-preset-react": "^6.24.1",
+    "clappr": "^0.2.97",
     "fscreen": "^1.0.2",
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",

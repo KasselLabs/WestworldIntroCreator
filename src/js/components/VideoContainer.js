@@ -8,9 +8,9 @@ import fscreen from 'fscreen';
 import VideoOverlay from './VideoOverlay';
 import renderApp from './renderApp';
 import OpeningProvider from './OpeningProvider';
-import LoadingLayer from './LoadingLayer';
 import ConfigurationsContext from './ConfigurationsContext';
 import PlayVideoButton from './PlayVideoButton';
+import EmbeddedVideo from './EmbeddedVideo';
 
 class VideoContainer extends Component {
   static propTypes = {
@@ -218,30 +218,27 @@ class VideoContainer extends Component {
   };
 
   render() {
-    const opts = {
-      width: '100%',
-      height: '100%',
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        // start: 99,
-        disablekb: 1,
-        enablejsapi: 1,
-        fs: 1,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-      },
-    };
+    // const opts = {
+    //   width: '100%',
+    //   height: '100%',
+    //   playerVars: {
+    //     autoplay: 0,
+    //     controls: 0,
+    //     // start: 99,
+    //     disablekb: 1,
+    //     enablejsapi: 1,
+    //     fs: 1,
+    //     modestbranding: 1,
+    //     rel: 0,
+    //     showinfo: 0,
+    //   },
+    // };
 
     const { configurations, opening } = this.props;
 
     const {
       videoPlaying,
-      videoReady,
       videoStarted,
-      openingLoaded,
-      videoEnded,
       videoError,
       showPlayButton,
     } = this.state;
@@ -250,7 +247,7 @@ class VideoContainer extends Component {
       throw new Error(videoError);
     }
 
-    const isLoading = !videoEnded && (!openingLoaded || !videoReady || !videoStarted);
+    // const isLoading = !videoEnded && (!openingLoaded || !videoReady || !videoStarted);
 
     return (
       <Fragment>
@@ -259,20 +256,11 @@ class VideoContainer extends Component {
             enabled={fscreen.fullscreenEnabled && this.props.fullscreen}
             onChange={this.props.onChangeFullscreen}
           >
-            <YouTube
-              className="youtube-player"
-              videoId="Bgh4gijAbWo"
-              // videoId="elkHuRROPfk"
+
+            <EmbeddedVideo
               onPlay={this._onVideoStartPlay}
-              onStateChange={this._onVideoStateChange}
               onReady={this._onVideoReady}
               onEnd={this._onVideoEnd}
-              onPause={this._onVideoPause}
-              onError={this._onVideoError}
-              onPlaybackRateChange={this._onVideoPlaybackRateChange}
-              onPlaybackQualityChange={this._onVideoPlaybackQualityChange}
-              opts={opts}
-              ref={this.youtubePlayer}
             />
 
             {!!opening &&
@@ -282,7 +270,6 @@ class VideoContainer extends Component {
                 playStart={videoStarted}
               />
             }
-            <LoadingLayer isLoading={!showPlayButton && isLoading} />
           </Fullscreen>
         </div>
 
