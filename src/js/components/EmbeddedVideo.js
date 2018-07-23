@@ -40,8 +40,8 @@ class EmbeddedVideo extends Component {
       source: videoSource,
       width: '100%',
       height: '100%',
-      autoPlay: true,
-      mute: true,
+      // autoPlay: true,
+      // mute: true,
       hideMediaControl: false,
       hlsjsConfig: {
         enableWorker: true,
@@ -49,10 +49,23 @@ class EmbeddedVideo extends Component {
     });
 
     window.player = this.player;
-    this.player.core.$el.find('.media-control').remove();
+    // this.player.core.$el.find('.media-control').remove();
+    this.props.onReady();
+
+    // this.player.on(Clappr.Events.PLAYER_TIMEUPDATE, (e) => { console.log('time update', e); });
+
+    this.player.once(Clappr.Events.PLAYER_PLAY, () => {
+      console.log('PLAYER_PLAY');
+      this.props.onPlay();
+    });
+
+    this.player.once(Clappr.Events.PLAYER_ENDED, () => {
+      console.log('PLAYER_ENDED');
+      this.props.onEnd();
+    });
 
     // set Time factor
-    // this.player.core.$el.find('video,audio').get(0).playbackRate = 1 / TIME_FACTOR;
+    this.player.core.$el.find('video,audio').get(0).playbackRate = 1 / TIME_FACTOR;
   }
 
   destroyPlayer() {

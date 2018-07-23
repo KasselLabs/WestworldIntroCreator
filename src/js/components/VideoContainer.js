@@ -88,7 +88,8 @@ class VideoContainer extends Component {
     // Start video if wasn't ready before and is ready to play now
     // or if the user hit play again.
     if ((!videoStarted && (isNowVideoReady || playAgain))) {
-      this.youtubePlayer.current.internalPlayer.playVideo();
+      // this.youtubePlayer.current.internalPlayer.playVideo();
+      window.player.play();
     }
   }
 
