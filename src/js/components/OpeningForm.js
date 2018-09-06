@@ -66,7 +66,7 @@ class OpeningForm extends Component {
     return true;
   };
 
-  _textAreaInput = (id, value, rows, maxLength, ref) => (
+  _textAreaInput = (id, value, rows, maxLength, ref, first) => (
     <textarea
       ref={ref}
       key={id}
@@ -76,6 +76,7 @@ class OpeningForm extends Component {
       spellCheck={false}
       maxLength={maxLength}
       defaultValue={value}
+      autoFocus={first}
     />
   );
 
@@ -90,7 +91,8 @@ class OpeningForm extends Component {
       const isLogoText = 28 === i;
       const rows = isLogoText ? 1 : 2;
       const maxLength = isLogoText ? 50 : 150;
-      const input = this._textAreaInput(id, texts[`text${i}`], rows, maxLength, ref);
+      const first = 0 === i;
+      const input = this._textAreaInput(id, texts[`text${i}`], rows, maxLength, ref, first);
 
       this.inputsRefs[i] = ref;
       inputs.push(input);
