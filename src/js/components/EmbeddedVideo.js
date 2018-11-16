@@ -51,10 +51,16 @@ class EmbeddedVideo extends Component {
 
     this.player.once(Clappr.Events.PLAYER_PLAY, () => {
       this.props.onPlay();
+      if (window.introStartCallback) {
+        window.introStartCallback();
+      }
     });
 
     this.player.once(Clappr.Events.PLAYER_ENDED, () => {
       this.props.onEnd();
+      if (window.introEndedCallback) {
+        window.introEndedCallback();
+      }
     });
 
     // set Time factor
