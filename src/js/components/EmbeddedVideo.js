@@ -6,6 +6,8 @@ import { TIME_FACTOR, START_AT } from '../api/config';
 
 import videoSource from '../../assets/intro.mp4';
 
+const VIDEO_DURATION = 104.587817;
+
 class EmbeddedVideo extends Component {
   static propTypes = {
     onPlay: PropTypes.func,
@@ -19,7 +21,8 @@ class EmbeddedVideo extends Component {
   }
 
   componentDidMount() {
-    this.setupPlayer();
+    // this._setupPlayer();
+    this._setupFakePlayer();
   }
 
   shouldComponentUpdate() {
@@ -30,7 +33,36 @@ class EmbeddedVideo extends Component {
     this.destroyPlayer();
   }
 
-  setupPlayer() {
+  _playCallback = () => {
+    this.props.onPlay();
+    if (window.introStartCallback) {
+      window.introStartCallback();
+    }
+  }
+
+  _endCallback = () => {
+    this.props.onEnd();
+    if (window.introEndedCallback) {
+      window.introEndedCallback();
+    }
+  }
+
+  _setupFakePlayer() {
+    const fakePlayer = {
+      play: () => {
+        this._playCallback();
+        setTimeout(() => {
+          this._endCallback();
+        }, (VIDEO_DURATION - START_AT) * TIME_FACTOR * 1000);
+      },
+    };
+
+    window.player = fakePlayer;
+
+    this.props.onReady();
+  }
+
+  _setupPlayer() {
     if (this.player) {
       this.destroyPlayer();
     }
@@ -49,19 +81,9 @@ class EmbeddedVideo extends Component {
     window.player = this.player;
     this.player.core.$el.find('.media-control').remove();
 
-    this.player.once(Clappr.Events.PLAYER_PLAY, () => {
-      this.props.onPlay();
-      if (window.introStartCallback) {
-        window.introStartCallback();
-      }
-    });
+    this.player.once(Clappr.Events.PLAYER_PLAY, this._playCallback);
 
-    this.player.once(Clappr.Events.PLAYER_ENDED, () => {
-      this.props.onEnd();
-      if (window.introEndedCallback) {
-        window.introEndedCallback();
-      }
-    });
+    this.player.once(Clappr.Events.PLAYER_ENDED, this._endCallback);
 
     // set Time factor
     this.player.core.$el.find('video,audio').get(0).playbackRate = 1 / TIME_FACTOR;
