@@ -4,7 +4,9 @@ import Clappr from 'clappr';
 
 import { TIME_FACTOR, START_AT } from '../../api/config';
 
-import videoSource from '../../../../../RecorderAssets/westworld-1080p.mp4';
+// import videoSource from '../../../../../RecorderAssets/westworld-1080p.mp4';
+
+const videoSource = null;
 
 class EmbeddedVideo extends Component {
   static propTypes = {
@@ -45,6 +47,10 @@ class EmbeddedVideo extends Component {
   }
 
   _setupPlayer() {
+    if (!videoSource) {
+      console.error('Uncoment the videoSource import and setup the video file in the right directory.');
+      return;
+    }
     if (this.player) {
       this.destroyPlayer();
     }
