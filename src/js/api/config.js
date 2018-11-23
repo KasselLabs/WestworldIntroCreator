@@ -33,4 +33,9 @@ export const MODES = {
 };
 
 export const IS_DEFAULT_MODE = MODES.DEFAULT === APPLICATION_MODE;
+export const IS_LOCAL_MODE = MODES.LOCAL === APPLICATION_MODE;
+export const IS_RENDERER_MODE = MODES.RENDERER === APPLICATION_MODE;
 
+if (!IS_DEFAULT_MODE) {
+  console.log('Application mode loaded: ', APPLICATION_MODE);
+}

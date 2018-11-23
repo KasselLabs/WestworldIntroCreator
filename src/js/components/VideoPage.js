@@ -8,6 +8,8 @@ import OpeningProvider from './OpeningProvider';
 import VideoContainer from './VideoContainer';
 import AfterVideoCard from './AfterVideoCard';
 
+import { IS_DEFAULT_MODE } from '../api/config';
+
 class VideoPage extends React.Component {
   static propTypes = {
     match: PropTypes.object,
@@ -71,23 +73,27 @@ class VideoPage extends React.Component {
           onVideoEnd={this.handleVideoEnd}
           playAgain={this.state.playAgain}
         />
-        { videoEnded &&
-        <AfterVideoCard />
-        }
-        <div className="buttons-container">
-          {fscreen.fullscreenEnabled && !videoEnded &&
-            <button onClick={this._setFullscreen} className="button">
-              GO FULLSCREEN
-            </button>
-          }
-          {videoEnded &&
-            <Fragment>
-              <button onClick={this._playAgain} className="button">
+        {IS_DEFAULT_MODE && (
+          <Fragment>
+            { videoEnded &&
+              <AfterVideoCard />
+            }
+            <div className="buttons-container">
+              {fscreen.fullscreenEnabled && !videoEnded &&
+                <button onClick={this._setFullscreen} className="button">
+                GO FULLSCREEN
+                </button>
+              }
+              {videoEnded &&
+              <Fragment>
+                <button onClick={this._playAgain} className="button">
                 PLAY AGAIN
-              </button>
-            </Fragment>
-          }
-        </div>
+                </button>
+              </Fragment>
+            }
+            </div>
+          </Fragment>
+         )}
       </div>
     );
   }

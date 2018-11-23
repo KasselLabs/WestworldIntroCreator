@@ -4,9 +4,7 @@ import Clappr from 'clappr';
 
 import { TIME_FACTOR, START_AT } from '../../api/config';
 
-// import videoSource from '../../../assets/intro.mp4';
-
-const VIDEO_DURATION = 104.587817;
+import videoSource from '../../../../../RecorderAssets/westworld-1080p.mp4';
 
 class EmbeddedVideo extends Component {
   static propTypes = {
@@ -21,8 +19,7 @@ class EmbeddedVideo extends Component {
   }
 
   componentDidMount() {
-    // this._setupPlayer();
-    this._setupFakePlayer();
+    this._setupPlayer();
   }
 
   shouldComponentUpdate() {
@@ -47,21 +44,6 @@ class EmbeddedVideo extends Component {
     }
   }
 
-  _setupFakePlayer() {
-    const fakePlayer = {
-      play: () => {
-        this._playCallback();
-        setTimeout(() => {
-          this._endCallback();
-        }, (VIDEO_DURATION - START_AT) * TIME_FACTOR * 1000);
-      },
-    };
-
-    window.player = fakePlayer;
-
-    this.props.onReady();
-  }
-
   _setupPlayer() {
     if (this.player) {
       this.destroyPlayer();
@@ -69,16 +51,17 @@ class EmbeddedVideo extends Component {
 
     this.player = new Clappr.Player({
       parent: this.playerRef.current,
-      // source: videoSource,
+      source: videoSource,
       width: '100%',
       height: '100%',
-      mute: true,
+      // mute: true,
       hlsjsConfig: {
         enableWorker: true,
       },
     });
 
     window.player = this.player;
+    console.warn('Use window.player.play() to run the video.');
     this.player.core.$el.find('.media-control').remove();
 
     this.player.once(Clappr.Events.PLAYER_PLAY, this._playCallback);
@@ -92,6 +75,10 @@ class EmbeddedVideo extends Component {
       this.player.seek(START_AT);
     }
     this.props.onReady();
+  }
+
+  play() {
+    // just to not call undefined function.
   }
 
   destroyPlayer() {
