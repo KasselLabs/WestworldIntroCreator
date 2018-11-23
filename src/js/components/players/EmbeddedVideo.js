@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Clappr from 'clappr';
 
-import { TIME_FACTOR, START_AT } from '../api/config';
+import { TIME_FACTOR, START_AT } from '../../api/config';
 
-import videoSource from '../../assets/intro.mp4';
+// import videoSource from '../../../assets/intro.mp4';
 
 const VIDEO_DURATION = 104.587817;
 
@@ -69,7 +69,7 @@ class EmbeddedVideo extends Component {
 
     this.player = new Clappr.Player({
       parent: this.playerRef.current,
-      source: videoSource,
+      // source: videoSource,
       width: '100%',
       height: '100%',
       mute: true,
@@ -100,7 +100,6 @@ class EmbeddedVideo extends Component {
     }
     this.player = null;
   }
-
 
   render() {
     return (

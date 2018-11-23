@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import connectContext from 'react-context-connector';
+import fscreen from 'fscreen';
 
 import OpeningProvider from './OpeningProvider';
 import VideoContainer from './VideoContainer';
+import AfterVideoCard from './AfterVideoCard';
 
 class VideoPage extends React.Component {
   static propTypes = {
@@ -60,6 +62,7 @@ class VideoPage extends React.Component {
   }
 
   render() {
+    const { videoEnded } = this.state;
     return (
       <div id="videoPage">
         <VideoContainer
@@ -68,6 +71,23 @@ class VideoPage extends React.Component {
           onVideoEnd={this.handleVideoEnd}
           playAgain={this.state.playAgain}
         />
+        { videoEnded &&
+        <AfterVideoCard />
+        }
+        <div className="buttons-container">
+          {fscreen.fullscreenEnabled && !videoEnded &&
+            <button onClick={this._setFullscreen} className="button">
+              GO FULLSCREEN
+            </button>
+          }
+          {videoEnded &&
+            <Fragment>
+              <button onClick={this._playAgain} className="button">
+                PLAY AGAIN
+              </button>
+            </Fragment>
+          }
+        </div>
       </div>
     );
   }
