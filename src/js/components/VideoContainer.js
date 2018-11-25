@@ -126,7 +126,7 @@ class VideoContainer extends Component {
 
     const isBuffering = YouTube.PlayerState.BUFFERING === state;
     const isPaused = YouTube.PlayerState.PAUSED === state;
-    const isUnstarted = YouTube.PlayerState.UNSTARTED === state;
+    // const isUnstarted = YouTube.PlayerState.UNSTARTED === state;
     const isVideoReadyToPlay = videoReady && openingLoaded;
 
     if (isBuffering || isPaused) {
@@ -137,7 +137,7 @@ class VideoContainer extends Component {
 
     // If autoplay fail should show the play button
     // for the user interact with the page and play the video
-    if (isUnstarted && isVideoReadyToPlay && !videoStarted && !isBuffering) {
+    if (isVideoReadyToPlay && !videoStarted && !isBuffering) {
       this.setState({
         showPlayButton: true,
       });
