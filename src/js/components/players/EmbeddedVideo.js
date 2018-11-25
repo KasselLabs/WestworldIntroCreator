@@ -48,7 +48,7 @@ class EmbeddedVideo extends Component {
 
   _setupPlayer() {
     if (!videoSource) {
-      console.error('Uncoment the videoSource import and setup the video file in the right directory.');
+      console.error('Uncomment the videoSource import and setup the video file in the right directory.');
       return;
     }
     if (this.player) {
