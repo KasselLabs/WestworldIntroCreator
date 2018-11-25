@@ -32,7 +32,7 @@ class YoutubePlayer extends Component {
     return (
       <YouTube
         className="youtube-player"
-        videoId="Bgh4gijAbWo"
+        videoId="WxpsxjKxuww"
         opts={opts}
         {...this.props}
         ref={this.youtubePlayer}
