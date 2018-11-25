@@ -8,6 +8,8 @@ import ConfigurationsContext from './ConfigurationsContext';
 import OpeningProvider from './OpeningProvider';
 import ErrorBoundary from './ErrorBoundary';
 
+import { IS_DEFAULT_MODE } from '../api/config';
+
 const renderWithConfigurations = (configurations) => {
   const ConfigurationsProvider = ConfigurationsContext.Provider;
 
@@ -24,6 +26,10 @@ const renderWithConfigurations = (configurations) => {
     ),
     mountNode,
   );
+
+  if (!IS_DEFAULT_MODE) {
+    document.querySelector('body').classList.remove('default-background');
+  }
 };
 
 const renderApp = throttle(() => {

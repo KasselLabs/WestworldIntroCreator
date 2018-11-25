@@ -11,6 +11,9 @@ import OpeningProvider from './OpeningProvider';
 import LoadingLayer from './LoadingLayer';
 import ConfigurationsContext from './ConfigurationsContext';
 import PlayVideoButton from './PlayVideoButton';
+import BackgroundVideo from './players/BackgroundVideo';
+
+import { ANIMATION_START_DELAY, IS_DEFAULT_MODE } from '../api/config';
 
 class VideoContainer extends Component {
   static propTypes = {
@@ -42,7 +45,7 @@ class VideoContainer extends Component {
       showPlayButton: false,
     };
 
-    this.youtubePlayer = React.createRef();
+    this.videoPlayer = React.createRef();
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -88,7 +91,7 @@ class VideoContainer extends Component {
     // Start video if wasn't ready before and is ready to play now
     // or if the user hit play again.
     if ((!videoStarted && (isNowVideoReady || playAgain))) {
-      this.youtubePlayer.current.internalPlayer.playVideo();
+      this.videoPlayer.current.play();
     }
   }
 
@@ -97,13 +100,13 @@ class VideoContainer extends Component {
       message: 'Video start play',
       category: 'videoPlayer',
     });
-    this.setState({
-      videoPlaying: true,
-      videoStarted: true,
-      showPlayButton: false,
-    });
-
-    // this.youtubePlayer.current.internalPlayer.setPlaybackRate(0.25);
+    setTimeout(() => {
+      this.setState({
+        videoPlaying: true,
+        videoStarted: true,
+        showPlayButton: false,
+      });
+    }, ANIMATION_START_DELAY);
   }
 
   _onVideoStateChange = (event) => {
@@ -123,7 +126,7 @@ class VideoContainer extends Component {
 
     const isBuffering = YouTube.PlayerState.BUFFERING === state;
     const isPaused = YouTube.PlayerState.PAUSED === state;
-    const isUnstarted = YouTube.PlayerState.UNSTARTED === state;
+    // const isUnstarted = YouTube.PlayerState.UNSTARTED === state;
     const isVideoReadyToPlay = videoReady && openingLoaded;
 
     if (isBuffering || isPaused) {
@@ -134,7 +137,7 @@ class VideoContainer extends Component {
 
     // If autoplay fail should show the play button
     // for the user interact with the page and play the video
-    if (isUnstarted && isVideoReadyToPlay && !videoStarted && !isBuffering) {
+    if (isVideoReadyToPlay && !videoStarted && !isBuffering) {
       this.setState({
         showPlayButton: true,
       });
@@ -214,26 +217,10 @@ class VideoContainer extends Component {
   }
 
   _handleClickPlay = () => {
-    this.youtubePlayer.current.internalPlayer.playVideo();
+    this.videoPlayer.current.play();
   };
 
   render() {
-    const opts = {
-      width: '100%',
-      height: '100%',
-      playerVars: {
-        autoplay: 0,
-        controls: 0,
-        // start: 99,
-        disablekb: 1,
-        enablejsapi: 1,
-        fs: 1,
-        modestbranding: 1,
-        rel: 0,
-        showinfo: 0,
-      },
-    };
-
     const { configurations, opening } = this.props;
 
     const {
@@ -250,7 +237,9 @@ class VideoContainer extends Component {
       throw new Error(videoError);
     }
 
-    const isLoading = !videoEnded && (!openingLoaded || !videoReady || !videoStarted);
+    const isLoading = IS_DEFAULT_MODE
+                        && !videoEnded
+                        && (!openingLoaded || !videoReady || !videoStarted);
 
     return (
       <Fragment>
@@ -259,20 +248,17 @@ class VideoContainer extends Component {
             enabled={fscreen.fullscreenEnabled && this.props.fullscreen}
             onChange={this.props.onChangeFullscreen}
           >
-            <YouTube
-              className="youtube-player"
-              videoId="Bgh4gijAbWo"
-              // videoId="elkHuRROPfk"
+
+            <BackgroundVideo
               onPlay={this._onVideoStartPlay}
-              onStateChange={this._onVideoStateChange}
               onReady={this._onVideoReady}
               onEnd={this._onVideoEnd}
+              onStateChange={this._onVideoStateChange}
               onPause={this._onVideoPause}
               onError={this._onVideoError}
               onPlaybackRateChange={this._onVideoPlaybackRateChange}
               onPlaybackQualityChange={this._onVideoPlaybackQualityChange}
-              opts={opts}
-              ref={this.youtubePlayer}
+              videoPlayerRef={this.videoPlayer}
             />
 
             {!!opening &&
@@ -282,13 +268,13 @@ class VideoContainer extends Component {
                 playStart={videoStarted}
               />
             }
-            <LoadingLayer isLoading={!showPlayButton && isLoading} />
           </Fullscreen>
         </div>
 
         {showPlayButton &&
           <PlayVideoButton onClick={this._handleClickPlay} />
         }
+        <LoadingLayer isLoading={!showPlayButton && isLoading} />
       </Fragment>
     );
   }
