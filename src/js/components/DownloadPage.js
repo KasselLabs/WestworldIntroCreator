@@ -44,7 +44,7 @@ class DownloadPage extends Component {
             </p>
             <p>
               But you can already request your intro to download. By donating at least
-              <span className="donate_value">US $20</span> we can provide your video for download.
+              <span className="donate_value"> US $20</span> we can provide your video for download.
               Send us an email with the link of your creation
               when you donate and we will put it to render as soon as possible.
             </p>
