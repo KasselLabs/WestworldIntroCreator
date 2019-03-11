@@ -75,6 +75,7 @@ class DownloadPage extends Component {
               <div style={{ position: 'absolute', left: '-5000px' }} aria-hidden="true">
                 <input type="text" name="b_955f23a083dc8aff26326536a_317ca42ec8" tabIndex="-1" value="" readOnly />
               </div>
+              <input type="hidden" name="INTRO" value={openingKey} />
               <input type="submit" value="SUBSCRIBE" name="subscribe" id="mc-embedded-subscribe" className="button medium" />
             </form>
 
