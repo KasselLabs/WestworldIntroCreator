@@ -85,11 +85,9 @@ class VideoPage extends React.Component {
                 </button>
               }
               {videoEnded &&
-              <Fragment>
-                <button onClick={this._playAgain} className="button">
+              <button onClick={this._playAgain} className="button">
                 PLAY AGAIN
-                </button>
-              </Fragment>
+              </button>
             }
             </div>
           </Fragment>
