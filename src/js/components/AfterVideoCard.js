@@ -51,8 +51,8 @@ class AfterVideoCard extends Component {
           </div>
 
           <div>
-            <TermsOfServiceAcceptance />
             <ContactButton />
+            <TermsOfServiceAcceptance />
           </div>
         </div>
       </div>

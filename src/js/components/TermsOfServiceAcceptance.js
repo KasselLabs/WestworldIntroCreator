@@ -5,7 +5,7 @@ const TermsOfServiceAcceptance = () => (
     By using this website you are agreeing to our&nbsp;
     <a
       className="link"
-      href="https://kassellabs.github.io/TermsOfService/WestworldIntroCreator.html"
+      href="https://help.kassellabs.io/westworld/#termsOfService"
       target="_blank"
       rel="noopener noreferrer"
     >
