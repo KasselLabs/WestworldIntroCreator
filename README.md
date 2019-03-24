@@ -14,4 +14,4 @@
 
 ## Contact
 
-[kassellabs@gmail.com](mailto:kassellabs+westworld@gmail.com)
+[westworld@kassellabs.io](mailto:westworld@kassellabs.io)

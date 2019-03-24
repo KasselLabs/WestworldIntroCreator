@@ -2,13 +2,10 @@ import React from 'react';
 
 const ContactButton = () => (
   <p>
-    If you have any questions, please read our&nbsp;
-    <a className="link" href="https://kassellabs.io/TermsOfService/WestworldIntroCreator.html" rel="noopener noreferrer" target="_blank">
-      FAQ
-    </a>
-    &nbsp;or contact us via email:&nbsp;
-    <a className="link" href="mailto:kassellabs+westworld@gmail.com" rel="noopener noreferrer" target="_blank">
-      kassellabs@gmail.com
+    If you have any questions, please read our FAQ or contact us via email:
+    {' '}
+    <a className="link" href="https://help.kassellabs.io/westworld/" rel="noopener noreferrer" target="_blank">
+      FAQ and Contact
     </a>
   </p>
 );
