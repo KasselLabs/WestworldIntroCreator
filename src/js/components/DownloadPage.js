@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import PageContainer from './PageContainer';
+import { requestDownload } from '../api/queueApi';
 
 class DownloadPage extends Component {
   static propTypes = {
@@ -23,11 +24,17 @@ class DownloadPage extends Component {
     history.push(`/${openingKey}/edit`);
   }
 
-  _handleSubmit = () => {
+  _handleSubmit = async () => {
+    const { match } = this.props;
+    const { openingKey } = match.params;
+    const email = this.formRef.current.querySelector('.email').value;
+
     // setTimeout to prevent form clear before send
     setTimeout(() => {
       this.formRef.current.reset();
     });
+
+    await requestDownload(openingKey, email);
   }
 
   render() {
@@ -63,7 +70,8 @@ class DownloadPage extends Component {
             </p>
 
             <form
-              action="https://github.us18.list-manage.com/subscribe/post?u=955f23a083dc8aff26326536a&amp;id=317ca42ec8&SIGNUP=DownloadPage"
+              // action="https://github.us18.list-manage.com/subscribe/post?u=955f23a083dc8aff26326536a&amp;id=317ca42ec8&SIGNUP=DownloadPage"
+              action="https://test"
               method="post"
               id="mc-embedded-subscribe-form"
               name="mc-embedded-subscribe-form"
