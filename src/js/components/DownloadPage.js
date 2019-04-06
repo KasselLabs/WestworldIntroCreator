@@ -70,8 +70,7 @@ class DownloadPage extends Component {
             </p>
 
             <form
-              // action="https://github.us18.list-manage.com/subscribe/post?u=955f23a083dc8aff26326536a&amp;id=317ca42ec8&SIGNUP=DownloadPage"
-              action="https://test"
+              action="https://github.us18.list-manage.com/subscribe/post?u=955f23a083dc8aff26326536a&amp;id=317ca42ec8&SIGNUP=DownloadPage"
               method="post"
               id="mc-embedded-subscribe-form"
               name="mc-embedded-subscribe-form"
