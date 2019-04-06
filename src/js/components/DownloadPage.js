@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 
 import PageContainer from './PageContainer';
+import { requestDownload } from '../api/queueApi';
 
 class DownloadPage extends Component {
   static propTypes = {
@@ -23,11 +24,17 @@ class DownloadPage extends Component {
     history.push(`/${openingKey}/edit`);
   }
 
-  _handleSubmit = () => {
+  _handleSubmit = async () => {
+    const { match } = this.props;
+    const { openingKey } = match.params;
+    const email = this.formRef.current.querySelector('.email').value;
+
     // setTimeout to prevent form clear before send
     setTimeout(() => {
       this.formRef.current.reset();
     });
+
+    await requestDownload(openingKey, email);
   }
 
   render() {
