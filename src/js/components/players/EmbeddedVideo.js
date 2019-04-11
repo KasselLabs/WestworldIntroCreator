@@ -66,8 +66,10 @@ class EmbeddedVideo extends Component {
       },
     });
 
-    window.player = this.player;
-    console.warn('Use window.player.play() to run the video.');
+    window.playApp = () => {
+      this.player.play();
+    };
+    console.warn('Use window.playApp() to run the video.');
     this.player.core.$el.find('.media-control').remove();
 
     this.player.once(Clappr.Events.PLAYER_PLAY, this._playCallback);

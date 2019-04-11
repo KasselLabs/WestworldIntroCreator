@@ -35,16 +35,13 @@ class FakeVideo extends Component {
   }
 
   _setupFakePlayer() {
-    const fakePlayer = {
-      play: () => {
-        this._playCallback();
-        setTimeout(() => {
-          this._endCallback();
-        }, (VIDEO_DURATION - START_AT) * TIME_FACTOR * 1000);
-      },
-    };
+    window.playApp = () => {
+      this._playCallback();
 
-    window.player = fakePlayer;
+      setTimeout(() => {
+        this._endCallback();
+      }, (VIDEO_DURATION - START_AT) * TIME_FACTOR * 1000);
+    };
 
     this.props.onReady();
   }
