@@ -33,11 +33,7 @@ class AfterVideoCard extends Component {
               As the video already been loaded the next reproduction should be better.
             </p>
             <p>
-              The Download option will be available soon!
-            </p>
-            <p>
-              You can share your creation by copying the URL link
-              in your browser and send to your friends.
+              You can now request to download your creation as a video.
             </p>
           </div>
           <div className="buttons">
@@ -49,6 +45,10 @@ class AfterVideoCard extends Component {
               BACK TO EDIT
             </button>
           </div>
+          <p>
+            You can also share your creation by copying the URL link
+            in your browser and send to your friends.
+          </p>
 
           <div>
             <ContactButton />
