@@ -39,3 +39,5 @@ export const IS_RENDERER_MODE = MODES.RENDERER === APPLICATION_MODE;
 if (!IS_DEFAULT_MODE) {
   console.log('Application mode loaded: ', APPLICATION_MODE);
 }
+
+export const queueApiUrl = process.env.QUEUE_API;
