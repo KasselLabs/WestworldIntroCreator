@@ -7,6 +7,7 @@ import fscreen from 'fscreen';
 import OpeningProvider from './OpeningProvider';
 import VideoContainer from './VideoContainer';
 import AfterVideoCard from './AfterVideoCard';
+import ButtonLink from './download/ButtonLink';
 
 import { IS_DEFAULT_MODE } from '../api/config';
 
@@ -14,14 +15,12 @@ class VideoPage extends React.Component {
   static propTypes = {
     match: PropTypes.object,
     loadOpening: PropTypes.func,
-    // eslint-disable-next-line
-    openingKey: PropTypes.string,
   };
 
   state = {
     isFullscreenEnabled: false,
     isLoading: true,
-    videoEnded: false,
+    videoEnded: true,
     playAgain: false,
   };
 
@@ -64,6 +63,9 @@ class VideoPage extends React.Component {
   }
 
   render() {
+    const { match } = this.props;
+    const { openingKey } = match.params;
+
     const { videoEnded } = this.state;
     return (
       <div id="videoPage">
@@ -80,9 +82,12 @@ class VideoPage extends React.Component {
             }
             <div className="buttons-container">
               {fscreen.fullscreenEnabled && !videoEnded &&
+              <Fragment>
+                <ButtonLink to={`/${openingKey}/download`} className="button">DOWNLOAD</ButtonLink>
                 <button onClick={this._setFullscreen} className="button">
                 GO FULLSCREEN
                 </button>
+              </Fragment>
               }
               {videoEnded &&
               <button onClick={this._playAgain} className="button">
@@ -99,7 +104,6 @@ class VideoPage extends React.Component {
 
 const mapOpeningProviderToProps = context => ({
   loadOpening: context.loadOpening,
-  openingKey: context.key,
 });
 
 const connectOpeningProvider = connectContext(OpeningProvider, mapOpeningProviderToProps);
