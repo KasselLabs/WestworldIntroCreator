@@ -15,7 +15,7 @@ const Routes = () => (
         <Route exact path="/donate" component={DonatePage} />
         <Route exact path="/:openingKey" component={VideoPage} />
         <Route path="/:openingKey/edit" component={EditPage} />
-        <Route path="/:openingKey/download" component={DownloadPage} />
+        <Route path="/:openingKey/download/" component={DownloadPage} />
       </Switch>
     </GAListener>
   </Router>

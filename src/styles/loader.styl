@@ -1,0 +1,24 @@
+$loaderBorderColor= #71717169;
+$loaderColor = $white;
+$loaderSize = 70px;
+
+.loader {
+  margin: 50px;
+  width: $loaderSize;
+  height: $loaderSize;
+  border: 5px solid $loaderBorderColor;
+  border-top-color: $loaderColor;
+  border-radius: 50%;
+  animation: rotateLoading infinite 1s linear;
+}
+
+@keyframes rotateLoading
+{
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
