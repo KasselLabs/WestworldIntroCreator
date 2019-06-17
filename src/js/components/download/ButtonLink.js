@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const ButtonLink = ({ children, className, to }) => (
-  <Link to={to} style={{ display: 'block' }}>
+  <Link to={to} style={{ display: 'inline-block' }}>
     <button className={className}>
       {children}
     </button>
