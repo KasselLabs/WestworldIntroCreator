@@ -1,13 +1,27 @@
 import React from 'react';
 
-const ContactButton = () => (
-  <p>
-    If you have any questions, please read our FAQ or contact us via email:
-    {' '}
-    <a className="link" href="https://help.kassellabs.io/westworld/" rel="noopener noreferrer" target="_blank">
+const ContactButton = ({ customText = 'If you have any questions, please check our FAQ or contact us through the link:' }) => {
+  const link = (
+    <a
+      href="https://help.kassellabs.io/westworld/"
+      rel="noopener noreferrer"
+      target="_blank"
+      className="link"
+    >
       FAQ and Contact
     </a>
-  </p>
-);
+  );
+
+  if (customText) {
+    return (
+      <p>
+        {customText}{' '}
+        {link}
+      </p>
+    );
+  }
+
+  return link;
+};
 
 export default ContactButton;

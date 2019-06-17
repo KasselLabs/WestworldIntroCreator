@@ -10,6 +10,8 @@ class EmailRequestField extends Component {
   static propTypes = {
     buttonlabel: PropTypes.string,
     match: PropTypes.object,
+    history: PropTypes.object,
+    donate: PropTypes.bool,
   }
 
   constructor() {
@@ -23,27 +25,38 @@ class EmailRequestField extends Component {
     hasError: false,
   }
 
+  goToNextPage = () => {
+    const { match, history, donate } = this.props;
+    const { openingKey } = match.params;
+
+    if (donate) {
+      history.push(`/${openingKey}/download/donated`);
+      return;
+    }
+
+    history.push(`/${openingKey}/download/requested`);
+  }
+
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { openingKey } = this.props.match.params;
+    const { match } = this.props;
+    const { openingKey } = match.params;
     const email = this.emailField.current.value;
 
     this.setState({
       isLoading: true,
       hasError: false,
     });
+
     try {
       await requestDownload(openingKey, email);
+      this.goToNextPage();
     } catch (error) {
       this.setState({
         isLoading: false,
         hasError: true,
       });
     }
-
-    this.setState({
-      isLoading: false,
-    });
   }
 
   render() {

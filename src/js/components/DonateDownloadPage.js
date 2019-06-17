@@ -37,7 +37,7 @@ const DonateDownloadPage = ({ match }) => {
       </p>
       <ContactButton />
       <TermsOfServiceAcceptance />
-      <EmailRequestField />
+      <EmailRequestField donate />
     </DownloadPageContainer>
   );
 };
