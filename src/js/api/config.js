@@ -41,3 +41,5 @@ if (!IS_DEFAULT_MODE) {
 }
 
 export const queueApiUrl = process.env.QUEUE_API;
+
+export const paymentPageUrl = process.env.PAYMENT_PAGE_URL;
