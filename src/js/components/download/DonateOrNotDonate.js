@@ -1,27 +1,34 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import ButtonLink from './ButtonLink';
 
-const DonateOrNotDonate = ({ openingKey, hideNoDonateOption = false }) => (
-  <Fragment>
-    <p><span className="bold">Do you want to receive your video faster by donating or wait in the queue?</span></p>
-    <ButtonLink to={`/${openingKey}/download/donate`} className="button medium">YES, DONATE!</ButtonLink>
-    {!hideNoDonateOption
-        && (
-          <Link to={`/${openingKey}/download/request`}>
-            <button className="button small increase-padding">
-              NO, I{'\''}LL GET IN THE QUEUE!
-            </button>
-          </Link>
+const DonateOrNotDonate = ({ match, hideNoDonateOption = false }) => {
+  const { params } = match;
+  const { openingKey } = params;
+  return (
+    <Fragment>
+      <p><span className="bold">Do you want to receive your video faster by donating or wait in the queue?</span></p>
+      <div className="buttons">
+
+        <ButtonLink to={`/${openingKey}/download/donate`} className="button medium">
+          YES, DONATE!
+        </ButtonLink>
+
+        {!hideNoDonateOption
+          && (
+          <ButtonLink to={`/${openingKey}/download/request`} className="button small increase-padding">
+            NO, I{'\''}LL GET IN THE QUEUE!
+          </ButtonLink>
         )}
-  </Fragment>
-);
+      </div>
+    </Fragment>
+  );
+};
 
 DonateOrNotDonate.propTypes = {
-  openingKey: PropTypes.string,
+  match: PropTypes.object,
   hideNoDonateOption: PropTypes.bool,
 };
 

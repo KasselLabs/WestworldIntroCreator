@@ -1,27 +1,19 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
-class ButtonLink extends Component {
-  static propTypes = {
-    history: PropTypes.object,
-    to: PropTypes.string,
-    className: PropTypes.string,
-    children: PropTypes.any,
-  }
+const ButtonLink = ({ children, className, to }) => (
+  <Link to={to} style={{ display: 'block' }}>
+    <button className={className}>
+      {children}
+    </button>
+  </Link>
+);
 
-  handleClick = () => {
-    const { history, to } = this.props;
-    history.push(to);
-  }
-  render() {
-    const { children, className } = this.props;
-    return (
-      <button onClick={this.handleClick} className={className}>
-        {children}
-      </button>
-    );
-  }
-}
+ButtonLink.propTypes = {
+  to: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.any,
+};
 
-export default withRouter(ButtonLink);
+export default ButtonLink;

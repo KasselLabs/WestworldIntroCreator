@@ -6,6 +6,7 @@ import EditPage from './EditPage';
 import DownloadPage from './DownloadPage';
 import DonatePage from './DonatePage';
 import GAListener from './GAListener';
+import DonateDownloadPage from './DonateDownloadPage';
 
 const Routes = () => (
   <Router>
@@ -15,6 +16,7 @@ const Routes = () => (
         <Route exact path="/donate" component={DonatePage} />
         <Route exact path="/:openingKey" component={VideoPage} />
         <Route path="/:openingKey/edit" component={EditPage} />
+        <Route path="/:openingKey/download/donate" component={DonateDownloadPage} />
         <Route path="/:openingKey/download/" component={DownloadPage} />
       </Switch>
     </GAListener>
