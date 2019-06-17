@@ -2,7 +2,7 @@ import React from 'react';
 
 const TermsOfServiceAcceptance = () => (
   <p>
-    By using this website you are agreeing to our&nbsp;
+    By using this website you are agreeing to our{' '}
     <a
       className="link"
       href="https://help.kassellabs.io/westworld/#termsOfService"
