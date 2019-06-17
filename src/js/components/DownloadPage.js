@@ -18,8 +18,8 @@ class DownloadPage extends Component {
     const { match: { params } } = this.props;
     const { openingKey } = params;
 
-    const response = await fetchStatus(openingKey);
-    this.setState({ isLoading: false, status: response.data });
+    const status = await fetchStatus(openingKey);
+    this.setState({ isLoading: false, status });
   }
 
   render() {

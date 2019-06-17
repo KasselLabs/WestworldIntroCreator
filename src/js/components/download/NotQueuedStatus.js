@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import humanizeDuration from 'humanize-duration';
+
 
 import ContactButton from '../ContactButton';
 import TermsOfServiceAcceptance from '../TermsOfServiceAcceptance';
 import DonateOrNotDonate from './DonateOrNotDonate';
+import calculateEta from '../../api/calculateEta';
 
-const ESTIMATED_HOURS_TO_RENDER = 2;
 const NotQueuedStatus = ({ match, status: { queueSize } }) => {
   const { openingKey } = match.params;
 
-  const eta = (queueSize + 1) * ESTIMATED_HOURS_TO_RENDER * 60 * 60 * 1000;
-  const etaText = humanizeDuration(eta, { largest: 1, units: ['d', 'h'] });
+  const etaText = calculateEta(queueSize + 1);
+
   return (
     <Fragment>
       <p>
