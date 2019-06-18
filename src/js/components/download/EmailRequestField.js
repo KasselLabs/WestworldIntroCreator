@@ -8,7 +8,7 @@ import { requestDownload } from '../../api/queueApi';
 
 class EmailRequestField extends Component {
   static propTypes = {
-    buttonlabel: PropTypes.string,
+    buttonLabel: PropTypes.string,
     match: PropTypes.object,
     history: PropTypes.object,
     donate: PropTypes.bool,
@@ -60,7 +60,7 @@ class EmailRequestField extends Component {
   }
 
   render() {
-    const { buttonlabel = 'SUBMIT REQUEST' } = this.props;
+    const { buttonLabel = 'SUBMIT REQUEST' } = this.props;
     const { isLoading, hasError } = this.state;
 
     const classnames = `button medium has-loader ${isLoading ? 'loading' : ''}`;
@@ -79,7 +79,7 @@ class EmailRequestField extends Component {
         {hasError && <p style={{ marginBottom: 0 }}>Error has occured, please try again!</p>}
         <button className={classnames} style={{ marginTop: '20px' }}>
           <Loader />
-          {buttonlabel}
+          {buttonLabel}
         </button>
       </form>
     );

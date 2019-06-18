@@ -10,6 +10,7 @@ import DonateDownloadPage from './DonateDownloadPage';
 import RequestDownloadPage from './RequestDownloadPage';
 import DonatedPage from './DonatedPage';
 import RequestedPage from './RequestedPage';
+import AddDownloadEmailPage from './AddDownloadEmailPage';
 
 const Routes = () => (
   <Router>
@@ -23,6 +24,7 @@ const Routes = () => (
         <Route path="/:openingKey/download/donated" component={DonatedPage} />
         <Route path="/:openingKey/download/request" component={RequestDownloadPage} />
         <Route path="/:openingKey/download/requested" component={RequestedPage} />
+        <Route path="/:openingKey/download/add_email" component={AddDownloadEmailPage} />
         <Route path="/:openingKey/download/" component={DownloadPage} />
       </Switch>
     </GAListener>
