@@ -13,7 +13,7 @@ import calculateEta from '../../api/calculateEta';
 const PendingStatus = ({ match, status: { status, queueSize, position } }) => {
   const { openingKey } = match.params;
 
-  const isNotQueued = 'not_queued' === status.status;
+  const isNotQueued = 'not_queued' === status;
 
   const queuePosition = isNotQueued ? (queueSize + 1) : position;
   const numberOfRequestsBefore = isNotQueued ? queueSize : position;
