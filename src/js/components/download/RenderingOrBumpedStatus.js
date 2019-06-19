@@ -8,7 +8,7 @@ const RenderingOrBumpedStatus = ({ status: { status } }) => {
   const isBumped = 'bumped' === status;
   const initialText = isBumped
     ? 'Your donation has been verified, your video will be rendered soon. You will receive your video by email in a few hours. '
-    : 'Your video being rendered right now! You will receive your video by email in less than two hours. ';
+    : 'Your video is being rendered right now! You will receive your video by email in less than two hours. ';
 
   return (
     <Fragment>
