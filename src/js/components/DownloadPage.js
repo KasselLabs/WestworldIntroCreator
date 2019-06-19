@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Loader from './Loader';
 import { fetchStatus } from '../api/queueApi';
 import PendingStatus from './download/PendingStatus';
+import RenderingOrBumpedStatus from './download/RenderingOrBumpedStatus';
 import DownloadPageContainer from './download/DownloadPageContainer';
 
 class DownloadPage extends Component {
-  static propTypes = {
-    match: PropTypes.object,
-  }
-
   constructor() {
     super();
 
@@ -34,10 +30,15 @@ class DownloadPage extends Component {
     const isQueued = 'queued' === status.status;
     const isPending = isQueued || isNotQueued;
 
+    const isBumped = 'bumped' === status.status;
+    const isRendering = 'rendering' === status.status;
+    const isRenderingOrBumped = isRendering || isBumped;
+
     return (
       <DownloadPageContainer>
         {isLoading && (<div className="center-content"><Loader /></div>)}
         {isPending && <PendingStatus status={status} />}
+        {isRenderingOrBumped && <RenderingOrBumpedStatus status={status} />}
         {/* TODO handle other status */}
       </DownloadPageContainer>
 
