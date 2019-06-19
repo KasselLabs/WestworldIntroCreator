@@ -4,6 +4,7 @@ import Loader from './Loader';
 import { fetchStatus } from '../api/queueApi';
 import PendingStatus from './download/PendingStatus';
 import RenderingOrBumpedStatus from './download/RenderingOrBumpedStatus';
+import RenderedStatus from './download/RenderedStatus';
 import DownloadPageContainer from './download/DownloadPageContainer';
 
 class DownloadPage extends Component {
@@ -34,12 +35,14 @@ class DownloadPage extends Component {
     const isRendering = 'rendering' === status.status;
     const isRenderingOrBumped = isRendering || isBumped;
 
+    const isRendered = 'rendered' === status.status;
+
     return (
       <DownloadPageContainer>
         {isLoading && (<div className="center-content"><Loader /></div>)}
         {isPending && <PendingStatus status={status} />}
         {isRenderingOrBumped && <RenderingOrBumpedStatus status={status} />}
-        {/* TODO handle other status */}
+        {isRendered && <RenderedStatus status={status} />}
       </DownloadPageContainer>
 
     );
