@@ -5,13 +5,14 @@ import ContactButton from './ContactButton';
 import DownloadPageContainer from './download/DownloadPageContainer';
 import RequestedPagesFooter from './download/RequestedPagesFooter';
 import ButtonLink from './download/ButtonLink';
+import CheckForDonation from './download/CheckForDonation';
 
 const DonatedPage = ({ match }) => {
   const { params } = match;
   const { openingKey } = params;
   return (
     <DownloadPageContainer title="DONATE AND DOWNLOAD">
-      <p>// TODO Check Donation</p>
+      <CheckForDonation openingKey={openingKey} />
       <p>
         Thank you so much for supporting us!
         Your video should be rendered soon when your donation is confirmed!
