@@ -20,7 +20,7 @@ class VideoPage extends React.Component {
   state = {
     isFullscreenEnabled: false,
     isLoading: true,
-    videoEnded: true,
+    videoEnded: false,
     playAgain: false,
   };
 
