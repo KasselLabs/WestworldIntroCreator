@@ -1,13 +1,13 @@
 import Http from './Http';
 
-const APP = 'westworld';
+const app = 'westworld';
 
-export const requestDownload = (code, emails) => {
-  const http = Http('https://queue.kassellabs.io/api');
+const http = Http('https://queue.kassellabs.io/api');
 
-  return http.post('/request', {
-    code,
-    emails,
-    app: APP,
-  });
-};
+export const requestDownload = (code, emails) => http.post('/request', {
+  code,
+  emails,
+  app,
+});
+
+export const fetchStatus = code => http.get(`/status/${app}/${code}`);
