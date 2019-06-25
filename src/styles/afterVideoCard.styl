@@ -21,9 +21,10 @@
   box-sizing: border-box;
   margin-top: 20px;
   margin-bottom: 30px;
-  padding: 10px 15px;
+  padding: 15px;
   max-width: 95%;
   width: 700px;
+  line-height: 1.2;
 
   border: 3px solid $boxBorderColor;
   border-radius: 5px;
@@ -38,27 +39,44 @@
   align-items: center;
 
   .buttons {
+    margin: $defaultParagraphPaddingMobile 0;
     text-align: center;
+
+    > :first-child {
+      margin-bottom: $defaultParagraphPaddingMobile;
+    }
   }
 
-  .button {
-    margin-top: 15px;
+  p {
+    margin: $defaultParagraphPaddingMobile 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
 
     &:last-child {
-      margin-bottom: 15px;
+      margin-bottom: 0;
     }
   }
 
   @media $tablet {
-    padding: 20px 30px;
+    padding: 30px;
+    max-width: 100%;
 
-    .button {
-      margin-top: 20px;
-
-      &:last-child {
-        margin-bottom: 20px;
-      }
+    p {
+      margin: $defaultParagraphPadding 0;
     }
 
+    .buttons {
+      margin: $defaultParagraphPadding 0;
+
+      > :first-child {
+        margin-bottom: $defaultParagraphPadding;
+      }
+    }
+  }
+
+  .title {
+    margin-top: 0;
   }
 }

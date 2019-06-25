@@ -1,0 +1,49 @@
+$loaderBorderColor= #71717169;
+$loaderColor = $white;
+$loaderSize = 70px;
+$loaderSizeButton = 25px;
+
+.loader {
+  margin: 50px;
+  width: $loaderSize;
+  height: $loaderSize;
+  border: 5px solid $loaderBorderColor;
+  border-top-color: $loaderColor;
+  border-radius: 50%;
+  animation: rotateLoading infinite 1s linear;
+}
+
+@keyframes rotateLoading
+{
+  0 {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.button.has-loader {
+  display: flex;
+  justify-content: center;
+  transition: color 500ms;
+
+  .loader {
+    position: absolute;
+    margin: 4px;
+    width: $loaderSizeButton;
+    height: $loaderSizeButton;
+    border-width: 3px;
+    opacity: 0;
+    transition: opacity  500ms;
+  }
+
+  &.loading {
+    color: transparent;
+
+    .loader {
+      opacity: 1;
+    }
+  }
+}
