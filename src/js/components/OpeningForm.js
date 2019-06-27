@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import connectContext from 'react-context-connector';
+import isEqual from 'lodash.isequal';
 
 import Swal from '../extras/swal';
 import OpeningProvider from './OpeningProvider';
@@ -45,9 +46,48 @@ class OpeningForm extends Component {
     };
   }
 
-  _download = () => {
+  _goToDownloadPage = () => {
     const { openingKey, history } = this.props;
     history.push(`/${openingKey}/download`);
+  }
+
+  _download = async () => {
+    const { openingKey, playNewOpening, history } = this.props;
+    const { opening: openingBefore } = this.state;
+
+    const formValues = this._getFormValues();
+
+    const openingFromForm = {
+      texts: formValues,
+    };
+
+    const openingNow = firebaseOpeningEncode(openingFromForm);
+
+    const isOpeningEqual = isEqual(openingBefore, openingNow);
+
+    if (isOpeningEqual) {
+      this._goToDownloadPage();
+      return;
+    }
+
+    const alertResult = await Swal({
+      titleText: 'TEXT WAS MODIFIED',
+      showCancelButton: true,
+      cancelButtonText: 'PLAY IT',
+      cancelButtonAriaLabel: 'PLAY IT',
+      confirmButtonText: 'RESTORE MY INTRO',
+      confirmButtonAriaLabel: 'RESTORE MY INTRO',
+      text: 'You have changed some of the text fields. You need to play the new intro to save and request a download. Do you want to restore your intro text or play the new one?',
+    });
+
+    if (alertResult.value) {
+      // refresh page form
+      history.push('/');
+      history.push(`/${openingKey}/edit`);
+      return;
+    }
+
+    playNewOpening(openingNow, history);
   }
 
   _isValidOpening = (opening) => {
