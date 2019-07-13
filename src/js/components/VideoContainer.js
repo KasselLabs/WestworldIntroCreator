@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import YouTube from 'react-youtube';
 import Fullscreen from 'react-fullscreen-crossbrowser';
 import connectContext from 'react-context-connector';
 import fscreen from 'fscreen';
@@ -12,6 +11,7 @@ import LoadingLayer from './LoadingLayer';
 import ConfigurationsContext from './ConfigurationsContext';
 import PlayVideoButton from './PlayVideoButton';
 import BackgroundVideo from './players/BackgroundVideo';
+import { BUFFERING, PAUSED } from './players/constants';
 
 import { ANIMATION_START_DELAY, IS_DEFAULT_MODE } from '../api/config';
 
@@ -95,7 +95,7 @@ class VideoContainer extends Component {
     }
   }
 
-  _onVideoStartPlay = () => {
+  onVideoStartPlay = () => {
     Raven.captureBreadcrumb({
       message: 'Video start play',
       category: 'videoPlayer',
@@ -109,13 +109,11 @@ class VideoContainer extends Component {
     }, ANIMATION_START_DELAY);
   }
 
-  _onVideoStateChange = (event) => {
-    const state = event.data;
-
+  onVideoStateChange = (event) => {
     Raven.captureBreadcrumb({
       message: 'Video state change',
       category: 'videoPlayer',
-      data: { state },
+      data: { event },
     });
 
     const {
@@ -124,9 +122,10 @@ class VideoContainer extends Component {
       openingLoaded,
     } = this.state;
 
-    const isBuffering = YouTube.PlayerState.BUFFERING === state;
-    const isPaused = YouTube.PlayerState.PAUSED === state;
-    // const isUnstarted = YouTube.PlayerState.UNSTARTED === state;
+    const { playAgain } = this.props;
+
+    const isBuffering = BUFFERING === event;
+    const isPaused = PAUSED === event;
     const isVideoReadyToPlay = videoReady && openingLoaded;
 
     if (isBuffering || isPaused) {
@@ -137,7 +136,7 @@ class VideoContainer extends Component {
 
     // If autoplay fail should show the play button
     // for the user interact with the page and play the video
-    if (isVideoReadyToPlay && !videoStarted && !isBuffering) {
+    if (isVideoReadyToPlay && !videoStarted && !isBuffering && !playAgain) {
       this.setState({
         showPlayButton: true,
       });
@@ -151,7 +150,7 @@ class VideoContainer extends Component {
     }
   }
 
-  _onVideoReady = () => {
+  onVideoReady = () => {
     Raven.captureBreadcrumb({
       message: 'Video ready',
       category: 'videoPlayer',
@@ -161,7 +160,7 @@ class VideoContainer extends Component {
     });
   }
 
-  _onVideoEnd = () => {
+  onVideoEnd = () => {
     Raven.captureBreadcrumb({
       message: 'Video ended',
       category: 'videoPlayer',
@@ -174,14 +173,14 @@ class VideoContainer extends Component {
     });
   }
 
-  _onVideoPause = () => {
+  onVideoPause = () => {
     Raven.captureBreadcrumb({
       message: 'Video paused',
       category: 'videoPlayer',
     });
   }
 
-  _onVideoError = (event) => {
+  onVideoError = (event) => {
     Raven.captureBreadcrumb({
       message: 'Video error',
       category: 'videoPlayer',
@@ -193,10 +192,11 @@ class VideoContainer extends Component {
 
     this.setState({
       videoError: event.data,
+      videoReady: false,
     });
   }
 
-  _onVideoPlaybackRateChange = (event) => {
+  onVideoPlaybackRateChange = (event) => {
     Raven.captureBreadcrumb({
       message: 'Video playback rate change',
       category: 'videoPlayer',
@@ -206,7 +206,7 @@ class VideoContainer extends Component {
     });
   }
 
-  _onVideoPlaybackQualityChange = (event) => {
+  onVideoPlaybackQualityChange = (event) => {
     Raven.captureBreadcrumb({
       message: 'Video playback quality change',
       category: 'videoPlayer',
@@ -233,10 +233,6 @@ class VideoContainer extends Component {
       showPlayButton,
     } = this.state;
 
-    if (videoError) {
-      throw new Error(videoError);
-    }
-
     const isLoading = IS_DEFAULT_MODE
                         && !videoEnded
                         && (!openingLoaded || !videoReady || !videoStarted);
@@ -250,15 +246,16 @@ class VideoContainer extends Component {
           >
 
             <BackgroundVideo
-              onPlay={this._onVideoStartPlay}
-              onReady={this._onVideoReady}
-              onEnd={this._onVideoEnd}
-              onStateChange={this._onVideoStateChange}
-              onPause={this._onVideoPause}
-              onError={this._onVideoError}
-              onPlaybackRateChange={this._onVideoPlaybackRateChange}
-              onPlaybackQualityChange={this._onVideoPlaybackQualityChange}
+              onPlay={this.onVideoStartPlay}
+              onReady={this.onVideoReady}
+              onEnd={this.onVideoEnd}
+              onStateChange={this.onVideoStateChange}
+              onPause={this.onVideoPause}
+              onError={this.onVideoError}
+              onPlaybackRateChange={this.onVideoPlaybackRateChange}
+              onPlaybackQualityChange={this.onVideoPlaybackQualityChange}
               videoPlayerRef={this.videoPlayer}
+              hasPlayerError={videoError}
             />
 
             {!!opening &&

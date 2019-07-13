@@ -1332,9 +1332,10 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-clappr@^0.2.97:
-  version "0.2.97"
-  resolved "https://registry.yarnpkg.com/clappr/-/clappr-0.2.97.tgz#4b4cc7889ec951116c52da641621645bd167e5f8"
+clappr@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/clappr/-/clappr-0.3.6.tgz#2eefe676eddd11d0c557965534f536d2b61120f3"
+  integrity sha512-8O6f/qVUs57u3o7DyrsUeYVNgq+eOl1FJs9xlUUpDOxU1Ea4CtaEdzyhzk0OtjAqg9wWiCwk2yj1duAE9JNzNg==
 
 class-utils@^0.3.5:
   version "0.3.6"

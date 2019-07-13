@@ -1,18 +1,23 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Clappr from 'clappr';
 
-import { TIME_FACTOR, START_AT } from '../../api/config';
+import { TIME_FACTOR, START_AT, IS_DEFAULT_MODE } from '../../api/config';
+import { BUFFERING, PAUSED } from './constants';
 
 // import videoSource from '../../../../../RecorderAssets/westworld-1080p.mp4';
 
-const videoSource = null;
+const videoSource = 'https://kl-files.sfo2.cdn.digitaloceanspaces.com/renderer-assets/westworld/westworld-1080p.mp4';
 
 class EmbeddedVideo extends Component {
   static propTypes = {
     onPlay: PropTypes.func,
+    onPause: PropTypes.func,
     onReady: PropTypes.func,
     onEnd: PropTypes.func,
+    onStateChange: PropTypes.func,
+    hasPlayerError: PropTypes.bool,
   }
 
   constructor(props) {
@@ -34,6 +39,7 @@ class EmbeddedVideo extends Component {
 
   _playCallback = () => {
     this.props.onPlay();
+    this._removeMediaControls();
     if (window.introStartCallback) {
       window.introStartCallback();
     }
@@ -46,11 +52,14 @@ class EmbeddedVideo extends Component {
     }
   }
 
+  _removeMediaControls = () => {
+    // this.player.core.$el.find('.media-control').remove();
+    this.player.core.activeContainer.disableMediaControl();
+  }
+
   _setupPlayer() {
-    if (!videoSource) {
-      console.error('Uncomment the videoSource import and setup the video file in the right directory.');
-      return;
-    }
+    const { onStateChange, onPause } = this.props;
+
     if (this.player) {
       this.destroyPlayer();
     }
@@ -58,23 +67,38 @@ class EmbeddedVideo extends Component {
     this.player = new Clappr.Player({
       parent: this.playerRef.current,
       source: videoSource,
+      exitFullscreenOnEnd: true,
       width: '100%',
       height: '100%',
       // mute: true,
       hlsjsConfig: {
         enableWorker: true,
       },
+      autoPlay: this.props.hasPlayerError,
     });
 
-    window.playApp = () => {
-      this.player.play();
-    };
-    console.warn('Use window.playApp() to run the video.');
-    this.player.core.$el.find('.media-control').remove();
-
-    this.player.once(Clappr.Events.PLAYER_PLAY, this._playCallback);
+    if (!IS_DEFAULT_MODE) {
+      window.playApp = () => {
+        this.player.play();
+      };
+      console.warn('Use window.playApp() to run the video.');
+    }
 
     this.player.once(Clappr.Events.PLAYER_ENDED, this._endCallback);
+
+    this.player.listenTo(
+      this.player.core.activeContainer,
+      Clappr.Events.CONTAINER_STATE_BUFFERING, () => {
+        onStateChange(BUFFERING);
+      },
+    );
+
+    this.player.core.activePlayback.on(Clappr.Events.PLAYBACK_PAUSE, () => {
+      onStateChange(PAUSED);
+      onPause();
+    });
+
+    this.player.core.activePlayback.on(Clappr.Events.PLAYBACK_PLAY, this._playCallback);
 
     // set Time factor
     this.player.core.$el.find('video,audio').get(0).playbackRate = 1 / TIME_FACTOR;
@@ -82,11 +106,15 @@ class EmbeddedVideo extends Component {
     if (START_AT) {
       this.player.seek(START_AT);
     }
+
     this.props.onReady();
+    onStateChange(null);
+    this._removeMediaControls();
   }
 
   play() {
-    // just to not call undefined function.
+    this.props.onStateChange(null);
+    this.player.play();
   }
 
   destroyPlayer() {
