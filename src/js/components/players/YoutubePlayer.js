@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import YouTube from 'react-youtube';
+import { BUFFERING, PAUSED } from './constants';
 
 class YoutubePlayer extends Component {
+  propTypes = {
+    onStateChange: PropTypes.func,
+  }
+
   constructor() {
     super();
 
@@ -11,6 +16,28 @@ class YoutubePlayer extends Component {
 
   play = () => {
     this.youtubePlayer.current.internalPlayer.playVideo();
+  }
+
+  _checkState = (state) => {
+    const isBuffering = YouTube.PlayerState.BUFFERING === state;
+    if (isBuffering) {
+      return BUFFERING;
+    }
+
+    const isPaused = YouTube.PlayerState.PAUSED === state;
+    if (isPaused) {
+      return PAUSED;
+    }
+
+    return state;
+  }
+
+  _onStateChange = (event) => {
+    const state = event.data;
+
+    const parsedState = this._checkState(state);
+
+    this.props.onStateChange(parsedState);
   }
 
   render() {
@@ -29,19 +56,19 @@ class YoutubePlayer extends Component {
       },
     };
 
+    const { onStateChange, ...props } = this.props;
+
     return (
       <YouTube
         className="youtube-player"
         videoId="WxpsxjKxuww"
         opts={opts}
-        {...this.props}
+        onStateChange={this._onStateChange}
+        {...props}
         ref={this.youtubePlayer}
       />
     );
   }
 }
-
-YoutubePlayer.propTypes = {
-};
 
 export default YoutubePlayer;

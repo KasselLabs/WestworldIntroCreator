@@ -6,21 +6,22 @@ import FakeVideo from './FakeVideo';
 import EmbeddedVideo from './EmbeddedVideo';
 import YoutubePlayer from './YoutubePlayer';
 
-const BackgroundVideo = (props) => {
+const BackgroundVideo = ({ hasPlayerError, videoPlayerRef, ...props }) => {
   if (IS_RENDERER_MODE) {
     return (
       <FakeVideo
         {...props}
-        ref={props.videoPlayerRef}
+        ref={videoPlayerRef}
       />
     );
   }
 
-  if (IS_LOCAL_MODE) {
+  if (IS_LOCAL_MODE || hasPlayerError) {
     return (
       <EmbeddedVideo
         {...props}
-        ref={props.videoPlayerRef}
+        ref={videoPlayerRef}
+        hasPlayerError={!!hasPlayerError}
       />
     );
   }
@@ -28,13 +29,14 @@ const BackgroundVideo = (props) => {
   return (
     <YoutubePlayer
       {...props}
-      ref={props.videoPlayerRef}
+      ref={videoPlayerRef}
     />
   );
 };
 
 BackgroundVideo.propTypes = {
   videoPlayerRef: PropTypes.object,
+  hasPlayerError: PropTypes.any,
 };
 
 export default BackgroundVideo;
