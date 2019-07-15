@@ -5,7 +5,7 @@ cache:
   directories:
     - node_modules
 script:
-  - npm ci
+  - npm ci || travis_terminate 1
   - npm run lint
   - npm run build
 deploy:
