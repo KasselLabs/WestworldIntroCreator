@@ -13,6 +13,7 @@ class DownloadPage extends Component {
 
     this.state = {
       isLoading: true,
+      error: null,
     };
   }
 
@@ -20,12 +21,16 @@ class DownloadPage extends Component {
     const { match: { params } } = this.props;
     const { openingKey } = params;
 
-    const status = await fetchStatus(openingKey);
-    this.setState({ isLoading: false, status });
+    try {
+      const status = await fetchStatus(openingKey);
+      this.setState({ isLoading: false, status });
+    } catch (error) {
+      this.setState({ error });
+    }
   }
 
   render() {
-    const { isLoading, status = {} } = this.state;
+    const { isLoading, status = {}, error } = this.state;
 
     const isNotQueued = 'not_queued' === status.status;
     const isQueued = 'queued' === status.status;
@@ -36,6 +41,10 @@ class DownloadPage extends Component {
     const isRenderingOrBumped = isRendering || isBumped;
 
     const isRendered = 'rendered' === status.status;
+
+    if (error) {
+      throw error;
+    }
 
     return (
       <DownloadPageContainer>

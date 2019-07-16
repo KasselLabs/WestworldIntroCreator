@@ -21,9 +21,12 @@ class RequestedPage extends Component {
   componentDidMount = async () => {
     const { match: { params } } = this.props;
     const { openingKey } = params;
-    const status = await getLastStatus(openingKey);
-
-    this.setState({ status, isLoading: false });
+    try {
+      const status = await getLastStatus(openingKey);
+      this.setState({ status, isLoading: false });
+    } catch (error) {
+      this.setState({ error });
+    }
   }
 
   renderContent = () => {
@@ -31,6 +34,7 @@ class RequestedPage extends Component {
 
     const { status: { position } } = this.state;
     const etaText = calculateEta(position);
+
 
     return (
       <Fragment>
@@ -45,7 +49,11 @@ class RequestedPage extends Component {
   }
 
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, error } = this.state;
+
+    if (error) {
+      throw error;
+    }
 
     return (
       <DownloadPageContainer title="REQUEST AND DOWNLOAD">

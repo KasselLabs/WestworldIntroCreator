@@ -23,16 +23,21 @@ class CheckForDonation extends Component {
 
   _fetchDownloadStatus = async () => {
     const { openingKey } = this.props;
-    const response = await fetchStatus(openingKey);
+    let catchError = null;
+    try {
+      const response = await fetchStatus(openingKey);
 
-    const isBumped = 'bumped' === response.status;
-    const isRenderingViaBump = 'rendering' === response.status && response.bumpedOn;
+      const isBumped = 'bumped' === response.status;
+      const isRenderingViaBump = 'rendering' === response.status && response.bumpedOn;
 
-    if (isBumped || isRenderingViaBump) {
-      this.setState({
-        status: CONFIRMED,
-      });
-      return;
+      if (isBumped || isRenderingViaBump) {
+        this.setState({
+          status: CONFIRMED,
+        });
+        return;
+      }
+    } catch (error) {
+      catchError = error;
     }
 
     const now = Date.now();
@@ -40,6 +45,11 @@ class CheckForDonation extends Component {
     const oneMinute = 60000;
 
     if (elapsed > oneMinute) {
+      if (catchError) {
+        this.setState({ error: catchError });
+        return;
+      }
+
       this.setState({
         status: NOT_FOUND,
       });
@@ -50,7 +60,12 @@ class CheckForDonation extends Component {
   }
 
   render() {
-    const { status } = this.state;
+    const { status, error } = this.state;
+
+    if (error) {
+      throw error;
+    }
+
     const donationPending = (
       <div className="check-for-donation__card">
         <Loader />

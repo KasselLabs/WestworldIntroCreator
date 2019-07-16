@@ -7,18 +7,15 @@ export const firebases = {
 export const defaultFirebase = firebases.W;
 export const defaultFirebasePrefix = 'W';
 
-// export const serverApi = process.env.SERVER_API;
+export const queueApiUrl = process.env.QUEUE_API;
 
 if (!defaultFirebase) {
   throw new Error('Firebase URL can\'t be empty');
 }
 
-// if (!serverApi) {
-//   throw new Error('Server API URL can\'t be empty');
-// }
-
-// MOCK Api
-// export const serverApi = 'https://5mitidksxm7xfn4g4-mock.stoplight-proxy.io/';
+if (!queueApiUrl) {
+  throw new Error('Queue API URL can\'t be empty');
+}
 
 export const TIME_FACTOR = 1;
 export const START_AT = 0;
@@ -39,7 +36,5 @@ export const IS_RENDERER_MODE = MODES.RENDERER === APPLICATION_MODE;
 if (!IS_DEFAULT_MODE) {
   console.log('Application mode loaded: ', APPLICATION_MODE);
 }
-
-export const queueApiUrl = process.env.QUEUE_API;
 
 export const paymentPageUrl = process.env.PAYMENT_PAGE_URL;
