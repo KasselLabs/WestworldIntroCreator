@@ -7,7 +7,7 @@ import { defaultKey } from '../api/config';
 
 import { saveOpening, fetchKey } from '../api/firebaseApi';
 import firebaseOpeningEncode from '../api/firebaseOpeningEncode';
-import { season1 } from '../json/defaultTexts.json';
+import { season1 } from '../animationData/defaultTexts.json';
 
 const OpeningContext = React.createContext();
 
