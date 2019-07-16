@@ -23,9 +23,16 @@ class ErrorBoundary extends Component {
           <div className="box-page error-boundary">
             <div className="box" >
               <h1 className="title">ERROR</h1>
-              <img src="https://media.giphy.com/media/fxIk0cODMTZrchdLzm/giphy.gif" alt="A GIF with Bernard from Westworld breaking a computer screen." />
+              <img
+                src="https://media.giphy.com/media/fxIk0cODMTZrchdLzm/giphy.gif"
+                alt="A GIF with Bernard from Westworld breaking a computer screen."
+              />
               <p>We&apos;re sorry — something&apos;s gone wrong.</p>
-              <p>Please try to reload the page. If the problem persists, please fill the report with more information so we can help you as soon as possible.</p>
+              <p>
+                Please try to reload the page.
+                If the problem persists, please fill the report with more
+                information so we can help you as soon as possible.
+              </p>
               <div className="center-content horizontal">
                 <button className="button small-medium" onClick={() => Raven.lastEventId() && Raven.showReportDialog()}>REPORT</button>
                 <button className="button small-medium" style={{ marginLeft: '20px' }} onClick={() => window.location.reload()}>RELOAD PAGE</button>
