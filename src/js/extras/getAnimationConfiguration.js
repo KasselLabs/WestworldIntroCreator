@@ -50,7 +50,7 @@ const calcViewportSize = (videoContainer) => {
   };
 };
 
-const resizeCalc = () => {
+const getAnimationConfiguration = () => {
   const configurations = {
     overlay_content: {
       fontSize: 13,
@@ -126,4 +126,4 @@ const resizeCalc = () => {
   return configurations;
 };
 
-export default resizeCalc;
+export default getAnimationConfiguration;

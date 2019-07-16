@@ -2,26 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import throttle from 'lodash.throttle';
 
-import resizeCalc from './extras/resizeCalc';
+import getAnimationConfiguration from './extras/getAnimationConfiguration';
 import Routes from './Routes';
-import ConfigurationsContext from './common/ConfigurationsContext';
+import AnimationConfigContext from './common/AnimationConfigContext';
 import OpeningProvider from './common/OpeningProvider';
 import ErrorBoundary from './ErrorBoundary';
 
 import { IS_DEFAULT_MODE } from './api/config';
 
-const renderWithConfigurations = (configurations) => {
-  const ConfigurationsProvider = ConfigurationsContext.Provider;
+const renderWithAnimationConfig = (animationConfig) => {
+  const AnimationConfigProvider = AnimationConfigContext.Provider;
 
   const mountNode = document.getElementById('app');
   ReactDOM.render(
     (
       <ErrorBoundary>
-        <ConfigurationsProvider value={configurations}>
+        <AnimationConfigProvider value={animationConfig}>
           <OpeningProvider>
             <Routes />
           </OpeningProvider>
-        </ConfigurationsProvider>
+        </AnimationConfigProvider>
       </ErrorBoundary>
     ),
     mountNode,
@@ -33,8 +33,8 @@ const renderWithConfigurations = (configurations) => {
 };
 
 const renderApp = throttle(() => {
-  const configurations = resizeCalc();
-  renderWithConfigurations(configurations);
+  const animationConfig = getAnimationConfiguration();
+  renderWithAnimationConfig(animationConfig);
 }, 200);
 
 export default renderApp;

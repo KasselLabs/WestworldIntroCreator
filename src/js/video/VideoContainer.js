@@ -8,7 +8,7 @@ import VideoOverlay from './VideoOverlay';
 import renderApp from '../renderApp';
 import OpeningProvider from '../common/OpeningProvider';
 import LoadingLayer from '../common/LoadingLayer';
-import ConfigurationsContext from '../common/ConfigurationsContext';
+import AnimationConfigContext from '../common/AnimationConfigContext';
 import PlayVideoButton from './PlayVideoButton';
 import BackgroundVideo from '../players/BackgroundVideo';
 import { BUFFERING, PAUSED } from '../players/constants';
@@ -286,7 +286,7 @@ const mapOpeningProviderToProps = context => ({
 });
 
 
-const connectConfigurations = connectContext(ConfigurationsContext, mapConfigurationsToProps);
+const connectConfigurations = connectContext(AnimationConfigContext, mapConfigurationsToProps);
 const connectOpeningProvider = connectContext(OpeningProvider, mapOpeningProviderToProps);
 
 export default connectConfigurations(connectOpeningProvider(VideoContainer));
