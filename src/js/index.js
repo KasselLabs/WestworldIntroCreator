@@ -1,7 +1,7 @@
 
 import '../styles/index.styl';
 import { documentReady } from './extras/utils';
-import renderApp from './components/renderApp';
+import renderApp from './renderApp';
 import './extras/googleanalytics';
 import Swal from './extras/swal';
 
