@@ -1,4 +1,4 @@
-import animationConfig, { baseWidthReference } from '../animationData/animationConfig';
+import { getDefaultAnimationConfig, baseWidthReference } from '../animationData/animationConfig';
 
 const VIDEO_RATIO = 16 / 9;
 
@@ -51,9 +51,7 @@ const calcViewportSize = (videoContainer) => {
 };
 
 const getAnimationConfiguration = () => {
-  const configurations = {
-    ...animationConfig,
-  };
+  const configurations = getDefaultAnimationConfig();
 
   const videoContainer = document.querySelector('.video-container');
 
