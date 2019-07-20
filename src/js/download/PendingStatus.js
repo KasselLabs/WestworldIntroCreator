@@ -57,7 +57,7 @@ const PendingStatus = ({ match, status: { status, queueSize, position } }) => {
       </p>
       {isNotQueued && (
       <p>
-        <span className="bold">Attention!</span>
+        <span className="bold">Attention!</span>{' '}
         Before sending the download request make sure there are no typos in your text
         to grant that your video will be with the correct text.{' '}
         <Link to={`/${openingKey}/edit`}>Click here to go back and check your text.</Link>
