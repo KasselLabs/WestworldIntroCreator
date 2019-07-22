@@ -83,6 +83,7 @@ class VideoPage extends React.Component {
             <div className="buttons-container">
               {fscreen.fullscreenEnabled && !videoEnded &&
               <Fragment>
+                <ButtonLink to={`/${openingKey}/edit`} className="button">BACK TO EDIT</ButtonLink>
                 <ButtonLink to={`/${openingKey}/download`} className="button">DOWNLOAD</ButtonLink>
                 <button onClick={this._setFullscreen} className="button">
                 GO FULLSCREEN
