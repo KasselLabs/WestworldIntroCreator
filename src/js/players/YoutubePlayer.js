@@ -53,6 +53,7 @@ class YoutubePlayer extends Component {
         modestbranding: 1,
         rel: 0,
         showinfo: 0,
+        playsinline: 1,
       },
     };
 
