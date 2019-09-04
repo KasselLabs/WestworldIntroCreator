@@ -72,6 +72,7 @@ class OpeningForm extends Component {
 
     const alertResult = await Swal({
       titleText: 'TEXT WAS MODIFIED',
+      allowOutsideClick: false,
       showCancelButton: true,
       cancelButtonText: 'PLAY IT',
       cancelButtonAriaLabel: 'PLAY IT',
@@ -87,7 +88,9 @@ class OpeningForm extends Component {
       return;
     }
 
-    playNewOpening(openingNow, history);
+    if (this._isValidOpening(openingFromForm)) {
+      playNewOpening(openingNow, history);
+    }
   }
 
   _isValidOpening = (opening) => {
