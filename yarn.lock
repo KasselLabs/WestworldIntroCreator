@@ -2566,6 +2566,11 @@ fswatcher-child@^1.0.3:
   dependencies:
     chokidar "^2.0.3"
 
+fullscreen-polyfill@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/fullscreen-polyfill/-/fullscreen-polyfill-1.0.2.tgz#7a148ba1bcf50808e4bcdeadbe89e341bbac8431"
+  integrity sha512-E+GiRov/4L8hDQKo430ijaTFx4fM2ErBZMN0gzg3W1v0gJzG2bIvvcgNLV+kReF+f8vC++SzrzCzGsqDxGpEDA==
+
 function-bind@^1.1.0, function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"

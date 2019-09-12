@@ -6,6 +6,7 @@ class ErrorBoundary extends Component {
   static propTypes = {
     children: PropTypes.any,
   }
+
   constructor(props) {
     super(props);
     this.state = { error: null };
