@@ -62,7 +62,7 @@ class YoutubePlayer extends Component {
     return (
       <YouTube
         className="youtube-player"
-        videoId="WxpsxjKxuww"
+        videoId="6stEIPUxhbk"
         opts={opts}
         onStateChange={this._onStateChange}
         {...props}
