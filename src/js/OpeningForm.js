@@ -10,6 +10,26 @@ import OpeningProvider from './common/OpeningProvider';
 import { season1 } from './animationData/defaultTexts.json';
 import firebaseOpeningEncode from './api/firebaseOpeningEncode';
 
+const getStateFromProps = (props) => {
+  const { opening } = props;
+
+  if (opening) {
+    return {
+      opening,
+    };
+  }
+
+  const defaultOpening = {
+    texts: season1,
+  };
+
+  const defaultOpeningEncoded = firebaseOpeningEncode(defaultOpening);
+
+  return {
+    opening: defaultOpeningEncoded,
+  };
+};
+
 class OpeningForm extends Component {
   static propTypes = {
     opening: PropTypes.object,
@@ -26,24 +46,23 @@ class OpeningForm extends Component {
 
     this.inputsRefs = {};
 
-    const { opening } = props;
+    this.state = getStateFromProps(props);
+  }
 
-    if (opening) {
-      this.state = {
-        opening,
-      };
-      return;
+  static getDerivedStateFromProps(nextProps) {
+    return getStateFromProps(nextProps);
+  }
+
+  componentDidUpdate(prevProps) {
+    const openingKeyChanged = prevProps.openingKey !== this.props.openingKey;
+    const { opening } = this.state;
+
+    if (openingKeyChanged) {
+      const keys = Object.keys(this.inputsRefs);
+      keys.forEach((key) => {
+        this.inputsRefs[key].current.value = opening.texts[`text${key}`];
+      });
     }
-
-    const defaultOpening = {
-      texts: season1,
-    };
-
-    const defaultOpeningEncoded = firebaseOpeningEncode(defaultOpening);
-
-    this.state = {
-      opening: defaultOpeningEncoded,
-    };
   }
 
   _goToDownloadPage = () => {

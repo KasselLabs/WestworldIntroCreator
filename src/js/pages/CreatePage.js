@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import connectContext from 'react-context-connector';
+
 import PageContainer from '../common/PageContainer';
 import OpeningForm from '../OpeningForm';
+import OpeningProvider from '../common/OpeningProvider';
 
-const CreatePage = () => (
-  <PageContainer>
-    <OpeningForm />
-  </PageContainer>
-);
+class CreatePage extends Component {
+  static propTypes = {
+    clearOpening: PropTypes.func,
+  }
 
-export default CreatePage;
+  componentWillMount() {
+    this.props.clearOpening();
+  }
+
+  render() {
+    return (
+      <PageContainer>
+        <OpeningForm />
+      </PageContainer>
+    );
+  }
+}
+
+const mapOpeningProviderToProps = context => ({
+  clearOpening: context.clearOpening,
+});
+
+const connectOpeningProvider = connectContext(OpeningProvider, mapOpeningProviderToProps);
+
+export default connectOpeningProvider(CreatePage);
