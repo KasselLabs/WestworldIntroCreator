@@ -77,6 +77,10 @@ class OpeningProvider extends Component {
         key: openingKey,
       });
     },
+
+    clearOpening: () => {
+      this.setState({ opening: null, key: null });
+    },
   }
 
   render() {
