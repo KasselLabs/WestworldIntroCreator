@@ -15,8 +15,11 @@ const DonateDownloadPage = ({ match }) => {
   return (
     <DownloadPageContainer title="DONATE AND DOWNLOAD">
       <p>
-        Great choice! You can donate how much you want but there
-        is the minimum of <span className="bold">10 US Dollars</span> to receive the video.
+        Great choice! You can donate the amount for the following options:
+        <ul>
+          <li><span className="bold">10 US Dollars</span>: minimum to receive the video earlier.</li>
+          <li><span className="bold">20 US Dollars</span>: receive the video without the logo watermark.</li>
+        </ul>
       </p>
       <div className="compose-iframe">
         <div className="center center-content">
