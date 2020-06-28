@@ -1,4 +1,5 @@
 
+import 'babel-polyfill';
 import 'fullscreen-polyfill';
 import '../styles/index.styl';
 import { documentReady } from './extras/utils';
@@ -11,7 +12,9 @@ import './extras/googleanalytics';
     return;
   }
 
-  Raven.config(process.env.RAVEN).install();
+  Raven.config(process.env.RAVEN, {
+    ignoreErrors: [/fullscreen error/],
+  }).install();
   Raven.context(() => {
     _startApplication();
   });
