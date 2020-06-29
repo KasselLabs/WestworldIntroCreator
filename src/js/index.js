@@ -13,7 +13,10 @@ import './extras/googleanalytics';
   }
 
   Raven.config(process.env.RAVEN, {
-    ignoreErrors: [/fullscreen error/],
+    ignoreErrors: [
+      /fullscreen error/,
+      'ResizeObserver loop limit exceeded',
+    ],
   }).install();
   Raven.context(() => {
     _startApplication();
