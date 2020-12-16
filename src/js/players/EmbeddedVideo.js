@@ -8,7 +8,7 @@ import { BUFFERING, PAUSED } from './constants';
 
 // import videoSource from '../../../../../RecorderAssets/westworld-1080p.mp4';
 
-const videoSource = 'https://kl-files.sfo2.cdn.digitaloceanspaces.com/renderer-assets/westworld/westworld-1080p.mp4';
+const videoSource = 'https://kassellabs.us-east-1.linodeobjects.com/renderer-assets/westworld/westworld-1080p.mp4';
 
 class EmbeddedVideo extends Component {
   static propTypes = {
