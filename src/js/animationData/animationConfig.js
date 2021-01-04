@@ -132,8 +132,8 @@ export const getDefaultAnimationConfig = () =>
       },
       /* #text22 */
       {
-        top: 237,
-        left: 438,
+        top: 450,
+        left: 231.5,
         width: 460,
       },
       /* #text23 */
