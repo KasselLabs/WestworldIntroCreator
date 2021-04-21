@@ -26,10 +26,10 @@ const PageContainer = ({ children }) => (
         </a>
       </div>
 
-      <div className="fb-share-button" data-href="http://westworldintrocreator.kassellabs.io/" data-layout="button_count" data-size="small">
-        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwestworldintrocreator.kassellabs.io%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a>
+      <div className="fb-share-button" data-href="https://westworldintrocreator.kassellabs.io/" data-layout="button_count" data-size="small">
+        <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwestworldintrocreator.kassellabs.io%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Share</a>
       </div>
-      <a href="https://twitter.com/share" className="twitter-share-button" data-text="Check out the Westworld Intro Creator from @KasselLabs!" data-url="http://westworldintrocreator.kassellabs.io/" data-hashtags="Westworld,KasselLabs">Tweet</a>
+      <a href="https://twitter.com/share" className="twitter-share-button" data-text="Check out the Westworld Intro Creator from @KasselLabs!" data-url="https://westworldintrocreator.kassellabs.io/" data-hashtags="Westworld,KasselLabs">Tweet</a>
     </div>
   </div>
 );
