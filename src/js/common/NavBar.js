@@ -21,14 +21,15 @@ class NavBar extends Component {
         <li><a href="/#/">HOME</a></li>
         <li><a href="https://help.kassellabs.io/westworld/">CONTACT</a></li>
         <li>
-          <a>ABOUT</a> {/* eslint-disable-line jsx-a11y/anchor-is-valid */}
+          <a>HELP</a> {/* eslint-disable-line jsx-a11y/anchor-is-valid */}
           <ul className="dropdown">
-            <li><a href="https://help.kassellabs.io/westworld/">FAQ</a></li>
-            <li><a href="https://help.kassellabs.io/westworld/#termsOfService">TERMS OF SERVICE</a></li>
+            <li><a href="https://help.kassellabs.io/game-of-thrones/">FAQ</a></li>
+            <li><a href="https://help.kassellabs.io/game-of-thrones/#termsOfService">TERMS OF SERVICE</a></li>
             <li><a href="https://help.kassellabs.io/privacy/">PRIVACY POLICY</a></li>
+            <li><a href="https://kassellabs.io/about">ABOUT US</a></li>
           </ul>
         </li>
-        <li><a href="http://kassellabs.io">MORE APPS</a></li>
+        <li><a href="https://kassellabs.io">MORE APPS</a></li>
       </ul>);
 
     return (
