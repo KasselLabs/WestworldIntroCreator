@@ -47,19 +47,41 @@
   }
 }
 
-.share-buttons {
+.footer {
   margin-bottom: 5px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
-  a {
-    &:not(:first-child) {
-      margin-left: 7px;
+  .social-pages {
+    margin-bottom: 10px;
+
+    > a {
+      margin-right: 10px;
+      fill: white;
+
+      &:hover {
+        fill: lighten(#7fb7d5, 10); // like $buttonHoverColor
+      }
     }
+
+    svg {
+      width: 40px;
+    }
+  }
+
+  .fb-share-button, .twitter-share-button {
+    margin-bottom: 10px;
   }
 
   @media $tablet {
     position: fixed;
     bottom: 0;
-    left: 5px;
+    left: 15px;
+    flex-direction: row;
+
+    .fb-share-button, .twitter-share-button {
+      margin-right: 10px;
+    }
   }
 }
