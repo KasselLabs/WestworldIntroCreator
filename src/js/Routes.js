@@ -20,8 +20,8 @@ const Routes = () => (
         <Route exact path="/" component={CreatePage} />
         <Route exact path="/:openingKey" component={VideoPage} />
         <Route path="/:openingKey/edit" component={EditPage} />
-        <Route path="/:openingKey/download/donate" component={DonateDownloadPage} />
-        <Route path="/:openingKey/download/donated" component={DonatedPage} />
+        <Route path="/:openingKey/download/pay" component={DonateDownloadPage} />
+        <Route path="/:openingKey/download/paid" component={DonatedPage} />
         <Route path="/:openingKey/download/request" component={RequestDownloadPage} />
         <Route path="/:openingKey/download/requested" component={RequestedPage} />
         <Route path="/:openingKey/download/add_email" component={AddDownloadEmailPage} />

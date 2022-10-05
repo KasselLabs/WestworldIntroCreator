@@ -29,7 +29,7 @@ export default function DonationOptions({ updatePaymentAmount }) {
         <span className="description">MP4 Video</span>
         <span className="description">Video will be like in the preview</span>
         <span className="description">
-          Donate at least
+          Pay at least
           {' '}
           <b>$10</b>
         </span>
@@ -47,7 +47,7 @@ export default function DonationOptions({ updatePaymentAmount }) {
         <span className="description">Video will be like in the preview</span>
         <span className="description">but without the watermark</span>
         <span className="description">
-          Donate at least
+          Pay at least
           {' '}
           <b>$20</b>
         </span>

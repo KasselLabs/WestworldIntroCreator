@@ -45,7 +45,7 @@ class RequestDownloadPage extends Component {
         Your video request {isQueued ? qeuedText : notQueuedText}{' '}
         queued at position <span className="bold">{queuePosition}</span>.
         It may take up to <span className="bold">{etaText}</span> to have your video rendered.
-        You can still donate to get it earlier if you want.
+        You can still pay to get it earlier if you want.
       </p>
     );
   }

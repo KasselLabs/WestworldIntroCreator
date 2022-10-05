@@ -69,22 +69,22 @@ class CheckForDonation extends Component {
     const donationPending = (
       <div className="check-for-donation__card">
         <Loader />
-        <span className="bold">Checking for donation...</span>
+        <span className="bold">Checking for payment...</span>
       </div>
     );
 
     const donationConfirmed = (
       <div className="check-for-donation__card check-for-donation__card--verified">
         <div className="check-for-donation__icon check">&#10003;</div>
-        <span className="bold">Donation confimed!</span>
+        <span className="bold">Payment confimed!</span>
       </div>
     );
 
     const donationNotFound = (
       <div className="check-for-donation__card check-for-donation__card--not-found">
         <div className="check-for-donation__icon">X</div>
-        <span className="bold">Donation not found! <br />
-          Please, check if your payment was made successfully or try to donate again.
+        <span className="bold">Payment not found! <br />
+          Please, check if your payment was made successfully or try to pay again.
         </span>
       </div>
     );
