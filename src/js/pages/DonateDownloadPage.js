@@ -46,9 +46,9 @@ const DonateDownloadPage = ({ match }) => {
   }, []);
 
   return (
-    <DownloadPageContainer title="DONATE AND DOWNLOAD">
+    <DownloadPageContainer title="PAYMENT AND DOWNLOAD">
       <p>
-        Great choice! You can donate the amount for the following options:
+        Great choice! You can pay the amount for the following options:
         <DonationOptions
           updatePaymentAmount={updatePaymentAmount}
         />

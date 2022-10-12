@@ -30,7 +30,7 @@ class EmailRequestField extends Component {
     const { openingKey } = match.params;
 
     if (donate) {
-      history.push(`/${openingKey}/download/donated`);
+      history.push(`/${openingKey}/download/paid`);
       return;
     }
 
