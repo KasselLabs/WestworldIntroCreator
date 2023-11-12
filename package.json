@@ -46,7 +46,7 @@
     "dompurify": "^3.0.6",
     "fscreen": "^1.0.2",
     "fullscreen-polyfill": "^1.0.2",
-    "humanize-duration": "^3.18.0",
+    "humanize-duration": "^3.28.0",
     "lodash.isequal": "^4.5.0",
     "lodash.throttle": "^4.1.1",
     "react": "^16.14.0",
