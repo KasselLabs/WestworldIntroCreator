@@ -38,7 +38,7 @@
     "stylus": "^0.54.5"
   },
   "dependencies": {
-    "axios": "^0.18.1",
+    "axios": "^0.27.2",
     "babel-preset-react": "^6.24.1",
     "bowser": "^2.5.3",
     "clappr": "^0.3.6",
