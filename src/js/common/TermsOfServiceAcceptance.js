@@ -5,7 +5,7 @@ const TermsOfServiceAcceptance = () => (
     By using this website you are agreeing to our{' '}
     <a
       className="link"
-      href="https://help.kassellabs.io/westworld/#termsOfService"
+      href="https://kassellabs.io/terms"
       target="_blank"
       rel="noopener noreferrer"
     >
