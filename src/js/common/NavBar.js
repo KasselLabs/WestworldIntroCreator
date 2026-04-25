@@ -19,13 +19,13 @@ class NavBar extends Component {
     const menu = (
       <ul className="menu">
         <li><a href="/#/">HOME</a></li>
-        <li><a href="https://help.kassellabs.io/westworld/">CONTACT</a></li>
+        <li><a href="https://kassellabs.io/contact">CONTACT</a></li>
         <li>
           <a>HELP</a> {/* eslint-disable-line jsx-a11y/anchor-is-valid */}
           <ul className="dropdown">
-            <li><a href="https://help.kassellabs.io/game-of-thrones/">FAQ</a></li>
-            <li><a href="https://help.kassellabs.io/game-of-thrones/#termsOfService">TERMS OF SERVICE</a></li>
-            <li><a href="https://help.kassellabs.io/privacy/">PRIVACY POLICY</a></li>
+            <li><a href="https://kassellabs.io/help/westworld-intro-creator">FAQ</a></li>
+            <li><a href="https://kassellabs.io/terms">TERMS OF SERVICE</a></li>
+            <li><a href="https://kassellabs.io/privacy">PRIVACY POLICY</a></li>
             <li><a href="https://kassellabs.io/about">ABOUT US</a></li>
           </ul>
         </li>
