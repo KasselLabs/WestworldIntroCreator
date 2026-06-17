@@ -1,4 +1,9 @@
-import { firebases, defaultFirebase, defaultFirebasePrefix } from './config';
+import {
+  firebases,
+  defaultFirebase,
+  defaultFirebasePrefix,
+  introsApiUrl,
+} from './config';
 import Http from './Http';
 
 const SERVER_TIMESTAMP = { '.sv': 'timestamp' };
@@ -43,66 +48,49 @@ export const _generateUrlWithKey = (key) => {
   return `${openingPrefix}-${key}.json`;
 };
 
+// In the unified intros store, Westworld openings are keyed by the code the user
+// references verbatim — the full app code `W<id>`, or the `Season1` alias (that's
+// how they were migrated / stored), so the read uses `initialKey` directly (no
+// special-key resolution, no prefix strip / leading dash).
+const _fetchFromIntros = async (initialKey) => {
+  const response = await Http(introsApiUrl).get(`/openings/${initialKey}.json`);
+  return response.data || null; // intros returns literal null (HTTP 200) when absent
+};
+
+const _fetchFromFirebase = async (rawkey) => {
+  const { baseURL, key } = _parseFirebasekey(rawkey);
+  const response = await Http(baseURL).get(_generateUrlWithKey(key));
+  return response.data || null;
+};
 
 export const fetchKey = async (initialKey) => {
   const openingFromCache = openingsCache[initialKey];
   if (openingFromCache) {
-    // Raven.captureBreadcrumb({
-    //   message: 'Getting intro from cache.',
-    //   category: 'info',
-    //   data: openingFromCache,
-    // });
     return openingFromCache;
   }
 
   const rawkey = _parseSpecialKeys(initialKey);
-  const { baseURL, key } = _parseFirebasekey(rawkey);
-  const http = Http(baseURL);
-
-  const url = _generateUrlWithKey(key);
 
   Raven.captureBreadcrumb({
-    message: 'Loading intro from Firebase.',
+    message: 'Loading intro.',
     category: 'info',
-    data: { initialKey },
+    data: { initialKey, source: introsApiUrl ? 'intros' : 'firebase' },
   });
-  const response = await http.get(url);
-  const opening = response.data;
-  // const opening = {"created":1528165309973,"texts":{
-  // "text0":"EVAN RACHEL WOOD",
-  // "text1":"THANDIE NEWTOW",
-  // "text10":"SHANNON WOODWARD",
-  // "text11":"WITH\nED HARRIS",
-  // "text12":"AND\nANTHONY HOPKINS",
-  // "text13":"MUSIC BY\nRAMIN DJAWADI",
-  // "text14":"EDITED BY\nSTEPHEN SMEL, ACE\nMARC JOZEFOMICZ",
-  // "text15":"PRODUCTION DESIGNER\nNATHAN CROWLEY",
-  // "text16":"DIRECTOR OF PHOTOGRAPHY\nPAUL CAMERON, ASC",
-  // "text17":"CO-PRODUCER\nBRUCE DUNN",
-  // "text18":"CO-PRODUCER\nSUSAN EKINS",
-  // "text19":"CO-PRODUCER\nSTEPHEN SEMEL",
-  // "text2":"JEFFREY WRIGHT",
-  // "text20":"CO-EXECUTIVE PRODUCER\nDAVID COATSWORTH",
-  // "text21":"CO-EXECUTIVE PRODUCER\nKATHY LINGG",
-  // "text22":"CO-EXECUTIVE PRODUCER\nATHENA WICKHAM",
-  // "text23":"EXECUTIVE PRODUCER\nBRYAN BURK",
-  // "text24":"EXECUTIVE PRODUCER\nJERRY WEINTRAUB",
-  // "text25":"EXECUTIVE PRODUCER\nLISA JOY",
-  // "text26":"EXECUTIVE PRODUCER\nJONATHAN NOLAN",
-  // "text27":"EXECUTIVE PRODUCER\nJ.J. ABRAMS",
-  // "text28":"WESTWORLD",
-  // "text29":"CREATED FOR TELEVISION BY\nJONATHAN NOLAN & LISA JOY",
-  // "text3":"JAMES MARSDEN",
-  // "text30":"BASED ON THE FILM WRITTEN BY\nMICHAEL CRICHTON",
-  // "text31":"TELEPLAY BY\nJONATHAN NOLAN & LISA JOY",
-  // "text32":"STORY BY\nJONATHAN NOLAN & LISA JOY\nAND\nMICHAEL CRICHTON",
-  // "text33":"DIRECTED BY\nJONATHAN NOLAN",
-  // "text4":"INGRID BOLSØ BERDAL",
-  // "text5":"LUKE HEMSWORTH",
-  // "text6":"SIDSE BABETT KNUDSEN",
-  // "text7":"SIMON QUARTERMAN",
-  // "text8":"RODRIGO SANTORO",
-  // "text9":"ANGELA SARAFYAN"}};
+
+  // Prefer the unified store; fall back to Firebase on miss/error so a not-yet-
+  // mirrored opening (or a transient intros failure) still resolves. intros is
+  // keyed by the user-facing code (initialKey); Firebase by the resolved rawkey.
+  let opening = null;
+  if (introsApiUrl) {
+    try {
+      opening = await _fetchFromIntros(initialKey);
+    } catch (error) {
+      Raven.captureException(error);
+    }
+  }
+  if (!opening) {
+    opening = await _fetchFromFirebase(rawkey);
+  }
 
   if (!opening) {
     const error = new Error(`Opening not found: ${initialKey}`);
@@ -123,5 +111,19 @@ export const saveOpening = async (opening) => {
 
   const response = await http.post('/openings.json', opening);
   const key = `${defaultFirebasePrefix}${response.data.name.substr(1)}`;
+
+  // Mirror the opening into the unified intros store under the SAME app code, so
+  // reads (which prefer intros) stay current during the migration. Firebase
+  // remains the id-minter and source of truth until the cutover, so a mirror
+  // failure must never break the user's save. intros openings are create-only;
+  // it resolves the `.sv` timestamp server-side, same as Firebase.
+  if (introsApiUrl) {
+    try {
+      await Http(introsApiUrl).put(`/openings/${key}.json`, opening);
+    } catch (error) {
+      Raven.captureException(error);
+    }
+  }
+
   return key;
 };

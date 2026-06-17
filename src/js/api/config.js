@@ -9,6 +9,12 @@ export const defaultFirebasePrefix = 'W';
 
 export const queueApiUrl = process.env.QUEUE_API;
 
+// Base URL of the unified intros-database openings store for this project, e.g.
+// `https://intros.kassellabs.io/westworld`. When set, openings are READ from here
+// (with a Firebase fallback) and new openings are mirror-written here under the
+// same app code during the migration. Unset = legacy Firebase-only behavior.
+export const introsApiUrl = process.env.INTROS_API_URL;
+
 if (!defaultFirebase) {
   throw new Error('Firebase URL can\'t be empty');
 }
