@@ -55,6 +55,6 @@
     "react-fullscreen-crossbrowser": "^1.0.9",
     "react-router-dom": "^4.3.1",
     "react-youtube": "^7.5.0",
-    "sweetalert2": "7.17"
+    "sweetalert2": "7.33.1"
   }
 }
