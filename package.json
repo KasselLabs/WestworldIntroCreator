@@ -31,7 +31,7 @@
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.8.2",
-    "http-server": "^0.11.1",
+    "http-server": "^14.1.1",
     "jest": "^23.1.0",
     "parcel-bundler": "^1.9.2",
     "stylint": "^1.5.9",
